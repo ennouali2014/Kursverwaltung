@@ -10,8 +10,9 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private int anrede;
-    private String title;
+    private String titel;
     private String vorname;
     private String nachname;
     private String strasse;
@@ -20,13 +21,13 @@ public class Person {
     private String email;
 
     public Person() {
-        super();
+
     }
 
     public Person(Long id, int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
         this.id = id;
         this.anrede = anrede;
-        this.title = title;
+        this.titel = title;
         this.vorname = vorname;
         this.nachname = nachname;
         this.strasse = strasse;
@@ -51,12 +52,12 @@ public class Person {
         this.anrede = anrede;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitel() {
+        return titel;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
     public String getVorname() {

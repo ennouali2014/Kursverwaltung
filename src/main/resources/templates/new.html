@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Create New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+<div align="center">
+    <h1>Create New Student</h1>
+    <br />
+    <div class="col-sm-4">
+        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+        <form action="#" th:action="@{/save}" th:object="${person}" method="post">
+
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Anrede</label>
+                    <td>
+                        <input type="hidden" th:field="*{id}" />
+                        <input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" />
+                    </td>
+                </tr>
+            </div>
+
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Titel</label>
+                    <td><input type="text" th:field="*{titel}" class="form-control" placeholder="title" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Vorname</label>
+                    <td><input type="text" th:field="*{vorname}" class="form-control" placeholder="vorname" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Nachname</label>
+                    <td><input type="text" th:field="*{nachname}" class="form-control" placeholder="Nachname" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >strasse</label>
+                    <td><input type="text" th:field="*{strasse}" class="form-control" placeholder="strasse" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >PLZ</label>
+                    <td><input type="text" th:field="*{plz}" class="form-control" placeholder="plz" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Ort</label>
+                    <td><input type="text" th:field="*{ort}" class="form-control" placeholder="ort" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Email</label>
+                    <td><input type="text" th:field="*{email}" class="form-control" placeholder="email" /></td>
+                </tr>
+            </div>
+            <br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
