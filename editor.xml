@@ -1,0 +1,8 @@
+<application>
+  <component name="EditorSettings">
+    <option name="SHOW_INTENTION_PREVIEW" value="true" />
+  </component>
+  <component name="InlayHintsSettings">
+    <option name="lastViewedProviderKeyId" value="JAVA.parameter.hints.old" />
+  </component>
+</application>
