@@ -17,19 +17,19 @@ public class PersonController {
     private PersonService service;
 
     @GetMapping("/")
-    public String viewHomePage(Model model){
-        List<Person> listPerson = service.ListAll();
-        model.addAttribute("listPerson",listPerson);
-        System.out.println("Get /");
+    public String viewHomePage(Model model) {
+        List<Person> listPerson = service.listAll();
+        model.addAttribute("listPerson", listPerson);
+        System.out.print("Get / ");
         return "index";
     }
 
     @GetMapping("/new")
     public String add(Model model){
-        model.addAttribute("Person",new Person());
+        model.addAttribute("person",new Person());
         return "new";
     }
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @PostMapping("/save")
     public String saveStudent(@ModelAttribute("person") Person person) {
         service.save(person);
         return "redirect:/";

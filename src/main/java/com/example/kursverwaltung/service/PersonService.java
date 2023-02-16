@@ -12,9 +12,7 @@ public class PersonService {
     @Autowired
     private PersonRepository repo;
 
-    public List<Person> ListAll(){
-        return repo.findAll();
-    }
+
     public void save(Person person){
         repo.save(person);
     }
@@ -23,5 +21,9 @@ public class PersonService {
     }
     public void delete(long id){
         repo.deleteById(id);
+    }
+
+    public List<Person> listAll() {
+        return repo.findAll();
     }
 }
