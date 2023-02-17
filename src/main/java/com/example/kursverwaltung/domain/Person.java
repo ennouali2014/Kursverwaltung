@@ -1,31 +1,37 @@
 package com.example.kursverwaltung.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
+@Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
+    @Column(name = "titel",length = 150, nullable = true)
     private String titel;
+    @Column(name = "vorname", length = 150, nullable = false)
     private String vorname;
+    @Column(name = "nachname", length = 150, nullable = false)
     private String nachname;
+    @Column(name = "strasse", length = 150, nullable = false)
     private String strasse;
+    @Column(name = "plz", length = 150, nullable = false)
     private String plz;
+    @Column(name = "ort", length = 150, nullable = false)
     private String ort;
+    @Column(name = "email", length = 150, nullable = false)
     private String email;
 
     public Person() {
 
     }
 
-    public Person(Long id, int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
-        this.id = id;
+    public Person(int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
         this.anrede = anrede;
         this.titel = title;
         this.vorname = vorname;
@@ -40,9 +46,6 @@ public class Person {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public int getAnrede() {
         return anrede;
@@ -106,5 +109,32 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(strasse, person.strasse) && Objects.equals(plz, person.plz) && Objects.equals(ort, person.ort) && Objects.equals(email, person.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(vorname, nachname, strasse, plz, ort, email);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "anrede=" + anrede +
+                ", titel='" + titel + '\'' +
+                ", vorname='" + vorname + '\'' +
+                ", nachname='" + nachname + '\'' +
+                ", strasse='" + strasse + '\'' +
+                ", plz='" + plz + '\'' +
+                ", ort='" + ort + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

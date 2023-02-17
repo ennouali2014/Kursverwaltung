@@ -19,8 +19,13 @@
                 <tr>
                     <label class="form-label" >Anrede</label>
                     <td>
+                        <select th:field="*{anrede}" class="form-control" name="anrede">
+                            <option th:value="1" th:text="Frau">Frau</option>
+                            <option th:value="2" th:text="Herr">Herr</option>
+                            <option th:value="3" th:text="Divers">Divers</option>
+                        </select>
                         <input type="hidden" th:field="*{id}" />
-                        <input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" />
+                        <!--input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" /-->
                     </td>
                 </tr>
             </div>
