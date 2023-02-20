@@ -17,32 +17,32 @@ public class KursController {
     @Autowired
     private KursService service;
 
-    @GetMapping("/")
+    @GetMapping("/kurs")
     public String viewHomePage(Model model) {
         List<Kurs> listKurse = service.listAll();
         model.addAttribute("listKurs", listKurse);
         System.out.println("Get / ");
-        return "index";
+        return "kurs";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/kurs/new")
     public String add(Model model) {
         model.addAttribute("kurs", new Kurs());
         return "new";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/kurs/save")
     public String saveKurs(@ModelAttribute("kurs") Kurs kurs) {
         return "redirect:/";
     }
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/kurs/edit/{id}")
     public ModelAndView showEditKursPage(@PathVariable(name = "id")int id){
         ModelAndView modelAndView=new ModelAndView("new");
         Kurs kurs=service.get(id);
         modelAndView.addObject("kurs",kurs);
         return modelAndView;
     }
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/kurs/delete/{id}")
     public String deleteKurs(@PathVariable(name = "id") int id){
         service.delete(id);
         return "redirect:/";
