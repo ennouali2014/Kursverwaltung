@@ -6,6 +6,7 @@ import com.example.kursverwaltung.repository.KursRepository;
 import com.example.kursverwaltung.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import java.util.List;
 import java.util.Set;
@@ -39,5 +40,15 @@ public class PersonService {
         kurslist.add(kurs);
         person.setKurse(kurslist);
         return repo.save(person);
+    }
+
+    public String getPersonId(Long person_id, Model model) {
+        Person findPersontId = repo.findByPersonId(person_id);
+
+        model.addAttribute("title", "Data Student");
+        model.addAttribute("kurse", repoK.findAll());
+        model.addAttribute("personen", findPersontId);
+
+        return "add_student_course";
     }
 }

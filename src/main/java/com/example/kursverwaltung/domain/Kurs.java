@@ -1,5 +1,6 @@
 package com.example.kursverwaltung.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -15,6 +16,11 @@ public class Kurs {
     private Long kurs_id;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
+
+    public Long getKurs_id() {
+        return kurs_id;
+    }
+
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Column(name = "anzahlTage", nullable = false)
@@ -45,11 +51,9 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
-    @ManyToMany
-    @JoinTable(name="pesonen_kurse",
-        joinColumns = @JoinColumn(name="kurs_id"),
-        inverseJoinColumns = @JoinColumn(name = "person_id"))
-    private Set<Person> personen= new HashSet<>();
+    @ManyToMany(mappedBy = "kurse")
+    @JsonIgnore
+    private Set<Person> personen = new HashSet<>();
 
     public Kurs() {
     }

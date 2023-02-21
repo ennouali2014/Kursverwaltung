@@ -30,9 +30,11 @@ public class Person {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "personen")
-    private Set<Kurs> kurse = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "person_kurs",
+            joinColumns = {@JoinColumn(name = "person_id")},
+            inverseJoinColumns = {@JoinColumn(name = "kurs_id")})
+    public Set<Kurs> kurse = new HashSet<>();
     public Person() {
 
     }

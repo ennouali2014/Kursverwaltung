@@ -79,6 +79,18 @@
                 </tr>
             </div>
             <br>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Kurse</label>
+                    <td><select th:field="*{kurse}">
+                        <option value="">Choose..</option>
+                        <!--/*@thymesVar id="kurslist" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                        <option th:each="kurs: ${kurslist}" th:value="${kurslist.id}" th:text="${course.name}" />
+                    </select></td>
+                </tr>
+            </div>
+            <br>
             <tr>
                 <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
             </tr>

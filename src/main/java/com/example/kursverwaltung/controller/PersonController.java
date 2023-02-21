@@ -1,6 +1,8 @@
 package com.example.kursverwaltung.controller;
 
+import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
+import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ public class PersonController {
 
     @Autowired
     private PersonService service;
+
 
     @GetMapping("/personen")
     public String viewHomePage(Model model) {
@@ -49,5 +52,9 @@ public class PersonController {
     @PutMapping("/{person_id}/kurs/{kurs_id}")
     public Person assignKursToPerson(@PathVariable Long kurs_id,@PathVariable Long person_id){
         return service.assignKursToPerson(kurs_id,person_id);
+    }
+    @RequestMapping ("/get/{person_id}")
+    public String getPersonId(@PathVariable Long person_id, Model model){
+        return service.getPersonId(person_id,model);
     }
 }
