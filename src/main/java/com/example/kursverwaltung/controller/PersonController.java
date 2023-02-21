@@ -42,7 +42,7 @@ public class PersonController {
         return mav;
     }
     @RequestMapping("/delete/{id}")
-    public String deletePerson(@PathVariable(name="id") int id){
+    public String deletePerson(@PathVariable(name = "id") int id){
         service.delete(id);
         return "redirect:/";
     }
