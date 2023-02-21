@@ -25,10 +25,10 @@ public class KursController {
         return "kurs";
     }
 
-    @GetMapping("/kurs/new")
+    @GetMapping("/kurs/newkurs")
     public String add(Model model) {
         model.addAttribute("kurs", new Kurs());
-        return "new";
+        return "newkurs";
     }
 
     @PostMapping("/kurs/save")

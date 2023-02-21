@@ -16,7 +16,7 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @GetMapping("/")
+    @GetMapping("/person")
     public String viewHomePage(Model model) {
         List<Person> listPerson = service.listAll();
         model.addAttribute("listPerson", listPerson);
