@@ -16,34 +16,34 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-    @GetMapping("/person")
+    @GetMapping("/personen")
     public String viewHomePage(Model model) {
         List<Person> listPerson = service.listAll();
         model.addAttribute("listPerson", listPerson);
         System.out.print("Get / ");
-        return "index";
+        return "personen";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/personen/new")
     public String add(Model model){
         model.addAttribute("person",new Person());
-        return "new";
+        return "newperson";
     }
     @PostMapping("/save")
     public String saveStudent(@ModelAttribute("person") Person person) {
         service.save(person);
-        return "redirect:/";
+        return "redirect:/personen";
     }
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/personen/edit/{id}")
     public ModelAndView showEditPersonpage(@PathVariable(name = "id") int id){
         ModelAndView mav = new ModelAndView("new");
         Person person =service.get(id);
         mav.addObject("person",person);
         return mav;
     }
-    @RequestMapping("/delete/{id}")
+    @RequestMapping("/personen/delete/{id}")
     public String deletePerson(@PathVariable(name="id") int id){
         service.delete(id);
-        return "redirect:/";
+        return "redirect:/personen";
     }
 }

@@ -33,7 +33,7 @@ public class KursController {
 
     @PostMapping("/kurs/save")
     public String saveKurs(@ModelAttribute("kurs") Kurs kurs) {
-        return "redirect:/";
+        return "redirect:/kurs";
     }
     @RequestMapping("/kurs/edit/{id}")
     public ModelAndView showEditKursPage(@PathVariable(name = "id")int id){
@@ -45,7 +45,7 @@ public class KursController {
     @RequestMapping("/kurs/delete/{id}")
     public String deleteKurs(@PathVariable(name = "id") int id){
         service.delete(id);
-        return "redirect:/";
+        return "redirect:/kurs";
     }
 
 }

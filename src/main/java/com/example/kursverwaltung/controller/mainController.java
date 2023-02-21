@@ -22,6 +22,6 @@ public class mainController {
     @GetMapping("/")
     public String viewHomePage(Model model) {
 
-        return "index1";
+        return "index";
     }
 }
