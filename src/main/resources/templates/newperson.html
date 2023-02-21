@@ -12,7 +12,7 @@
     <br />
     <div class="col-sm-4">
         <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
-        <form action="#" th:action="@{/save}" th:object="${person}" method="post">
+        <form action="#" th:action="@{/saveperson}" th:object="${person}" method="post">
 
 
             <div alight="left">
@@ -24,7 +24,7 @@
                             <option th:value="2" th:text="Herr">Herr</option>
                             <option th:value="3" th:text="Divers">Divers</option>
                         </select>
-                        <input type="hidden" th:field="*{id}" />
+                        <input type="hidden" th:field="*{person_id}" />
                         <!--input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" /-->
                     </td>
                 </tr>

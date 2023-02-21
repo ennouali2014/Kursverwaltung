@@ -31,19 +31,19 @@ public class KursController {
         return "newkurs";
     }
 
-    @PostMapping("/kurs/save")
+    @PostMapping("/savekurs")
     public String saveKurs(@ModelAttribute("kurs") Kurs kurs) {
         return "redirect:/kurs";
     }
-    @RequestMapping("/kurs/edit/{id}")
-    public ModelAndView showEditKursPage(@PathVariable(name = "id")int id){
+    @RequestMapping("/kurs/edit/{kurs_id}")
+    public ModelAndView showEditKursPage(@PathVariable(name = "kurs_id")int id){
         ModelAndView modelAndView=new ModelAndView("new");
         Kurs kurs=service.get(id);
         modelAndView.addObject("kurs",kurs);
         return modelAndView;
     }
-    @RequestMapping("/kurs/delete/{id}")
-    public String deleteKurs(@PathVariable(name = "id") int id){
+    @RequestMapping("/kurs/delete/{kurs_id}")
+    public String deleteKurs(@PathVariable(name = "kurs_id") int id){
         service.delete(id);
         return "redirect:/kurs";
     }

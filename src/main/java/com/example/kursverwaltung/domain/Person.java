@@ -1,15 +1,18 @@
 package com.example.kursverwaltung.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "person")
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long person_id;
     @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
     @Column(name = "titel",length = 150, nullable = true)
@@ -27,6 +30,9 @@ public class Person {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "personen")
+    private Set<Kurs> kurse = new HashSet<>();
     public Person() {
 
     }
@@ -42,8 +48,8 @@ public class Person {
         this.email = email;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPerson_id() {
+        return person_id;
     }
 
 
@@ -109,6 +115,14 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Set<Kurs> getKurse() {
+        return kurse;
+    }
+
+    public void setKurse(Set<Kurs> kurse) {
+        this.kurse = kurse;
     }
 
     @Override

@@ -20,30 +20,34 @@ public class PersonController {
     public String viewHomePage(Model model) {
         List<Person> listPerson = service.listAll();
         model.addAttribute("listPerson", listPerson);
-        System.out.print("Get / ");
+        //System.out.print("Get / ");
         return "personen";
     }
 
-    @GetMapping("/personen/new")
+    @GetMapping("/newperson")
     public String add(Model model){
         model.addAttribute("person",new Person());
         return "newperson";
     }
-    @PostMapping("/save")
+    @PostMapping("/saveperson")
     public String saveStudent(@ModelAttribute("person") Person person) {
         service.save(person);
         return "redirect:/personen";
     }
-    @RequestMapping("/personen/edit/{id}")
-    public ModelAndView showEditPersonpage(@PathVariable(name = "id") int id){
-        ModelAndView mav = new ModelAndView("new");
+    @RequestMapping("/editperson/{person_id}")
+    public ModelAndView showEditPersonpage(@PathVariable(name = "person_id") int id){
+        ModelAndView mav = new ModelAndView("newperson");
         Person person =service.get(id);
         mav.addObject("person",person);
         return mav;
     }
-    @RequestMapping("/personen/delete/{id}")
-    public String deletePerson(@PathVariable(name="id") int id){
+    @RequestMapping("/deleteperson/{person_id}")
+    public String deletePerson(@PathVariable(name="person_id") int id){
         service.delete(id);
         return "redirect:/personen";
+    }
+    @PutMapping("/{person_id}/kurs/{kurs_id}")
+    public Person assignKursToPerson(@PathVariable Long kurs_id,@PathVariable Long person_id){
+        return service.assignKursToPerson(kurs_id,person_id);
     }
 }

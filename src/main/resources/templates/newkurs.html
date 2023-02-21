@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
@@ -13,7 +12,8 @@
     <h1>Create New Kurs</h1>
     <br/>
     <div class="col-sm-4">
-        <form action="#" th:action="@{/kurs/save}" th:object="${kurs}" method="post">
+        <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+        <form action="#" th:action="@{/savekurs}" th:object="${kurs}" method="post">
             <HBox>
                 <VBox align="center_left">
                     <div align="center">
@@ -22,6 +22,8 @@
                             <td>
                                 <input type="text" th:field="*{kursname}" class="form-control"
                                        placeholder="kursname"/>
+                                <input type="hidden" th:field="*{kurs_id}" />
+
                             </td>
                         </tr>
 
@@ -82,7 +84,7 @@
                                         <option th:value="2" th:text="Geplant">Geplant</option>
                                         <option th:value="3" th:text="abgesagt">Abgesagt</option>
                                     </select>
-                                    <input type="hidden" th:field="*{id}"/>
+
                                 </td>
                             </tr>
                             <tr>

@@ -10,11 +10,9 @@
 <div>
     <h2>Spring Boot Crud System -Personen Registation</h2>
 
-    <!--div align="center">
-        <h3><a th:href="@{'/kurs'}">Kurs</a></h3>
-    </div-->
+
     <div align="left">
-        <h3><a th:href="@{'/new'}">Add new person</a></h3>
+        <h3><a th:href="@{'/newperson'}">Add new person</a></h3>
     </div>
 
 
@@ -36,8 +34,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="person : ${listPerson }">
-                        <td th:text="${person.id}">person ID</td>
+                    <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+
+                    <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                    <tr th:each="person :${listPerson}">
+                        <td th:text="${person.person_id}">person ID</td>
                         <td th:text="${person.anrede}">Anrede</td>
                         <td th:text="${person.titel}">Titel</td>
                         <td th:text="${person.vorname}">Vorname</td>
@@ -47,10 +48,10 @@
                         <td th:text="${person.ort}">Ort</td>
                         <td th:text="${person.email}">Email</td>
                         <td>
-                            <a th:href="@{'/edit/' + ${person.id}}">Edit</a>
+                            <a th:href="@{'/editperson/' + ${person.person_id}}">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{'/delete/' + ${person.id}}">Delete</a>
+                            <a th:href="@{'/deleteperson/' + ${person.person_id}}">Delete</a>
                         </td>
                     </tr>
 
