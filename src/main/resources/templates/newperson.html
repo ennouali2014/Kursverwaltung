@@ -1,0 +1,144 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Create New Product</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
+</head>
+<body>
+
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
+    <a class="navbar-brand" href="/">
+        <img src="assets/brand/brand.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
+        Kursverwaltung
+    </a>
+
+
+    <div class="navbar-expand-lg" id="navbarNav">
+
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{'/'}">Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div align="center">
+
+    <!--
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a></li>
+           </ol>
+    </nav>
+-->
+
+    <h1>Create New Person</h1>
+    <br />
+    <div class="col-sm-4">
+        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+        <form action="#" th:action="@{/saveperson}" th:object="${person}" method="post">
+
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Anrede</label>
+                    <td>
+                        <select th:field="*{anrede}" class="form-control" name="anrede">
+                            <option th:value="1" th:text="Frau">Frau</option>
+                            <option th:value="2" th:text="Herr">Herr</option>
+                            <option th:value="3" th:text="Divers">Divers</option>
+                        </select>
+                        <input type="hidden" th:field="*{person_id}" />
+                        <!--input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" /-->
+                    </td>
+                </tr>
+            </div>
+
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Titel</label>
+                    <td><input type="text" th:field="*{titel}" class="form-control" placeholder="title" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Vorname</label>
+                    <td><input type="text" th:field="*{vorname}" class="form-control" placeholder="vorname" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Nachname</label>
+                    <td><input type="text" th:field="*{nachname}" class="form-control" placeholder="Nachname" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >strasse</label>
+                    <td><input type="text" th:field="*{strasse}" class="form-control" placeholder="strasse" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >PLZ</label>
+                    <td><input type="text" th:field="*{plz}" class="form-control" placeholder="plz" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Ort</label>
+                    <td><input type="text" th:field="*{ort}" class="form-control" placeholder="ort" /></td>
+                </tr>
+            </div>
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Email</label>
+                    <td><input type="text" th:field="*{email}" class="form-control" placeholder="email" /></td>
+                </tr>
+            </div>
+            <br>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Kurse</label>
+                    <td><select th:field="*{kurse}">
+                        <option value="">Choose..</option>
+                        <!--/*@thymesVar id="kurslist" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                        <option th:each="kurs: ${kurslist}" th:value="${kurslist.id}" th:text="${course.name}" />
+                    </select></td>
+                </tr>
+            </div>
+            <br>
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

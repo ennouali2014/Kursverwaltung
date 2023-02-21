@@ -1,9 +1,11 @@
 package com.example.kursverwaltung.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.hibernate.annotations.Table;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 //@Table(name = "kurs")
@@ -11,9 +13,14 @@ public class Kurs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long kurs_id;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
+
+    public Long getKurs_id() {
+        return kurs_id;
+    }
+
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Column(name = "anzahlTage", nullable = false)
@@ -44,11 +51,15 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
+    @ManyToMany(mappedBy = "kurse")
+    @JsonIgnore
+    private Set<Person> personen = new HashSet<>();
+
     public Kurs() {
     }
 
     public Kurs(Long id, String kursname, String status, String anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
-        this.id = id;
+        this.kurs_id = id;
         this.kursname = kursname;
         this.status = status;
         this.anzahlTage = anzahlTage;
@@ -59,13 +70,6 @@ public class Kurs {
         this.gebuehrBrutto = gebuehrBrutto;
         this.mwstProzent = mwstProzent;
         this.kursBeschreibung = kursBeschreibung;
-    }
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getKursname() {
@@ -188,4 +192,11 @@ public class Kurs {
         this.kursBeschreibung = kursBeschreibung;
     }
 
+    public Set<Person> getPersonen() {
+        return personen;
+    }
+
+    public void setPersonen(Set<Person> personen) {
+        this.personen = personen;
+    }
 }
