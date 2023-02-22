@@ -11,7 +11,7 @@ import java.util.Set;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long personId;
+    private long personId;
     @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
     @Column(name = "titel",length = 150, nullable = true)
@@ -29,11 +29,16 @@ public class Person {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.MERGE,fetch= FetchType.EAGER)
+    @ManyToMany(cascade={CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST},fetch= FetchType.EAGER)
     @JoinTable(name = "person_kurs",
             joinColumns = {@JoinColumn(name = "personId")},
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
-    public Set<Kurs> kurse = new HashSet<>();
+    public Set<Kurs> inKursinteressieren = new HashSet<>();
+    @ManyToMany(cascade={CascadeType.DETACH,CascadeType.REFRESH,CascadeType.PERSIST,},fetch= FetchType.EAGER)
+    @JoinTable(name = "person_kurs_teilnehmer",
+            joinColumns = {@JoinColumn(name = "personId")},
+            inverseJoinColumns = {@JoinColumn(name = "kursId")})
+    public Set<Kurs> inKursteilnehmen = new HashSet<>();
     public Person() {
 
     }
@@ -49,10 +54,17 @@ public class Person {
         this.email = email;
     }
 
-    public Long getPersonId() {
+    public long getPersonId() {
         return personId;
     }
 
+    public Set<Kurs> getInKursteilnehmen() {
+        return inKursteilnehmen;
+    }
+
+    public void setInKursteilnehmen(Set<Kurs> inKursteilnehmen) {
+        this.inKursteilnehmen = inKursteilnehmen;
+    }
 
     public int getAnrede() {
         return anrede;
@@ -118,12 +130,12 @@ public class Person {
         this.email = email;
     }
 
-    public Set<Kurs> getKurse() {
-        return kurse;
+    public Set<Kurs> getInKursinteressieren() {
+        return inKursinteressieren;
     }
 
-    public void setKurse(Set<Kurs> kurse) {
-        this.kurse = kurse;
+    public void setInKursinteressieren(Set<Kurs> inKursinteressieren) {
+        this.inKursinteressieren = inKursinteressieren;
     }
 
     @Override
@@ -151,5 +163,29 @@ public class Person {
                 ", ort='" + ort + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+    public Boolean schonTeilnehmer(Kurs kurs){
+        System.out.println("-----------------------HIER1");
+        for (Kurs kursp:this.inKursteilnehmen){
+            System.out.println("-----------------------HIER2"+kursp.getKursId());
+            System.out.println("-----------------------HIER3"+kurs.getKursId());
+            if(kursp.getKursId().equals(kurs.getKursId())){
+                System.out.println("-----------------------HIER4");
+                return this.inKursteilnehmen.remove(kurs);
+            }
+        }
+        return false;
+    }
+    public Boolean schonInteressant(Kurs kurs){
+        System.out.println("-----------------------HIER1");
+        for (Kurs kursp:this.inKursinteressieren){
+            System.out.println("-----------------------HIER2"+kursp.getKursId());
+            System.out.println("-----------------------HIER3"+kurs.getKursId());
+            if(kursp.getKursId().equals(kurs.getKursId())){
+                System.out.println("-----------------------HIER4");
+                return this.inKursinteressieren.remove(kurs);
+            }
+        }
+        return false;
     }
 }

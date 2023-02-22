@@ -41,7 +41,7 @@ public class PersonController {
     @RequestMapping("/editperson/{personId}")
     public ModelAndView showEditPersonpage(@PathVariable(name = "personId") int personId){
         ModelAndView mav = new ModelAndView("newperson");
-        Person person =service.get(personId);
+        Person person =service.getPersonId(personId);
         mav.addObject("person",person);
         return mav;
     }
@@ -51,20 +51,32 @@ public class PersonController {
         return "redirect:/personen";
     }
     @RequestMapping("/addKursToPerson/{personId}")
-    public String assignKursToPerson(@PathVariable Long personId,@RequestParam Long kursId){
+    public String assignKursToPerson(@PathVariable Long personId,@RequestParam Long kursId,@RequestParam String choix){
 
         Person person=service.getPersonId(personId);
         Kurs kurs=service.getKurs(kursId);
-        person.kurse.add(kurs);
+       if (choix.equals("teilnehmer")){
+           person.schonInteressant(kurs);
+           person.inKursteilnehmen.add(kurs);
+           person.setInKursteilnehmen(person.inKursteilnehmen);
+       }else{
+           person.schonTeilnehmer(kurs);
+           person.inKursinteressieren.add(kurs);
+           person.setInKursinteressieren(person.inKursinteressieren);
+       }
         service.save(person);
         return "redirect:/personen";
 
     }
     @RequestMapping ("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId){
+        String[] teilnehmer_interessant_arr={"teilnehmer","interessant"};
         ModelAndView mav = new ModelAndView("addPersonToKurs");
         mav.addObject("person",service.getPersonId(personId));
         mav.addObject("kurse",service.getAllkurs());
+        //mav.addObject("inKursteilnehmen",service.getAllkurs());
+        mav.addObject("choix",teilnehmer_interessant_arr);
         return mav;
     }
+
 }

@@ -49,10 +49,13 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
-    @ManyToMany(mappedBy = "kurse")
+    @ManyToMany(mappedBy = "inKursinteressieren")
     @JsonIgnore
     private Set<Person> personen = new HashSet<>();
 
+    @ManyToMany(mappedBy = "inKursteilnehmen")
+    @JsonIgnore
+    private Set<Person> teilhnehmer = new HashSet<>();
     public Kurs() {
     }
 
