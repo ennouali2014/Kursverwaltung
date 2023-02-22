@@ -33,6 +33,7 @@ public class KursController {
 
     @PostMapping("/savekurs")
     public String saveKurs(@ModelAttribute("kurs") Kurs kurs) {
+
         return "redirect:/kurs";
     }
     @RequestMapping("/kurs/edit/{kursId}")

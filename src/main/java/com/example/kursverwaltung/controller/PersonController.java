@@ -4,7 +4,9 @@ import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
+import jakarta.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,8 +51,12 @@ public class PersonController {
         return "redirect:/personen";
     }
     @RequestMapping("/addKursToPerson/{personId}")
-    public String assignKursToPerson(@RequestParam Long kursId,@PathVariable Long personId){
-        service.assignKursToPerson(kursId,personId);
+    public String assignKursToPerson(@PathVariable Long personId,@RequestParam Long kursId){
+
+        Person person=service.getPersonId(personId);
+        Kurs kurs=service.getKurs(kursId);
+        person.kurse.add(kurs);
+        service.save(person);
         return "redirect:/personen";
 
     }

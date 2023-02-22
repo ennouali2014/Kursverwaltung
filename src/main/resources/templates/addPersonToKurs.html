@@ -30,13 +30,13 @@
                         <br/>
                         Email : <b th:text="${person.email}"></b>
                         <br/>
-                        Course : <!--span th:each="kurs : ${person.kurse}">
+                        Course : <span th:each="kurs : ${person.kurse}">
                             <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
-                        </span-->
+                        </span>
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <select class="form-control" name="kurs_id">
+                    <select class="form-control" name="kursId">
                         <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.service.PersonService"*/-->
                         <option th:each="kurs : ${kurse}"
                                 th:value="${kurs.kursId}"
