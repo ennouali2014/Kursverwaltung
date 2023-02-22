@@ -33,11 +33,12 @@ public class KursController {
 
     @PostMapping("/savekurs")
     public String saveKurs(@ModelAttribute("kurs") Kurs kurs) {
+        service.save(kurs);
         return "redirect:/kurs";
     }
     @RequestMapping("/kurs/edit/{kurs_id}")
     public ModelAndView showEditKursPage(@PathVariable(name = "kurs_id")int id){
-        ModelAndView modelAndView=new ModelAndView("new");
+        ModelAndView modelAndView=new ModelAndView("newkurs");
         Kurs kurs=service.get(id);
         modelAndView.addObject("kurs",kurs);
         return modelAndView;

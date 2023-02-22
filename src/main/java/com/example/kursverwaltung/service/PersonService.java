@@ -42,7 +42,7 @@ public class PersonService {
         return repo.save(person);
     }
 
-    public String getPersonId(Long person_id, Model model) {
+    /*public String getPersonId(Long person_id, Model model) {
         Person findPersontId = repo.findByPersonId(person_id);
 
         model.addAttribute("title", "Data Student");
@@ -50,5 +50,5 @@ public class PersonService {
         model.addAttribute("personen", findPersontId);
 
         return "add_student_course";
-    }
+    }*/
 }

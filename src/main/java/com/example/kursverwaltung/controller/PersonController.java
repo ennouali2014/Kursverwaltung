@@ -53,8 +53,8 @@ public class PersonController {
     public Person assignKursToPerson(@PathVariable Long kurs_id,@PathVariable Long person_id){
         return service.assignKursToPerson(kurs_id,person_id);
     }
-    @RequestMapping ("/get/{person_id}")
+   /* @RequestMapping ("/get/{person_id}")
     public String getPersonId(@PathVariable Long person_id, Model model){
         return service.getPersonId(person_id,model);
-    }
+    }*/
 }

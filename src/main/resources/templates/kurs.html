@@ -88,10 +88,10 @@
                             <td th:text="${kurs.mwstProzent}">mwstProzent</td>
                             <td th:text="${kurs.kursBeschreibung}">kursBeschreibung</td>
                             <td>
-                                <a th:href="@{'/edit/' + ${kurs.id}}">Edit</a>
+                                <a th:href="@{'/edit/' + ${kurs.kurs_id}}">Edit</a>
                             </td>
                             <td>
-                                <a th:href="@{'/delete/' + ${person.id}}">Delete</a>
+                                <a th:href="@{'/delete/' + ${kurs.kurs_id}}">Delete</a>
                             </td>
                         </tr>
                         </tbody>
