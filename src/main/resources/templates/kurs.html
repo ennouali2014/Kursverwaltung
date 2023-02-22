@@ -8,6 +8,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+<div th:insert="navbar :: navbar">  </div>
+
 <div>
     <h2>Spring Boot Crud System -Kurse Registation</h2>
     <div align="left">
@@ -38,7 +41,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="kurs : ${listKurse }">
-                            <td th:text="${kurs.kursId}">Kurs ID</td>
+                            <td th:text="${kurs.kurs_id}">Kurs ID</td>
                             <td th:text="${kurs.kursname}">Kursname</td>
                             <td th:text="${kurs.status}">Status</td>
                             <td th:text="${kurs.anzahlTage}">AnzahlTage</td>
@@ -55,10 +58,10 @@
                             <td th:text="${kurs.mwstProzent}">mwstProzent</td>
                             <td th:text="${kurs.kursBeschreibung}">kursBeschreibung</td>
                             <td>
-                                <a th:href="@{'/edit/' + ${kurs.kursId}}">Edit</a>
+                                <a th:href="@{'/edit/' + ${kurs.kurs_id}}">Edit</a>
                             </td>
                             <td>
-                                <a th:href="@{'/delete/' + ${kurs.kursId}}">Delete</a>
+                                <a th:href="@{'/delete/' + ${kurs.kurs_id}}">Delete</a>
                             </td>
                         </tr>
                         </tbody>
