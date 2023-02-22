@@ -38,7 +38,7 @@
                         </thead>
                         <tbody>
                         <tr th:each="kurs : ${listKurse }">
-                            <td th:text="${kurs.id}">Kurs ID</td>
+                            <td th:text="${kurs.kursId}">Kurs ID</td>
                             <td th:text="${kurs.kursname}">Kursname</td>
                             <td th:text="${kurs.status}">Status</td>
                             <td th:text="${kurs.anzahlTage}">AnzahlTage</td>
@@ -55,10 +55,10 @@
                             <td th:text="${kurs.mwstProzent}">mwstProzent</td>
                             <td th:text="${kurs.kursBeschreibung}">kursBeschreibung</td>
                             <td>
-                                <a th:href="@{'/edit/' + ${kurs.id}}">Edit</a>
+                                <a th:href="@{'/edit/' + ${kurs.kursId}}">Edit</a>
                             </td>
                             <td>
-                                <a th:href="@{'/delete/' + ${person.id}}">Delete</a>
+                                <a th:href="@{'/delete/' + ${kurs.kursId}}">Delete</a>
                             </td>
                         </tr>
                         </tbody>

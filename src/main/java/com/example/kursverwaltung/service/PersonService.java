@@ -21,34 +21,32 @@ public class PersonService {
     public void save(Person person){
         repo.save(person);
     }
-    public Person get(long id){
-        return repo.findById(id).get();
+    public Person get(long personId){
+        return repo.findById(personId).get();
     }
-    public void delete(long id){
-        repo.deleteById(id);
+    public void delete(long personId){
+        repo.deleteById(personId);
     }
 
     public List<Person> listAll() {
         return repo.findAll();
     }
 
-    public Person assignKursToPerson(Long kurs_id, Long person_id) {
+    public Person assignKursToPerson(Long kursId, Long personId) {
         Set<Kurs> kurslist;
-        Person person=repo.findById(person_id).get();
-        Kurs kurs = repoK.findById(kurs_id).get();
+        Person person=repo.findByPersonId(personId);
+        Kurs kurs = repoK.findByKursId(kursId);
         kurslist=person.getKurse();
         kurslist.add(kurs);
         person.setKurse(kurslist);
         return repo.save(person);
     }
 
-    public String getPersonId(Long person_id, Model model) {
-        Person findPersontId = repo.findByPersonId(person_id);
-
-        model.addAttribute("title", "Data Student");
-        model.addAttribute("kurse", repoK.findAll());
-        model.addAttribute("personen", findPersontId);
-
-        return "add_student_course";
+    public Person getPersonId(Long personId) {
+        return repo.findByPersonId(personId);
     }
+    public List<Kurs> getAllkurs(){
+        return repoK.findAll();
+    }
+
 }

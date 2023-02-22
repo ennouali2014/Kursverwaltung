@@ -8,18 +8,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name = "kurs")
+@Table(name = "kurs")
 public class Kurs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long kurs_id;
+    private Long kursId;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
 
-    public Long getKurs_id() {
-        return kurs_id;
-    }
+
 
     @Column(name = "status", length = 100, nullable = false)
     private String status;
@@ -58,8 +56,8 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(Long id, String kursname, String status, String anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
-        this.kurs_id = id;
+    public Kurs( String kursname, String status, String anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
+
         this.kursname = kursname;
         this.status = status;
         this.anzahlTage = anzahlTage;
@@ -72,6 +70,9 @@ public class Kurs {
         this.kursBeschreibung = kursBeschreibung;
     }
 
+    public Long getKursId() {
+        return kursId;
+    }
     public String getKursname() {
         return kursname;
     }

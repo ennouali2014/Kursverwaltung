@@ -38,7 +38,7 @@
 
                     <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
                     <tr th:each="person :${listPerson}">
-                        <td th:text="${person.person_id}">person ID</td>
+                        <td th:text="${person.personId}">person ID</td>
                         <td th:text="${person.anrede}">Anrede</td>
                         <td th:text="${person.titel}">Titel</td>
                         <td th:text="${person.vorname}">Vorname</td>
@@ -48,10 +48,13 @@
                         <td th:text="${person.ort}">Ort</td>
                         <td th:text="${person.email}">Email</td>
                         <td>
-                            <a th:href="@{'/editperson/' + ${person.person_id}}">Edit</a>
+                            <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{'/deleteperson/' + ${person.person_id}}">Delete</a>
+                            <a th:href="@{'/get/'+${person.personId}}" >Add kurs</a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
                         </td>
                     </tr>
 
