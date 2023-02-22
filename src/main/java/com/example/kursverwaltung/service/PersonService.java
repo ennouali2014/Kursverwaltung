@@ -4,6 +4,8 @@ import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.repository.KursRepository;
 import com.example.kursverwaltung.repository.PersonRepository;
+
+import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -32,15 +34,18 @@ public class PersonService {
         return repo.findAll();
     }
 
-    public Person assignKursToPerson(Long kursId, Long personId) {
-        Set<Kurs> kurslist;
-        Person person=repo.findByPersonId(personId);
-        Kurs kurs = repoK.findByKursId(kursId);
-        kurslist=person.getKurse();
-        kurslist.add(kurs);
-        person.setKurse(kurslist);
+    /*public Person assignKursToPerson(Long kursId, Long personId) {
+
+        // Set<Kurs> kurslist;
+        // Start a transaction
+
+        Person person=
+        Kurs kurs =
+        person.kurse.add(kurs);
+        //kurslist.add(kurs);
+        //person.setKurse(kurslist);
         return repo.save(person);
-    }
+    }*/
 
     public Person getPersonId(Long personId) {
         return repo.findByPersonId(personId);
@@ -48,5 +53,10 @@ public class PersonService {
     public List<Kurs> getAllkurs(){
         return repoK.findAll();
     }
+    public Kurs getKurs(Long kursId){
+
+        return repoK.findByKursId(kursId);
+    }
+
 
 }

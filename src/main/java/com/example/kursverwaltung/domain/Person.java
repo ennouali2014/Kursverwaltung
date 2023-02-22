@@ -29,7 +29,7 @@ public class Person {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE,fetch= FetchType.EAGER)
     @JoinTable(name = "person_kurs",
             joinColumns = {@JoinColumn(name = "personId")},
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
