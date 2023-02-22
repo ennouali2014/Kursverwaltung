@@ -10,4 +10,5 @@ public class KursverwaltungApplication {
 		SpringApplication.run(KursverwaltungApplication.class, args);
 	}
 
+
 }
