@@ -2,7 +2,10 @@ package com.example.kursverwaltung.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,9 +19,6 @@ public class Kurs {
     private Long kursId;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
-
-
-
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Column(name = "anzahlTage", nullable = false)
@@ -29,6 +29,7 @@ public class Kurs {
     @Column(nullable = false)
     private Date startDatum;
     @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date endeDatum;
     @Column(name = "minTnZahl", nullable = false)
     private int minTnZahl;
@@ -49,6 +50,11 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
+    @DateTimeFormat
+    private Date convertedStartDate;
+    @DateTimeFormat
+    private Date convertedEndeDate;
+
     @ManyToMany(mappedBy = "kurse")
     @JsonIgnore
     private Set<Person> personen = new HashSet<>();
@@ -56,13 +62,14 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs( String kursname, String status, String anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
+    public Kurs( String kursname, String status, String anzahlTage, int zyklus, Date startDatum, Date endeDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
 
         this.kursname = kursname;
         this.status = status;
         this.anzahlTage = anzahlTage;
         this.zyklus = zyklus;
         this.startDatum = startDatum;
+        this.endeDatum=endeDatum;
         this.minTnZahl = minTnZahl;
         this.maxTnZahl = maxTnZahl;
         this.gebuehrBrutto = gebuehrBrutto;
@@ -105,22 +112,50 @@ public class Kurs {
         this.zyklus = zyklus;
     }
 
-    public Date getStartDatum() {
+   /* public Date getStartDatum() {
         return startDatum;
     }
 
     public void setStartDatum(Date startDatum) {
         this.startDatum = startDatum;
+    }*/
+    public Date getStartDatum() {
+        return convertedStartDate;
+    }
+
+    public void setStartDatum(String startDatum) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try {
+            this.convertedStartDate = simpleDateFormat.parse(startDatum);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     public Date getEndeDatum() {
+        return convertedEndeDate;
+    }
+
+    public void setEndeDatum(String endeDatum) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try {
+            this.convertedEndeDate = simpleDateFormat.parse(endeDatum);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+   /* public Date getEndeDatum() {
         return endeDatum;
     }
 
     public void setEndeDatum(Date endeDatum) {
         this.endeDatum = endeDatum;
     }
-
+*/
     public int getMinTnZahl() {
         return minTnZahl;
     }
