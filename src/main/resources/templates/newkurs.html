@@ -5,9 +5,21 @@
     <meta charset="UTF-8">
      <title>Create new Kurs</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"/>
+    <link href="/CSS/style.css" rel="stylesheet"/>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<style>
+    .hbox {
+        width: 100%;
+    }
+
+    .vbox {
+        width: 50%;
+        float: left;
+        padding: 10px;
+    }
+</style>
 
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
@@ -46,9 +58,10 @@
     <br/>
     <div class="col-sm-4">
         <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
-        <form action="#" th:action="@{/savekurs}" th:object="${kurs}" method="post">
-            <HBox>
-                <VBox align="center_left">
+        <form action="#" th:action="@{/saveKurs}" th:object="${kurs}" method="post">
+
+            <div class="hbox">
+                <div class="vbox">
                     <div align="center">
                         <tr>
                             <label class="form-label">Kursname</label>
@@ -96,83 +109,87 @@
                             </td>
                         </tr>
                         <tr>
+                            <label class="form-label">mwstProzent</label>
+                            <td>
+
+                                <input type="text" th:field="*{mwstProzent}" class="form-control"
+                                       placeholder="mwstProzent"/>
+                            </td>
+                        </tr>
+                    </div>
+
+                </div>
+
+                <div class="vbox">
+
+                    <div align="center">
+                        <tr>
+                            <label class="form-label">Status</label>
+                            <td>
+                                <select th:field="*{status}" class="form-control" name="status">
+                                    <option th:value="1" th:text="Active">Active</option>
+                                    <option th:value="2" th:text="Geplant">Geplant</option>
+                                    <option th:value="3" th:text="abgesagt">Abgesagt</option>
+                                </select>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">zyklus</label>
+                            <td>
+                                <input type="text" th:field="*{zyklus}" class="form-control"
+                                       placeholder="zyklus"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">endeDatum</label>
+                            <td>
+                                <input type="date" th:field="*{endeDatum}" class="form-control"
+                                       placeholder="endeDatum"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">maxTnZahl</label>
+                            <td>
+                                <input type="text" th:field="*{maxTnZahl}" class="form-control"
+                                       placeholder="maxTnZahl"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">freiePlaetze</label>
+                            <td>
+                                <input type="text" th:field="*{freiePlaetze}" class="form-control"
+                                       placeholder="freiePlaetze"/>
+                            </td>
+                        </tr>
+                        <tr>
                             <label class="form-label">gebuehrNetto</label>
                             <td>
                                 <input type="text" th:field="*{gebuehrNetto}" class="form-control"
                                        placeholder="gebuehrNetto"/>
                             </td>
                         </tr>
+                        <tr>
+                            <label class="form-label">mwstEuro</label>
+                            <td>
+                                <input type="text" th:field="*{mwstEuro}" class="form-control"
+                                       placeholder="mwstEuro"/>
+                            </td>
+                        </tr>
+
                     </div>
 
-                </VBox>
+                </div>
+                <br>
+                <div>
+                    <tr>
+                        <td colspan="2">
+                            <button type="submit" class="btn btn-info">Save Kurs</button>
+                        </td>
+                    </tr>
+                </div>
+            </div>
 
-                <VBox align="center_right">
-                    <children>
-                        <div>
-                            <tr>
-                                <label class="form-label">Status</label>
-                                <td>
-                                    <select th:field="*{status}" class="form-control" name="status">
-                                        <option th:value="1" th:text="Active">Active</option>
-                                        <option th:value="2" th:text="Geplant">Geplant</option>
-                                        <option th:value="3" th:text="abgesagt">Abgesagt</option>
-                                    </select>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">zyklus</label>
-                                <td>
-                                    <input type="text" th:field="*{zyklus}" class="form-control"
-                                           placeholder="zyklus"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">endeDatum</label>
-                                <td>
-                                    <input type="date" th:field="*{endeDatum}" class="form-control"
-                                           placeholder="endeDatum"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">maxTnZahl</label>
-                                <td>
-                                    <input type="text" th:field="*{maxTnZahl}" class="form-control"
-                                           placeholder="maxTnZahl"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">freiePlaetze</label>
-                                <td>
-                                    <input type="text" th:field="*{freiePlaetze}" class="form-control"
-                                           placeholder="freiePlaetze"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">gebuehrNetto</label>
-                                <td>
-                                    <input type="text" th:field="*{gebuehrNetto}" class="form-control"
-                                           placeholder="gebuehrNetto"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <label class="form-label">mwstEuro</label>
-                                <td>
-                                    <input type="text" th:field="*{mwstEuro}" class="form-control"
-                                           placeholder="mwstEuro"/>
-                                </td>
-                            </tr>
-
-                        </div>
-                    </children>
-                </VBox>
-
-            </HBox>
-            <br>
-            <tr>
-                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
-            </tr>
-            </table>
         </form>
     </div>
 
