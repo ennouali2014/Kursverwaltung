@@ -8,47 +8,6 @@
 </head>
 <body>
 <div>
-
-
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
-        <a class="navbar-brand" href="/">
-            <img src="assets/brand/brand.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
-            Kursverwaltung
-        </a>
-
-
-        <div class="navbar-expand-lg" id="navbarNav">
-
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{'/'}">Login</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
-
-
-    <!--
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a></li>
-        </ol>
-    </nav>
--->
-
     <h2>Spring Boot Crud System -Personen Registation</h2>
 
 
@@ -79,7 +38,7 @@
 
                     <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
                     <tr th:each="person :${listPerson}">
-                        <td th:text="${person.person_id}">person ID</td>
+                        <td th:text="${person.personId}">person ID</td>
                         <td th:text="${person.anrede}">Anrede</td>
                         <td th:text="${person.titel}">Titel</td>
                         <td th:text="${person.vorname}">Vorname</td>
@@ -89,10 +48,13 @@
                         <td th:text="${person.ort}">Ort</td>
                         <td th:text="${person.email}">Email</td>
                         <td>
-                            <a th:href="@{'/editperson/' + ${person.person_id}}">Edit</a>
+                            <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{'/deleteperson/' + ${person.person_id}}">Delete</a>
+                            <a th:href="@{'/get/'+${person.personId}}" >Add kurs</a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
                         </td>
                     </tr>
 

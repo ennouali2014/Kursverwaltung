@@ -7,49 +7,7 @@
     <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
 </head>
 <body>
-
-
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
-    <a class="navbar-brand" href="/">
-        <img src="assets/brand/brand.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Kursverwaltung
-    </a>
-
-
-    <div class="navbar-expand-lg" id="navbarNav">
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/'}">Login</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
-
-
 <div align="center">
-
-    <!--
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a></li>
-           </ol>
-    </nav>
--->
-
     <h1>Create New Person</h1>
     <br />
     <div class="col-sm-4">
@@ -66,7 +24,7 @@
                             <option th:value="2" th:text="Herr">Herr</option>
                             <option th:value="3" th:text="Divers">Divers</option>
                         </select>
-                        <input type="hidden" th:field="*{person_id}" />
+                        <input type="hidden" th:field="*{personId}" />
                         <!--input type="text" th:field="*{anrede}" class="form-control" placeholder="anrede" /-->
                     </td>
                 </tr>
@@ -121,17 +79,7 @@
                 </tr>
             </div>
             <br>
-            <div alight="left">
 
-                <tr>
-                    <label class="form-label" >Kurse</label>
-                    <td><select th:field="*{kurse}">
-                        <option value="">Choose..</option>
-                        <!--/*@thymesVar id="kurslist" type="com.example.kursverwaltung.controller.PersonController"*/-->
-                        <option th:each="kurs: ${kurslist}" th:value="${kurslist.id}" th:text="${course.name}" />
-                    </select></td>
-                </tr>
-            </div>
             <br>
             <tr>
                 <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>

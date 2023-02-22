@@ -1,6 +1,5 @@
 package com.example.kursverwaltung.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -12,7 +11,7 @@ import java.util.Set;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long person_id;
+    private Long personId;
     @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
     @Column(name = "titel",length = 150, nullable = true)
@@ -32,8 +31,8 @@ public class Person {
 
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "person_kurs",
-            joinColumns = {@JoinColumn(name = "person_id")},
-            inverseJoinColumns = {@JoinColumn(name = "kurs_id")})
+            joinColumns = {@JoinColumn(name = "personId")},
+            inverseJoinColumns = {@JoinColumn(name = "kursId")})
     public Set<Kurs> kurse = new HashSet<>();
     public Person() {
 
@@ -50,8 +49,8 @@ public class Person {
         this.email = email;
     }
 
-    public Long getPerson_id() {
-        return person_id;
+    public Long getPersonId() {
+        return personId;
     }
 
 

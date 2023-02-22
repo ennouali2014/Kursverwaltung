@@ -18,7 +18,6 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
-
     @GetMapping("/personen")
     public String viewHomePage(Model model) {
         List<Person> listPerson = service.listAll();
@@ -37,24 +36,29 @@ public class PersonController {
         service.save(person);
         return "redirect:/personen";
     }
-    @RequestMapping("/editperson/{person_id}")
-    public ModelAndView showEditPersonpage(@PathVariable(name = "person_id") int id){
+    @RequestMapping("/editperson/{personId}")
+    public ModelAndView showEditPersonpage(@PathVariable(name = "personId") int personId){
         ModelAndView mav = new ModelAndView("newperson");
-        Person person =service.get(id);
+        Person person =service.get(personId);
         mav.addObject("person",person);
         return mav;
     }
-    @RequestMapping("/deleteperson/{person_id}")
-    public String deletePerson(@PathVariable(name="person_id") int id){
-        service.delete(id);
+    @RequestMapping("/deleteperson/{personId}")
+    public String deletePerson(@PathVariable(name="personId") int personId){
+        service.delete(personId);
         return "redirect:/personen";
     }
-    @PutMapping("/{person_id}/kurs/{kurs_id}")
-    public Person assignKursToPerson(@PathVariable Long kurs_id,@PathVariable Long person_id){
-        return service.assignKursToPerson(kurs_id,person_id);
+    @RequestMapping("/addKursToPerson/{personId}")
+    public String assignKursToPerson(@RequestParam Long kursId,@PathVariable Long personId){
+        service.assignKursToPerson(kursId,personId);
+        return "redirect:/personen";
+
     }
-   /* @RequestMapping ("/get/{person_id}")
-    public String getPersonId(@PathVariable Long person_id, Model model){
-        return service.getPersonId(person_id,model);
-    }*/
+    @RequestMapping ("/get/{personId}")
+    public ModelAndView getPersonId(@PathVariable Long personId){
+        ModelAndView mav = new ModelAndView("addPersonToKurs");
+        mav.addObject("person",service.getPersonId(personId));
+        mav.addObject("kurse",service.getAllkurs());
+        return mav;
+    }
 }
