@@ -203,4 +203,12 @@ public class Kurs {
     public void setPersonen(Set<Person> personen) {
         this.personen = personen;
     }
+
+    public Set<Person> getTeilhnehmer() {
+        return teilhnehmer;
+    }
+
+    public void setTeilhnehmer(Set<Person> teilhnehmer) {
+        this.teilhnehmer = teilhnehmer;
+    }
 }

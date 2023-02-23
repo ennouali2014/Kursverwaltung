@@ -20,9 +20,7 @@ public class PersonService {
     @Autowired
     private KursRepository repoK;
 
-    public void save(Person person){
-        repo.save(person);
-    }
+    public void save(Person person){repo.save(person);}
     public void delete(long personId){
         repo.deleteById(personId);
     }
@@ -37,7 +35,7 @@ public class PersonService {
     public List<Kurs> getAllkurs(){
         return repoK.findAll();
     }
-    public Kurs getKurs(long kursId){ return repoK.findByKursId(kursId);}
+    public Kurs getKurs(long kursId){return repoK.findByKursId(kursId);}
 
 
 }

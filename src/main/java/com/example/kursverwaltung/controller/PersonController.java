@@ -2,11 +2,8 @@ package com.example.kursverwaltung.controller;
 
 import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
-import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
-import jakarta.transaction.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +21,7 @@ public class PersonController {
     public String viewHomePage(Model model) {
         List<Person> listPerson = service.listAll();
         model.addAttribute("listPerson", listPerson);
-        //System.out.print("Get / ");
+
         return "personen";
     }
 
@@ -34,12 +31,12 @@ public class PersonController {
         return "newperson";
     }
     @PostMapping("/saveperson")
-    public String saveStudent(@ModelAttribute("person") Person person) {
+    public String saveperson(@ModelAttribute("person") Person person) {
         service.save(person);
         return "redirect:/personen";
     }
     @RequestMapping("/editperson/{personId}")
-    public ModelAndView showEditPersonpage(@PathVariable(name = "personId") int personId){
+    public ModelAndView showEditPersonpage(@PathVariable(name = "personId") Long personId){
         ModelAndView mav = new ModelAndView("newperson");
         Person person =service.getPersonId(personId);
         mav.addObject("person",person);
@@ -52,7 +49,6 @@ public class PersonController {
     }
     @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId,@RequestParam Long kursId,@RequestParam String choix){
-
         Person person=service.getPersonId(personId);
         Kurs kurs=service.getKurs(kursId);
        if (choix.equals("teilnehmer")){
@@ -74,7 +70,6 @@ public class PersonController {
         ModelAndView mav = new ModelAndView("addPersonToKurs");
         mav.addObject("person",service.getPersonId(personId));
         mav.addObject("kurse",service.getAllkurs());
-        //mav.addObject("inKursteilnehmen",service.getAllkurs());
         mav.addObject("choix",teilnehmer_interessant_arr);
         return mav;
     }

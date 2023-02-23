@@ -10,6 +10,7 @@ import java.util.Set;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person,Long> {
-    Person findByPersonId(long persondId);
+    Person findByPersonId(Long persondId);
+
 
 }
