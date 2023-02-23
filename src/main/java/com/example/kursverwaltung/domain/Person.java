@@ -187,7 +187,7 @@ public class Person {
         for (Kurs kursp : this.inKursinteressieren) {
             if (kursp.getKursId().equals(kurs.getKursId())) {
                 inKursinteressieren.remove(kursp);
-                kursp.getPersonen().remove(this);
+                kursp.getInteressant().remove(this);
             }
         }
     }

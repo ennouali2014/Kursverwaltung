@@ -21,7 +21,6 @@ public class Kurs {
     private String kursname;
 
 
-
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Column(name = "anzahlTage", nullable = false)
@@ -52,30 +51,31 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
-    @ManyToMany(mappedBy = "inKursinteressieren")
+
     @DateTimeFormat
     private Date convertedStartDate;
     @DateTimeFormat
     private Date convertedEndeDate;
 
-    @ManyToMany(mappedBy = "kurse")
+    @ManyToMany(mappedBy = "inKursinteressieren")
     @JsonIgnore
-    private Set<Person> personen = new HashSet<>();
+    private Set<Person> interessant = new HashSet<>();
 
     @ManyToMany(mappedBy = "inKursteilnehmen")
     @JsonIgnore
     private Set<Person> teilhnehmer = new HashSet<>();
+
     public Kurs() {
     }
 
-    public Kurs( String kursname, String status, String anzahlTage, int zyklus, Date startDatum, Date endeDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
+    public Kurs(String kursname, String status, String anzahlTage, int zyklus, Date startDatum, Date endeDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
 
         this.kursname = kursname;
         this.status = status;
         this.anzahlTage = anzahlTage;
         this.zyklus = zyklus;
         this.startDatum = startDatum;
-        this.endeDatum=endeDatum;
+        this.endeDatum = endeDatum;
         this.minTnZahl = minTnZahl;
         this.maxTnZahl = maxTnZahl;
         this.gebuehrBrutto = gebuehrBrutto;
@@ -86,6 +86,7 @@ public class Kurs {
     public Long getKursId() {
         return kursId;
     }
+
     public String getKursname() {
         return kursname;
     }
@@ -118,13 +119,13 @@ public class Kurs {
         this.zyklus = zyklus;
     }
 
-    public Date getStartDatum() {
+    /*public Date getStartDatum() {
         return startDatum;
-    }
+    }*/
 
     public void setStartDatum(Date startDatum) {
         this.startDatum = startDatum;
-    }*/
+    }
     public Date getStartDatum() {
         return convertedStartDate;
     }
@@ -140,9 +141,9 @@ public class Kurs {
 
     }
 
-    public Date getEndeDatum() {
+    /*public Date getEndeDatum() {
         return convertedEndeDate;
-    }
+    }*/
 
     public void setEndeDatum(String endeDatum) {
         String pattern = "dd-MM-yyyy";
@@ -154,7 +155,7 @@ public class Kurs {
         }
 
     }
-   /* public Date getEndeDatum() {
+    public Date getEndeDatum() {
         return endeDatum;
     }
 
@@ -234,12 +235,16 @@ public class Kurs {
         this.kursBeschreibung = kursBeschreibung;
     }
 
-    public Set<Person> getPersonen() {
-        return personen;
+    public void setKursId(Long kursId) {
+        this.kursId = kursId;
     }
 
-    public void setPersonen(Set<Person> personen) {
-        this.personen = personen;
+    public Set<Person> getInteressant() {
+        return interessant;
+    }
+
+    public void setInteressant(Set<Person> interessant) {
+        this.interessant = interessant;
     }
 
     public Set<Person> getTeilhnehmer() {
