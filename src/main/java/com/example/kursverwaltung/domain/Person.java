@@ -3,7 +3,6 @@ package com.example.kursverwaltung.domain;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -11,10 +10,11 @@ import java.util.Set;
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="personId")
     private Long personId;
     @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
-    @Column(name = "titel",length = 150, nullable = true)
+    @Column(name = "titel", length = 150, nullable = true)
     private String titel;
     @Column(name = "vorname", length = 150, nullable = false)
     private String vorname;
@@ -29,16 +29,24 @@ public class Person {
     @Column(name = "email", length = 150, nullable = false)
     private String email;
 
-    @ManyToMany(cascade = CascadeType.MERGE,fetch= FetchType.EAGER)
-    @JoinTable(name = "person_kurs",
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "person_kurs_interessant",
             joinColumns = {@JoinColumn(name = "personId")},
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
-    public Set<Kurs> kurse = new HashSet<>();
+    public Set<Kurs> inKursinteressieren = new HashSet<>();
+    @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "person_kurs_teilnehmer",
+            joinColumns = {@JoinColumn(name = "personId")},
+            inverseJoinColumns = {@JoinColumn(name = "kursId")})
+    public Set<Kurs> inKursteilnehmen = new HashSet<>();
+
     public Person() {
+
 
     }
 
-    public Person(int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
+    public Person(Long personId,int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
+        this.personId=personId;
         this.anrede = anrede;
         this.titel = title;
         this.vorname = vorname;
@@ -53,6 +61,13 @@ public class Person {
         return personId;
     }
 
+    public Set<Kurs> getInKursteilnehmen() {
+        return inKursteilnehmen;
+    }
+
+    public void setInKursteilnehmen(Set<Kurs> inKursteilnehmen) {
+        this.inKursteilnehmen = inKursteilnehmen;
+    }
 
     public int getAnrede() {
         return anrede;
@@ -118,30 +133,35 @@ public class Person {
         this.email = email;
     }
 
-    public Set<Kurs> getKurse() {
-        return kurse;
+    public Set<Kurs> getInKursinteressieren() {
+        return inKursinteressieren;
     }
 
-    public void setKurse(Set<Kurs> kurse) {
-        this.kurse = kurse;
+    public void setInKursinteressieren(Set<Kurs> inKursinteressieren) {
+        this.inKursinteressieren = inKursinteressieren;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(strasse, person.strasse) && Objects.equals(plz, person.plz) && Objects.equals(ort, person.ort) && Objects.equals(email, person.email);
+    public void setPersonId(Long personId) {
+        this.personId = personId;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(vorname, nachname, strasse, plz, ort, email);
-    }
+    /*@Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Person person = (Person) o;
+            return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(strasse, person.strasse) && Objects.equals(plz, person.plz) && Objects.equals(ort, person.ort) && Objects.equals(email, person.email);
+        }
 
+        @Override
+        public int hashCode() {
+            return Objects.hash(vorname, nachname, strasse, plz, ort, email);
+        }
+    */
     @Override
     public String toString() {
         return "Person{" +
+                "personID=" + personId +
                 "anrede=" + anrede +
                 ", titel='" + titel + '\'' +
                 ", vorname='" + vorname + '\'' +
@@ -151,5 +171,24 @@ public class Person {
                 ", ort='" + ort + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void schonTeilnehmer(Kurs kurs) {
+        for (Kurs kursp : this.inKursteilnehmen) {
+            if (kursp.getKursId().equals(kurs.getKursId())) {
+                inKursteilnehmen.remove(kursp);
+                kursp.getTeilhnehmer().remove(this);
+
+            }
+        }
+    }
+
+    public void schonInteressant(Kurs kurs) {
+        for (Kurs kursp : this.inKursinteressieren) {
+            if (kursp.getKursId().equals(kurs.getKursId())) {
+                inKursinteressieren.remove(kursp);
+                kursp.getInteressant().remove(this);
+            }
+        }
     }
 }

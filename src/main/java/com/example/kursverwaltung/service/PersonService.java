@@ -20,12 +20,7 @@ public class PersonService {
     @Autowired
     private KursRepository repoK;
 
-    public void save(Person person){
-        repo.save(person);
-    }
-    public Person get(long personId){
-        return repo.findById(personId).get();
-    }
+    public void save(Person person){repo.save(person);}
     public void delete(long personId){
         repo.deleteById(personId);
     }
@@ -34,29 +29,13 @@ public class PersonService {
         return repo.findAll();
     }
 
-    /*public Person assignKursToPerson(Long kursId, Long personId) {
-
-        // Set<Kurs> kurslist;
-        // Start a transaction
-
-        Person person=
-        Kurs kurs =
-        person.kurse.add(kurs);
-        //kurslist.add(kurs);
-        //person.setKurse(kurslist);
-        return repo.save(person);
-    }*/
-
-    public Person getPersonId(Long personId) {
+    public Person getPersonId(long personId) {
         return repo.findByPersonId(personId);
     }
     public List<Kurs> getAllkurs(){
         return repoK.findAll();
     }
-    public Kurs getKurs(Long kursId){
-
-        return repoK.findByKursId(kursId);
-    }
+    public Kurs getKurs(long kursId){return repoK.findByKursId(kursId);}
 
 
 }

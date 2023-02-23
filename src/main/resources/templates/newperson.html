@@ -35,48 +35,48 @@
 
                 <tr>
                     <label class="form-label" >Titel</label>
-                    <td><input type="text" th:field="*{titel}" class="form-control" placeholder="title" /></td>
+                    <td><input type="text"  th:field="*{titel}" class="form-control" placeholder="title" /></td>
                 </tr>
             </div>
             <div alight="left">
 
                 <tr>
                     <label class="form-label" >Vorname</label>
-                    <td><input type="text" th:field="*{vorname}" class="form-control" placeholder="vorname" /></td>
+                    <td><input type="text" minlength="1" th:field="*{vorname}" class="form-control" placeholder="vorname" /></td>
                 </tr>
             </div>
             <div alight="left">
 
                 <tr>
                     <label class="form-label" >Nachname</label>
-                    <td><input type="text" th:field="*{nachname}" class="form-control" placeholder="Nachname" /></td>
+                    <td><input type="text" minlength="1" th:field="*{nachname}" class="form-control" placeholder="Nachname" /></td>
                 </tr>
             </div>
             <div alight="left">
 
                 <tr>
                     <label class="form-label" >strasse</label>
-                    <td><input type="text" th:field="*{strasse}" class="form-control" placeholder="strasse" /></td>
+                    <td><input type="text" minlength="2" th:field="*{strasse}" class="form-control" placeholder="strasse" /></td>
                 </tr>
             </div>
             <div alight="left">
 
                 <tr>
                     <label class="form-label" >PLZ</label>
-                    <td><input type="text" th:field="*{plz}" class="form-control" placeholder="plz" /></td>
+                    <td><input type="text" minlength="5" maxlength="5" th:field="*{plz}" class="form-control" placeholder="plz" /></td>
                 </tr>
             </div>
             <div alight="left">
 
                 <tr>
                     <label class="form-label" >Ort</label>
-                    <td><input type="text" th:field="*{ort}" class="form-control" placeholder="ort" /></td>
+                    <td><input type="text" minlength="2" th:field="*{ort}" class="form-control" placeholder="ort" /></td>
                 </tr>
             </div>
             <div alight="left">
                 <tr>
                     <label class="form-label" >Email</label>
-                    <td><input type="text" th:field="*{email}" class="form-control" placeholder="email" /></td>
+                    <td><input type="email" th:field="*{email}" class="form-control" placeholder="email" /></td>
                 </tr>
             </div>
             <br>

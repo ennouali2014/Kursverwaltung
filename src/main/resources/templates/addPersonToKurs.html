@@ -31,12 +31,29 @@
                         <br/>
                         Email : <b th:text="${person.email}"></b>
                         <br/>
-                        Course : <span th:each="kurs : ${person.kurse}">
+                        Interessant für diese Kurse : <span th:each="kurs : ${person.inKursinteressieren}">
+                            <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
+                        </span>
+                        <br/>
+                        Teilnehmer in diese Kurse : <span th:each="kurs : ${person.inKursteilnehmen}">
                             <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
                         </span>
                     </div>
                 </div>
+                <div>
+                    <label>
+
+                        <select class="form-control" name="choix">
+                            <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                            <option th:each="ch : ${choix}"
+                                    th:value="${ch}"
+                                    th:text="${ch}"></option>
+                        </select>
+                    </label>
+
+                </div>
                 <div class="col-md-6">
+
                     <select class="form-control" name="kursId">
                         <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.service.PersonService"*/-->
                         <option th:each="kurs : ${kurse}"
