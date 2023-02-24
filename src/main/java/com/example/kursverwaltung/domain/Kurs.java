@@ -2,24 +2,24 @@ package com.example.kursverwaltung.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-//@Table(name = "kurs")
+@Table(name = "kurs")
 public class Kurs {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long kurs_id;
+    private Long kursId;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
 
-    public Long getKurs_id() {
-        return kurs_id;
-    }
 
     @Column(name = "status", length = 100, nullable = false)
     private String status;
@@ -51,25 +51,40 @@ public class Kurs {
     @Column(name = "kursBeschreibung", nullable = false)
     private String kursBeschreibung;
 
-    @ManyToMany(mappedBy = "kurse")
+
+    @DateTimeFormat
+    private Date convertedStartDate;
+    @DateTimeFormat
+    private Date convertedEndeDate;
+
+    @ManyToMany(mappedBy = "inKursinteressieren")
     @JsonIgnore
-    private Set<Person> personen = new HashSet<>();
+    private Set<Person> interessant = new HashSet<>();
+
+    @ManyToMany(mappedBy = "inKursteilnehmen")
+    @JsonIgnore
+    private Set<Person> teilhnehmer = new HashSet<>();
 
     public Kurs() {
     }
 
-    public Kurs(Long id, String kursname, String status, String anzahlTage, int zyklus, Date startDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
-        this.kurs_id = id;
+    public Kurs(String kursname, String status, String anzahlTage, int zyklus, Date startDatum, Date endeDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
+
         this.kursname = kursname;
         this.status = status;
         this.anzahlTage = anzahlTage;
         this.zyklus = zyklus;
         this.startDatum = startDatum;
+        this.endeDatum = endeDatum;
         this.minTnZahl = minTnZahl;
         this.maxTnZahl = maxTnZahl;
         this.gebuehrBrutto = gebuehrBrutto;
         this.mwstProzent = mwstProzent;
         this.kursBeschreibung = kursBeschreibung;
+    }
+
+    public Long getKursId() {
+        return kursId;
     }
 
     public String getKursname() {
@@ -104,14 +119,42 @@ public class Kurs {
         this.zyklus = zyklus;
     }
 
-    public Date getStartDatum() {
+    /*public Date getStartDatum() {
         return startDatum;
-    }
+    }*/
 
     public void setStartDatum(Date startDatum) {
         this.startDatum = startDatum;
     }
+    public Date getStartDatum() {
+        return convertedStartDate;
+    }
 
+    public void setStartDatum(String startDatum) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try {
+            this.convertedStartDate = simpleDateFormat.parse(startDatum);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    /*public Date getEndeDatum() {
+        return convertedEndeDate;
+    }*/
+
+    public void setEndeDatum(String endeDatum) {
+        String pattern = "dd-MM-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        try {
+            this.convertedEndeDate = simpleDateFormat.parse(endeDatum);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     public Date getEndeDatum() {
         return endeDatum;
     }
@@ -192,11 +235,23 @@ public class Kurs {
         this.kursBeschreibung = kursBeschreibung;
     }
 
-    public Set<Person> getPersonen() {
-        return personen;
+    public void setKursId(Long kursId) {
+        this.kursId = kursId;
     }
 
-    public void setPersonen(Set<Person> personen) {
-        this.personen = personen;
+    public Set<Person> getInteressant() {
+        return interessant;
+    }
+
+    public void setInteressant(Set<Person> interessant) {
+        this.interessant = interessant;
+    }
+
+    public Set<Person> getTeilhnehmer() {
+        return teilhnehmer;
+    }
+
+    public void setTeilhnehmer(Set<Person> teilhnehmer) {
+        this.teilhnehmer = teilhnehmer;
     }
 }

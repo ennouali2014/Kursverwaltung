@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="head :: head">  </div>
+
+<body>
+
+<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
+
+
+<div class="container">
+    <div class="container-fluid">
+
+
+        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+
+        <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+        <form action="#"
+
+              th:action="@{'/addKursToPerson/'+${person.personId}}"
+
+              enctype="multipart/form-data">
+            <!--div th:with="person=${person}, kurse=${kurse}"-->
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Data Student Info</div>
+                    <div class="panel-body" style="padding-left: 5px;">
+                        Firstname : <b th:text="${person.vorname}"></b>
+                        <br/>
+                        Lastname : <b th:text="${person.nachname}"></b>
+                        <br/>
+                        Email : <b th:text="${person.email}"></b>
+                        <br/>
+                        Interessant für diese Kurse : <span th:each="kurs : ${person.inKursinteressieren}">
+                            <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
+                        </span>
+                        <br/>
+                        Teilnehmer in diese Kurse : <span th:each="kurs : ${person.inKursteilnehmen}">
+                            <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <label>
+
+                        <select class="form-control" name="choix">
+                            <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                            <option th:each="ch : ${choix}"
+                                    th:value="${ch}"
+                                    th:text="${ch}"></option>
+                        </select>
+                    </label>
+
+                </div>
+                <div class="col-md-6">
+
+                    <select class="form-control" name="kursId">
+                        <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.service.PersonService"*/-->
+                        <option th:each="kurs : ${kurse}"
+                                th:value="${kurs.kursId}"
+                                th:text="${kurs.kursname}"></option>
+                    </select>
+                </div>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">
+                Add Course
+            </button>
+            <!--/div-->
+        </form>
+    </div>
+</div>
+</body>
+</html>

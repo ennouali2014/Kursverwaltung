@@ -1,56 +1,11 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-     <title>Create new Kurs</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"/>
-    <link href="/CSS/style.css" rel="stylesheet"/>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</head>
-<body>
-<style>
-    .hbox {
-        width: 100%;
-    }
+ <div th:insert="head :: head">  </div>
 
-    .vbox {
-        width: 50%;
-        float: left;
-        padding: 10px;
-    }
-</style>
+ <body>
 
-
-<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
-    <a class="navbar-brand" href="/">
-        <img src="assets/brand/brand.jpeg" width="30" height="30" class="d-inline-block align-top" alt="">
-        Kursverwaltung
-    </a>
-
-
-    <div class="navbar-expand-lg" id="navbarNav">
-
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/newpersonen'}">Person verwalten </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" th:href="@{'/'}">Login</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
+ <div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
 
 
 <div align="center">
@@ -58,17 +13,17 @@
     <br/>
     <div class="col-sm-4">
         <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
-        <form action="#" th:action="@{/saveKurs}" th:object="${kurs}" method="post">
-
-            <div class="hbox">
+        <form action="#" th:action="@{/savekurs}" th:object="${kurs}" method="post">
+            <div id="hbox">
                 <div class="vbox">
+
                     <div align="center">
                         <tr>
                             <label class="form-label">Kursname</label>
                             <td>
                                 <input type="text" th:field="*{kursname}" class="form-control"
-                                       placeholder="kursname"/>
-                                <input type="hidden" th:field="*{kurs_id}" />
+                                       placeholder="Kursname"/>
+                                <input type="hidden" th:field="*{kursId}"/>
 
                             </td>
                         </tr>
@@ -77,43 +32,42 @@
                             <label class="form-label">anzahlTage</label>
                             <td>
                                 <input type="text" th:field="*{anzahlTage}" class="form-control"
-                                       placeholder="anzahlTage"/>
+                                       placeholder="Anzahl Tage"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">startDatum</label>
                             <td>
                                 <input type="date" th:field="*{startDatum}" class="form-control"
-                                       placeholder="startDatum"/>
+                                       placeholder="Start Datum"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">minTnZahl</label>
                             <td>
                                 <input type="text" th:field="*{minTnZahl}" class="form-control"
-                                       placeholder="minTnZahl"/>
+                                       placeholder="Min. Teilnehmer"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">aktuelleTnZahll</label>
                             <td>
                                 <input type="text" th:field="*{aktuelleTnZahl}" class="form-control"
-                                       placeholder="aktuelleTnZahl"/>
+                                       placeholder="Aktuelle Teilnehmer"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">gebuehrBrutto</label>
                             <td>
                                 <input type="text" th:field="*{gebuehrBrutto}" class="form-control"
-                                       placeholder="gebuehrBrutto"/>
+                                       placeholder="Gebuehr Brutto"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">mwstProzent</label>
                             <td>
-
                                 <input type="text" th:field="*{mwstProzent}" class="form-control"
-                                       placeholder="mwstProzent"/>
+                                       placeholder="Mwst in Prozent"/>
                             </td>
                         </tr>
                     </div>
@@ -121,8 +75,8 @@
                 </div>
 
                 <div class="vbox">
-
                     <div align="center">
+
                         <tr>
                             <label class="form-label">Status</label>
                             <td>
@@ -138,58 +92,59 @@
                             <label class="form-label">zyklus</label>
                             <td>
                                 <input type="text" th:field="*{zyklus}" class="form-control"
-                                       placeholder="zyklus"/>
+                                       placeholder="Zyklus"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">endeDatum</label>
                             <td>
                                 <input type="date" th:field="*{endeDatum}" class="form-control"
-                                       placeholder="endeDatum"/>
+                                       placeholder="End Datum"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">maxTnZahl</label>
                             <td>
                                 <input type="text" th:field="*{maxTnZahl}" class="form-control"
-                                       placeholder="maxTnZahl"/>
+                                       placeholder="Max Teinlnehmer"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">freiePlaetze</label>
                             <td>
                                 <input type="text" th:field="*{freiePlaetze}" class="form-control"
-                                       placeholder="freiePlaetze"/>
+                                       placeholder="Freie Plaetze"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">gebuehrNetto</label>
                             <td>
                                 <input type="text" th:field="*{gebuehrNetto}" class="form-control"
-                                       placeholder="gebuehrNetto"/>
+                                       placeholder="Gebuehr Netto"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">mwstEuro</label>
                             <td>
                                 <input type="text" th:field="*{mwstEuro}" class="form-control"
-                                       placeholder="mwstEuro"/>
+                                       placeholder="Mwst in Euro"/>
                             </td>
                         </tr>
 
                     </div>
 
                 </div>
-                <br>
+
                 <div>
+                    <br>
                     <tr>
                         <td colspan="2">
-                            <button type="submit" class="btn btn-info">Save Kurs</button>
+                            <button type="submit" class="btn btn-info">Save</button>
                         </td>
                     </tr>
+
                 </div>
             </div>
-
         </form>
     </div>
 

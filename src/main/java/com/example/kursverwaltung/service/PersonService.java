@@ -6,6 +6,8 @@ import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.KursRepository;
 import com.example.kursverwaltung.repository.PersonRepository;
 import com.example.kursverwaltung.repository.UserInfoRepository;
+
+import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,12 +40,17 @@ public class PersonService {
 
     public void delete(long id) {
         repo.deleteById(id);
+    public void save(Person person){repo.save(person);}
+    public void delete(long personId){
+        repo.deleteById(personId);
     }
 
     public List<Person> listAll() {
         return repo.findAll();
     }
 
+    public Person getPersonId(long personId) {
+        return repo.findByPersonId(personId);
     public Person assignKursToPerson(Long kurs_id, Long person_id) {
         Set<Kurs> kurslist;
         Person person = repo.findById(person_id).get();
@@ -53,9 +60,10 @@ public class PersonService {
         person.setKurse(kurslist);
         return repo.save(person);
     }
-
-    /*public String getPersonId(Long person_id, Model model) {
-        Person findPersontId = repo.findByPersonId(person_id);
+    public List<Kurs> getAllkurs(){
+        return repoK.findAll();
+    }
+    public Kurs getKurs(long kursId){return repoK.findByKursId(kursId);}
 
         model.addAttribute("title", "Data Student");
         model.addAttribute("kurse", repoK.findAll());
