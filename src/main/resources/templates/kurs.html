@@ -37,6 +37,9 @@
                         </tr>
                         </thead>
                         <tbody>
+                        <tr th:if="${listKurse.empty}">
+                            <td colspan="2"> keine kurse vorhanden </td>
+                        </tr>
                         <tr th:each="kurs : ${listKurse }">
                             <td th:text="${kurs.kurs_id}">Kurs ID</td>
                             <td th:text="${kurs.kursname}">Kursname</td>

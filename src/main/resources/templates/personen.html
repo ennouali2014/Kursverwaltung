@@ -36,6 +36,9 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <tr th:if="${listPerson.empty}">
+                            <td colspan="2"> keine Personen vorhanden </td>
+                    </tr>
                     <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
 
                     <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
