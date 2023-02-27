@@ -1,21 +1,29 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
-<div th:insert="head :: head">  </div>
+<!--div th:insert="head :: head">  </div-->
 
 <body>
 
-<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
+<!--div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div-->
 
 
-<div>
-    <h2>Spring Boot Crud System -Personen Registation</h2>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+    <h2>List All Teilnehmer und Interessant</h2>
 
 
     <div align="left">
         <h3><a th:href="@{'/newperson'}">Add new person</a></h3>
     </div>
+
+    <form th:action="@{/personen}" method="get">
+        <input id="txtsearch" type="text" name="keyword">
+        <button type="submit">Go</button>
+    </form>
 
 
     <tr>
@@ -36,9 +44,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:if="${listPerson.empty}">
-                            <td colspan="2"> keine Personen vorhanden </td>
-                    </tr>
                     <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
 
                     <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
@@ -56,7 +61,7 @@
                             <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
                         </td>
                         <td>
-                            <a th:href="@{'/get/'+${person.personId}}" >Add kurs</a>
+                            <a th:href="@{'/get/'+${person.personId}}">Add kurs</a>
                         </td>
                         <td>
                             <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
@@ -72,8 +77,8 @@
 
     </tr>
 
-    </tbody>
-    </table>
+</div>
+    </section>
 </div>
 </body>
 </html>

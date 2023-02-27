@@ -1,10 +1,7 @@
 package com.example.kursverwaltung.controller;
 
-import com.example.kursverwaltung.config.UserInfoUserDetailsService;
 import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
-import com.example.kursverwaltung.domain.UserInfo;
-import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -35,12 +32,17 @@ public class PersonController {
         return "Willkommen in Bremen";
     }
 
+    @GetMapping("/index2")
+    public String widget(){return "index2";}
     @GetMapping("/personen")
     @PreAuthorize("hasAuthority('USER','ADMIN')")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model, String keyword) {
         List<Person> listPerson = service.listAll();
-        model.addAttribute("listPerson", listPerson);
-
+        if(keyword!=null){
+            model.addAttribute("listPerson",service.findByKeyword(keyword));
+        }else{
+            model.addAttribute("listPerson", listPerson);
+        }
         return "personen";
     }
 
@@ -50,7 +52,6 @@ public class PersonController {
         model.addAttribute("person", new Person());
         return "redirect:/personen";
     }
-
     @PostMapping("/saveperson")
     @PreAuthorize("hasAuthority('ADMIN')")
     public String saveStudent(@ModelAttribute("person") Person person) {
@@ -67,14 +68,11 @@ public class PersonController {
         mav.addObject("person", person);
         return mav;
     }
-
-
     @RequestMapping("/deleteperson/{personId}")
     public String deletePerson(@PathVariable(name = "personId") int personId) {
         service.delete(personId);
         return "redirect:/personen";
     }
-
     @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);

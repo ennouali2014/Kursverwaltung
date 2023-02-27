@@ -20,7 +20,7 @@ public class KursController {
     @GetMapping("/kurs")
     public String viewHomePage(Model model) {
         List<Kurs> listKurse = service.listAll();
-        model.addAttribute("listKurs", listKurse);
+        model.addAttribute("listKurse", listKurse);
         System.out.println("Get / ");
         return "kurs";
     }
@@ -36,14 +36,14 @@ public class KursController {
         service.save(kurs);
         return "redirect:/kurs";
     }
-    @RequestMapping("/kurs/edit/{kursId}")
+    @RequestMapping("/editkurs/{kursId}")
     public ModelAndView showEditKursPage(@PathVariable(name = "kursId")int kursId){
         ModelAndView modelAndView=new ModelAndView("new");
         Kurs kurs=service.get(kursId);
         modelAndView.addObject("kurs",kurs);
         return modelAndView;
     }
-    @RequestMapping("/kurs/delete/{kursId}")
+    @RequestMapping("/deletekurs/{kursId}")
     public String deleteKurs(@PathVariable(name = "kursId") int kursId){
         service.delete(kursId);
         return "redirect:/kurs";

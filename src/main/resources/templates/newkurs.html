@@ -1,15 +1,22 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
- <div th:insert="head :: head">  </div>
+<head>
+    <div th:insert="head :: head">  </div>
+    <meta charset="UTF-8">
+    <title>Create new Kurs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
 
- <body>
+<body>
 
  <div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
 
 
 <div align="center">
-    <h1>Create New Kurs</h1>
+    <h1>Kurs anlegen/editieren</h1>
     <br/>
     <div class="col-sm-4">
         <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
@@ -22,7 +29,7 @@
                             <label class="form-label">Kursname</label>
                             <td>
                                 <input type="text" th:field="*{kursname}" class="form-control"
-                                       placeholder="Kursname"/>
+                                       placeholder="kursname"/>
                                 <input type="hidden" th:field="*{kursId}"/>
 
                             </td>
@@ -31,43 +38,45 @@
                         <tr>
                             <label class="form-label">anzahlTage</label>
                             <td>
-                                <input type="text" th:field="*{anzahlTage}" class="form-control"
-                                       placeholder="Anzahl Tage"/>
+
+                                <input type="number" th:field="*{anzahl_tage}" class="form-control"
+                                       placeholder="anzahlTage"/>
+
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">startDatum</label>
                             <td>
-                                <input type="date" th:field="*{startDatum}" class="form-control"
-                                       placeholder="Start Datum"/>
+                                <input type="date" th:field="*{start_datum}" class="form-control"
+                                       placeholder="startDatum"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">minTnZahl</label>
                             <td>
-                                <input type="text" th:field="*{minTnZahl}" class="form-control"
-                                       placeholder="Min. Teilnehmer"/>
+                                <input type="number" th:field="*{min_tn_anzahl}" class="form-control"
+                                       placeholder="minTnZahl"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">aktuelleTnZahll</label>
                             <td>
-                                <input type="text" th:field="*{aktuelleTnZahl}" class="form-control"
-                                       placeholder="Aktuelle Teilnehmer"/>
+                                <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
+                                       placeholder="aktuelleTnZahl"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">gebuehrBrutto</label>
                             <td>
-                                <input type="text" th:field="*{gebuehrBrutto}" class="form-control"
-                                       placeholder="Gebuehr Brutto"/>
+                                <input type="number" th:field="*{gebuehr_brutto}" class="form-control"
+                                       placeholder="gebuehrBrutto"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">mwstProzent</label>
                             <td>
-                                <input type="text" th:field="*{mwstProzent}" class="form-control"
-                                       placeholder="Mwst in Prozent"/>
+                                <input type="number" th:field="*{mwst_prozent}" class="form-control"
+                                       placeholder="mwstProzent"/>
                             </td>
                         </tr>
                     </div>
@@ -91,43 +100,43 @@
                         <tr>
                             <label class="form-label">zyklus</label>
                             <td>
-                                <input type="text" th:field="*{zyklus}" class="form-control"
-                                       placeholder="Zyklus"/>
+                                <input type="number" th:field="*{zyklus}" class="form-control"
+                                       placeholder="zyklus"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">endeDatum</label>
                             <td>
-                                <input type="date" th:field="*{endeDatum}" class="form-control"
-                                       placeholder="End Datum"/>
+                                <input type="date" th:field="*{ende_datum}" class="form-control"
+                                       placeholder="endeDatum"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">maxTnZahl</label>
                             <td>
-                                <input type="text" th:field="*{maxTnZahl}" class="form-control"
-                                       placeholder="Max Teinlnehmer"/>
+                                <input type="number" th:field="*{max_tn_anzahl}" class="form-control"
+                                       placeholder="maxTnZahl"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">freiePlaetze</label>
                             <td>
-                                <input type="text" th:field="*{freiePlaetze}" class="form-control"
-                                       placeholder="Freie Plaetze"/>
+                                <input type="number" th:field="*{freie_plaetze}" class="form-control"
+                                       placeholder="freiePlaetze"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">gebuehrNetto</label>
                             <td>
-                                <input type="text" th:field="*{gebuehrNetto}" class="form-control"
-                                       placeholder="Gebuehr Netto"/>
+                                <input type="number" th:field="*{gebuehr_netto}" class="form-control"
+                                       placeholder="gebuehrNetto"/>
                             </td>
                         </tr>
                         <tr>
                             <label class="form-label">mwstEuro</label>
                             <td>
-                                <input type="text" th:field="*{mwstEuro}" class="form-control"
-                                       placeholder="Mwst in Euro"/>
+                                <input type="number" th:field="*{mwst_euro}" class="form-control"
+                                       placeholder="mwstEuro"/>
                             </td>
                         </tr>
 
@@ -135,14 +144,26 @@
 
                 </div>
 
-                <div>
-                    <br>
-                    <tr>
-                        <td colspan="2">
-                            <button type="submit" class="btn btn-info">Save</button>
-                        </td>
-                    </tr>
+                <div class="vbox">
+                    <div align="center">
 
+                        <tr>
+                            <label class="form-label">kurs_beschreibung</label>
+                            <td>
+                                <input type="text" th:field="*{kurs_beschreibung}" class="form-control"
+                                       placeholder="kurs_beschreibung"/>
+                            </td>
+                        </tr>
+
+                    </div>
+                    <div>
+                        <br>
+                        <tr>
+                            <td colspan="2">
+                                <button type="submit" class="btn btn-info">Save</button>
+                            </td>
+                        </tr>
+                    </div>
                 </div>
             </div>
         </form>
