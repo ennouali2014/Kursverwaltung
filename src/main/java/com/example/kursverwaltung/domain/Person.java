@@ -191,4 +191,7 @@ public class Person {
             }
         }
     }
+
+    public void setKurse(Set<Kurs> kurslist) {
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.kursverwaltung.config;
 
+import com.example.kursverwaltung.repository.UserInfoRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,18 +22,10 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 public class SecurityConfig {
 
+    private UserInfoRepository repository;
     @Bean
     // authentication
     public UserDetailsService userDetailsService() {
-/*        UserDetails admin = User.withUsername("ALi")
-                .password(encoder.encode("root"))
-                .roles("ADMIN")
-                .build();
-        UserDetails user = User.withUsername("Alexander")
-                .password(encoder.encode("root"))
-                .roles("USER","ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(admin, user);*/
         return new UserInfoUserDetailsService();
 
     }
@@ -70,7 +64,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
 
     @Bean

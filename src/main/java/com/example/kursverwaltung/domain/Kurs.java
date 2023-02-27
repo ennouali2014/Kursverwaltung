@@ -20,7 +20,6 @@ public class Kurs {
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
 
-
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Column(name = "anzahlTage", nullable = false)

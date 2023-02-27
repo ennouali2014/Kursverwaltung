@@ -30,5 +30,4 @@ public class UserInfo {
     private String roles;
 
 
-
 }
