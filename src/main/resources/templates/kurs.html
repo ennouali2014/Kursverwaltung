@@ -8,10 +8,22 @@
 
 <div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
 
-<div>
-    <h2>Spring Boot Crud System -Kurse Registation</h2>
-    <div align="left">
-        <h3><a th:href="@{'/kurs/newkurs'}">Add new Kurs</a></h3>
+
+
+<div align="left">
+
+    <form class="form-inline">
+        <h3><a th:href="@{'/kurs/newkurs'}" class="btn btn-light my-2 my-sm-0">Kurs hinzufügen</a></h3>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+            </div>
+            <input type="text" class="form-control" id="inputSucheKurse" onkeyup="suchFunctionPerson()"
+                   placeholder="Suchbegriff hier eingeben ..." aria-label="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+    </form>
+</div>
         <tr>
             <div class="col-sm-5" align="center">
                 <div class="panel-body" align="center">
@@ -37,8 +49,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="kurs : ${listKurse }">
-                            <td th:text="${kurs.kurs_id}">Kurs ID</td>
+                       <tr th:if="${listKurse.empty}">
+                            <td colspan="4"> keine Kurse vorhanden </td>
+                        </tr>
+                        <tr th:each="kurs : ${listKurse}">
+                            <td th:text="${kurs.kursId}">KursID</td>
                             <td th:text="${kurs.kursname}">Kursname</td>
                             <td th:text="${kurs.status}">Status</td>
                             <td th:text="${kurs.anzahlTage}">AnzahlTage</td>
@@ -55,14 +70,19 @@
                             <td th:text="${kurs.mwstProzent}">mwstProzent</td>
                             <td th:text="${kurs.kursBeschreibung}">kursBeschreibung</td>
                             <td>
-                                <a th:href="@{'/edit/' + ${kurs.kurs_id}}">Edit</a>
+                                <a th:href="@{'/editkurs/' + ${kurs.kursId}}">Edit</a>
                             </td>
                             <td>
-                                <a th:href="@{'/delete/' + ${kurs.kurs_id}}">Delete</a>
+                                <a th:href="@{'/get/'+${kurs.kursId}}" >Add kurs</a>
+                            </td>
+                            <td>
+                                <a th:href="@{'/deletekurs/' + ${kurs.kursId}}">Delete</a>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </tr>

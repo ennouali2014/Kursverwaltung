@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,38 +20,37 @@ public class Kurs {
     private Long kursId;
     @Column(name = "kursname", length = 100, nullable = false)
     private String kursname;
-
-
     @Column(name = "status", length = 100, nullable = false)
     private String status;
-    @Column(name = "anzahlTage", nullable = false)
-    private String anzahlTage;
+    @Column(name = "anzahl_tage", nullable = false)
+    private int anzahl_tage;
     @Column(name = "zyklus", nullable = false)
     private int zyklus;
     @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date startDatum;
+    @Column(name = "start_datum", nullable = false)
+    private Date start_datum;
     @Temporal(TemporalType.DATE)
-    private Date endeDatum;
-    @Column(name = "minTnZahl", nullable = false)
-    private int minTnZahl;
-    @Column(name = "maxTnZahl", nullable = false)
-    private int maxTnZahl;
-    @Column(name = "freiePlaetze")
-    private int freiePlaetze;
-    @Column(name = "aktuelleTnZahl")
-    private int aktuelleTnZahl;
-    @Column(name = "gebuehrBrutto", nullable = false)
-    private Double gebuehrBrutto;
-    @Column(name = "gebuehrNetto")
-    private Double gebuehrNetto;
-    @Column(name = "mwstEuro")
-    private Double mwstEuro;
-    @Column(name = "mwstProzent", nullable = false)
-    private Double mwstProzent;
-    @Column(name = "kursBeschreibung", nullable = false)
-    private String kursBeschreibung;
-
+    @Column(name = "ende_datum")
+    private Date ende_datum;
+    @Column(name = "min_tn_anzahl", nullable = false)
+    private int min_tn_anzahl;
+    @Column(name = "max_tn_anzahl", nullable = false)
+    private int max_tn_anzahl;
+    @Column(name = "freie_plaetze")
+    private int freie_plaetze;
+    @Column(name = "aktuelle_tn_anzahl", nullable = false)
+    // spaeter wird nicht nullable sondern in add person in kurs Kalkuliert
+    private int aktuelle_tn_anzahl;
+    @Column(name = "gebuehr_brutto", nullable = false)
+    private Double gebuehr_brutto;
+    @Column(name = "gebuehr_netto")
+    private Double gebuehr_netto;
+    @Column(name = "mwst_euro")
+    private Double mwst_euro;
+    @Column(name = "mwst_prozent", nullable = false)
+    private Double mwst_prozent;
+    @Column(name = "kurs_beschreibung", nullable = false)
+    private String kurs_beschreibung;
 
     @DateTimeFormat
     private Date convertedStartDate;
@@ -63,30 +63,30 @@ public class Kurs {
 
     @ManyToMany(mappedBy = "inKursteilnehmen")
     @JsonIgnore
-    private Set<Person> teilhnehmer = new HashSet<>();
+    private Set<Person> teilnehmer = new HashSet<>();
+
 
     public Kurs() {
     }
 
-    public Kurs(String kursname, String status, String anzahlTage, int zyklus, Date startDatum, Date endeDatum, int minTnZahl, int maxTnZahl, Double gebuehrBrutto, Double mwstProzent, String kursBeschreibung) {
+    public Kurs(String kursname, String status, int anzahl_tage, int zyklus, Date start_datum, int min_tn_anzahl, int max_tn_anzahl, Double gebuehr_brutto, Double mwst_prozent, String kurs_beschreibung) {
 
         this.kursname = kursname;
         this.status = status;
-        this.anzahlTage = anzahlTage;
+        this.anzahl_tage = anzahl_tage;
         this.zyklus = zyklus;
-        this.startDatum = startDatum;
-        this.endeDatum = endeDatum;
-        this.minTnZahl = minTnZahl;
-        this.maxTnZahl = maxTnZahl;
-        this.gebuehrBrutto = gebuehrBrutto;
-        this.mwstProzent = mwstProzent;
-        this.kursBeschreibung = kursBeschreibung;
+        this.start_datum = start_datum;
+        this.ende_datum = ende_datum;
+        this.min_tn_anzahl = min_tn_anzahl;
+        this.max_tn_anzahl = max_tn_anzahl;
+        this.gebuehr_brutto = gebuehr_brutto;
+        this.mwst_prozent = mwst_prozent;
+        this.kurs_beschreibung = kurs_beschreibung;
     }
 
     public Long getKursId() {
         return kursId;
     }
-
     public String getKursname() {
         return kursname;
     }
@@ -103,12 +103,12 @@ public class Kurs {
         this.status = status;
     }
 
-    public String getAnzahlTage() {
-        return anzahlTage;
+    public int getAnzahl_tage() {
+        return anzahl_tage;
     }
 
-    public void setAnzahlTage(String anzahlTage) {
-        this.anzahlTage = anzahlTage;
+    public void setAnzahl_tage(int anzahlTage) {
+        this.anzahl_tage = anzahlTage;
     }
 
     public int getZyklus() {
@@ -119,14 +119,14 @@ public class Kurs {
         this.zyklus = zyklus;
     }
 
-    /*public Date getStartDatum() {
-        return startDatum;
-    }*/
+    /* public Date getStartDatum() {
+         return startDatum;
+     }
 
-    public void setStartDatum(Date startDatum) {
-        this.startDatum = startDatum;
-    }
-    public Date getStartDatum() {
+     public void setStartDatum(Date startDatum) {
+         this.startDatum = startDatum;
+     }*/
+    public Date getStart_datum() {
         return convertedStartDate;
     }
 
@@ -139,105 +139,119 @@ public class Kurs {
             throw new RuntimeException(e);
         }
 
-    }
-
-    /*public Date getEndeDatum() {
-        return convertedEndeDate;
-    }*/
-
-    public void setEndeDatum(String endeDatum) {
-        String pattern = "dd-MM-yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        try {
-            this.convertedEndeDate = simpleDateFormat.parse(endeDatum);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
 
     }
-    public Date getEndeDatum() {
-        return endeDatum;
+
+    public Date getEnde_datum() {
+        //return convertedEndeDate;
+        return ende_datum;
     }
 
-    public void setEndeDatum(Date endeDatum) {
-        this.endeDatum = endeDatum;
+    /* public void setEnde_datum(String endeDatum) {
+         String pattern = "dd-MM-yyyy";
+         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+         try {
+             this.convertedEndeDate = simpleDateFormat.parse(endeDatum);
+         } catch (ParseException e) {
+             throw new RuntimeException(e);
+         }
+
+     }*/
+    public void setEnde_datum() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(start_datum);
+        cal.add(Calendar.DAY_OF_MONTH, anzahl_tage);
+        this.ende_datum = cal.getTime();
     }
 
-    public int getMinTnZahl() {
-        return minTnZahl;
+
+    /* public Date getEndeDatum() {
+         return endeDatum;
+     }
+
+     public void setEndeDatum(Date endeDatum) {
+         this.endeDatum = endeDatum;
+     }
+ */
+    public int getMin_tn_anzahl() {
+        return min_tn_anzahl;
     }
 
-    public void setMinTnZahl(int minTnZahl) {
-        this.minTnZahl = minTnZahl;
+    public void setMin_tn_anzahl(int minTnZahl) {
+        this.min_tn_anzahl = minTnZahl;
     }
 
-    public int getMaxTnZahl() {
-        return maxTnZahl;
+    public int getMax_tn_anzahl() {
+        return max_tn_anzahl;
     }
 
-    public void setMaxTnZahl(int maxTnZahl) {
-        this.maxTnZahl = maxTnZahl;
+    public void setMax_tn_anzahl(int maxTnZahl) {
+        this.max_tn_anzahl = maxTnZahl;
     }
 
-    public int getFreiePlaetze() {
-        return freiePlaetze;
+    public int getFreie_plaetze() {
+        return freie_plaetze;
     }
 
-    public void setFreiePlaetze(int freiePlaetze) {
-        this.freiePlaetze = freiePlaetze;
+    public void setFreie_plaetze() {
+        this.freie_plaetze = max_tn_anzahl - aktuelle_tn_anzahl;
     }
 
-    public int getAktuelleTnZahl() {
-        return aktuelleTnZahl;
+    public int getAktuelle_tn_anzahl() {
+        return aktuelle_tn_anzahl;
     }
 
-    public void setAktuelleTnZahl(int aktuelleTnZahl) {
-        this.aktuelleTnZahl = aktuelleTnZahl;
+    public void setAktuelle_tn_anzahlnZahl(int aktuelle_tn_anzahl) {
+        this.aktuelle_tn_anzahl = aktuelle_tn_anzahl;
     }
 
-    public Double getGebuehrBrutto() {
-        return gebuehrBrutto;
+    public Double getGebuehr_brutto() {
+        return gebuehr_brutto;
     }
 
-    public void setGebuehrBrutto(Double gebuehrBrutto) {
-        this.gebuehrBrutto = gebuehrBrutto;
+    public void setGebuehr_brutto(Double gebuehrBrutto) {
+        this.gebuehr_brutto = gebuehrBrutto;
     }
 
-    public Double getGebuehrNetto() {
-        return gebuehrNetto;
+    public Double getGebuehr_netto() {
+        return gebuehr_netto;
     }
 
-    public void setGebuehrNetto(Double gebuehrNetto) {
-        this.gebuehrNetto = gebuehrNetto;
+    public void setGebuehr_netto(Double gebuehrNetto) {
+        this.gebuehr_netto = Math.round((gebuehr_brutto / (100 + mwst_prozent) * 100) * 100.0) / 100.0;
     }
 
-    public Double getMwstEuro() {
-        return mwstEuro;
+    public Double getMwst_euro() {
+        return mwst_euro;
     }
 
-    public void setMwstEuro(Double mwstEuro) {
-        this.mwstEuro = mwstEuro;
+    public void setMwst_euro(Double mwstEuro) {
+        this.mwst_euro = Math.round((gebuehr_brutto / (100 + mwst_prozent) * mwst_prozent) * 100.0) / 100.0;
     }
 
-    public Double getMwstProzent() {
-        return mwstProzent;
+    public Double getMwst_prozent() {
+        return mwst_prozent;
     }
 
     public void setMwstProzent(Double mwstProzent) {
-        this.mwstProzent = mwstProzent;
+        this.mwst_prozent = mwstProzent;
     }
 
-    public String getKursBeschreibung() {
-        return kursBeschreibung;
+    public String getKurs_beschreibung() {
+        return kurs_beschreibung;
     }
 
     public void setKursBeschreibung(String kursBeschreibung) {
-        this.kursBeschreibung = kursBeschreibung;
+        this.kurs_beschreibung = kursBeschreibung;
     }
 
-    public void setKursId(Long kursId) {
-        this.kursId = kursId;
+   /* public Set<Person> getPersonen() {
+        return personen;
     }
+
+    public void setPersonen(Set<Person> personen) {
+        this.personen = personen;
+    }*/
 
     public Set<Person> getInteressant() {
         return interessant;
@@ -247,11 +261,11 @@ public class Kurs {
         this.interessant = interessant;
     }
 
-    public Set<Person> getTeilhnehmer() {
-        return teilhnehmer;
+    public Set<Person> getTeilnehmer() {
+        return teilnehmer;
     }
 
-    public void setTeilhnehmer(Set<Person> teilhnehmer) {
-        this.teilhnehmer = teilhnehmer;
+    public void setTeilnehmer(Set<Person> teilnehmer) {
+        this.teilnehmer = teilnehmer;
     }
 }
