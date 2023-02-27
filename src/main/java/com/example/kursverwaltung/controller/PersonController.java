@@ -17,11 +17,16 @@ public class PersonController {
     @Autowired
     private PersonService service;
 
+    @GetMapping("/index2")
+    public String widget(){return "index2";}
     @GetMapping("/personen")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model, String keyword) {
         List<Person> listPerson = service.listAll();
-        model.addAttribute("listPerson", listPerson);
-
+        if(keyword!=null){
+            model.addAttribute("listPerson",service.findByKeyword(keyword));
+        }else{
+            model.addAttribute("listPerson", listPerson);
+        }
         return "personen";
     }
 
