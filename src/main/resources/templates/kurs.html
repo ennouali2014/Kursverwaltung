@@ -6,7 +6,7 @@
 
 <body>
 
-<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
+<div th:insert="navbar :: navbar">  </div>
 
 <div>
     <h2>Spring Boot Crud System -Kurse Registation</h2>
@@ -37,9 +37,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:if="${listKurse.empty}">
+                       <!-- <tr th:if="${listKurse.empty}">
                             <td colspan="2"> keine kurse vorhanden </td>
-                        </tr>
+                        </tr>-->
                         <tr th:each="kurs : ${listKurse }">
                             <td th:text="${kurs.kurs_id}">Kurs ID</td>
                             <td th:text="${kurs.kursname}">Kursname</td>

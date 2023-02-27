@@ -20,7 +20,7 @@ public class KursController {
     @GetMapping("/kurs")
     public String viewHomePage(Model model) {
         List<Kurs> listKurse = service.listAll();
-        model.addAttribute("listKurs", listKurse);
+        model.addAttribute("listKurse", listKurse);
         System.out.println("Get / ");
         return "kurs";
     }
