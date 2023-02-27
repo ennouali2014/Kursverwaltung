@@ -63,7 +63,7 @@ public class Kurs {
 
     @ManyToMany(mappedBy = "inKursteilnehmen")
     @JsonIgnore
-    private Set<Person> teilhnehmer = new HashSet<>();
+    private Set<Person> teilnehmer = new HashSet<>();
 
 
     public Kurs() {
@@ -138,6 +138,7 @@ public class Kurs {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+
 
     }
 
@@ -260,11 +261,11 @@ public class Kurs {
         this.interessant = interessant;
     }
 
-    public Set<Person> getTeilhnehmer() {
-        return teilhnehmer;
+    public Set<Person> getTeilnehmer() {
+        return teilnehmer;
     }
 
-    public void setTeilhnehmer(Set<Person> teilhnehmer) {
-        this.teilhnehmer = teilhnehmer;
+    public void setTeilnehmer(Set<Person> teilnehmer) {
+        this.teilnehmer = teilnehmer;
     }
 }

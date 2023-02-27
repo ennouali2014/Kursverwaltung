@@ -177,7 +177,7 @@ public class Person {
         for (Kurs kursp : this.inKursteilnehmen) {
             if (kursp.getKursId().equals(kurs.getKursId())) {
                 inKursteilnehmen.remove(kursp);
-                kursp.getTeilhnehmer().remove(this);
+                kursp.getTeilnehmer().remove(this);
 
             }
         }

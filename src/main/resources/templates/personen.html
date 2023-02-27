@@ -1,79 +1,89 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="head :: head">  </div>
+<div th:insert="head :: head"></div>
 
 <body>
 
-<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
+<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light"></div>
 
 
 <div>
-    <h2>Spring Boot Crud System -Personen Registation</h2>
-
 
     <div align="left">
-        <h3><a th:href="@{'/newperson'}">Add new person</a></h3>
-    </div>
 
+        <form class="form-inline">
+            <h3><a th:href="@{'/newperson'}" class="btn btn-light my-2 my-sm-0">Person hinzufügen</a></h3>
 
-    <tr>
-        <div class="col-sm-5" align="center">
-            <div class="panel-body" align="center">
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Person ID</th>
-                        <th>Anrede</th>
-                        <th>Titel</th>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>Strasse</th>
-                        <th>PLZ</th>
-                        <th>Ort</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:if="${listPerson.empty}">
-                            <td colspan="2"> keine Personen vorhanden </td>
-                    </tr>
-                    <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
-
-                    <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
-                    <tr th:each="person :${listPerson}">
-                        <td th:text="${person.personId}">person ID</td>
-                        <td th:text="${person.anrede}">Anrede</td>
-                        <td th:text="${person.titel}">Titel</td>
-                        <td th:text="${person.vorname}">Vorname</td>
-                        <td th:text="${person.nachname}">Nachname</td>
-                        <td th:text="${person.strasse}">Strasse</td>
-                        <td th:text="${person.plz}">PLZ</td>
-                        <td th:text="${person.ort}">Ort</td>
-                        <td th:text="${person.email}">Email</td>
-                        <td>
-                            <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/get/'+${person.personId}}" >Add kurs</a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
-                        </td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
+            <div class="input-group">
+                <div class="input-group-prepend">
+                </div>
+                <input type="text" class="form-control" id="inputSuchePersonen" onkeyup="suchFunctionPerson()"
+                       placeholder="Suchbegriff hier eingeben ..." aria-label="Username"
+                       aria-describedby="basic-addon1">
             </div>
+        </form>
+    </div>
+</div>
+
+
+<tr>
+    <div class="col-sm-5" align="center">
+        <div class="panel-body" align="center">
+            <table class="table" id="listPersonTabelle">
+                <thead class="thead-light">
+                <tr>
+                    <th>Person ID</th>
+                    <th>Anrede</th>
+                    <th>Titel</th>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Strasse</th>
+                    <th>PLZ</th>
+                    <th>Ort</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${listPerson.empty}">
+                    <td colspan="4"> keine Personen vorhanden</td>
+                </tr>
+                <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+
+                <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                <tr th:each="person :${listPerson}">
+                    <td th:text="${person.personId}">person ID</td>
+                    <td th:text="${person.anrede}">Anrede</td>
+                    <td th:text="${person.titel}">Titel</td>
+                    <td th:text="${person.vorname}">Vorname</td>
+                    <td th:text="${person.nachname}">Nachname</td>
+                    <td th:text="${person.strasse}">Strasse</td>
+                    <td th:text="${person.plz}">PLZ</td>
+                    <td th:text="${person.ort}">Ort</td>
+                    <td th:text="${person.email}">Email</td>
+                    <td>
+                        <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/get/'+${person.personId}}">Add kurs</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
 
         </div>
 
-    </tr>
+    </div>
 
-    </tbody>
-    </table>
+</tr>
+
+</tbody>
+</table>
 </div>
 </body>
 </html>

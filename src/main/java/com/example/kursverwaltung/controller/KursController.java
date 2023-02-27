@@ -36,14 +36,14 @@ public class KursController {
         service.save(kurs);
         return "redirect:/kurs";
     }
-    @RequestMapping("/kurs/edit/{kursId}")
+    @RequestMapping("/editkurs/{kursId}")
     public ModelAndView showEditKursPage(@PathVariable(name = "kursId")int kursId){
         ModelAndView modelAndView=new ModelAndView("new");
         Kurs kurs=service.get(kursId);
         modelAndView.addObject("kurs",kurs);
         return modelAndView;
     }
-    @RequestMapping("/kurs/delete/{kursId}")
+    @RequestMapping("/deletekurs/{kursId}")
     public String deleteKurs(@PathVariable(name = "kursId") int kursId){
         service.delete(kursId);
         return "redirect:/kurs";
