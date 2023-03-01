@@ -1,9 +1,62 @@
 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <div th:insert="head :: head">  </div>
 
 <body>
+<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
 
-<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+<div>
+    <h2>Spring Boot Crud System -Users Registation</h2>
 
+
+    <div align="left">
+        <h3><a th:href="@{'/newUser'}">Add new user</a></h3>
+    </div>
+
+
+    <tr>
+        <div class="col-sm-5" align="center">
+            <div class="panel-body" align="center">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>UserId</th>
+                        <th>Username</th>
+                        <th>Password</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${listUsers.empty}">
+                        <td colspan="2"> kein User vorhanden </td>
+                    </tr>
+
+
+                    <tr th:each="users :${listUsers}">
+                        <td th:text="${userInfo.id}">User ID</td>
+                        <td th:text="${userInfo.username}">Username</td>
+                        <td th:text="${userInfo.password}">Password</td>
+                        <td>
+                            <a th:href="@{'/editUser/' + ${userinfo.id}}">Edit</a>
+                        </td>
+                        <td>
+                            <a th:href="@{'/deleteUser/' + ${userinfo.id}}">Delete</a>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </tr>
+
+    </tbody>
+    </table>
+</div>
 </body>
-
+</html>
