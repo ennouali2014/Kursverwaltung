@@ -1,9 +1,9 @@
 package com.example.kursverwaltung.controller;
 
-import com.example.kursverwaltung.config.UserInfoUserDetailsService;
+import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import com.example.kursverwaltung.domain.UserInfo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -14,40 +14,45 @@ import java.util.Optional;
 
 
 @Controller
-@RequestMapping("/u")
+@RequestMapping("/user")
 public class UserInfoController {
-
     @Autowired
     private UserInfoUserDetailsService serviceInfoUser;
 
+    @GetMapping("/newUser")
+    public String addNewUser2(Model model) {
+        model.addAttribute("user", new UserInfo());
+        return "newUser";
+    }
 //    @PostMapping("/newUser")
-//    //@PreAuthorize("hasAuthority('ADMIN')")
-//    public String addNewUser(@RequestBody UserInfo userInfo) {
-//        return serviceInfoUser.addUser(userInfo);
+//    public String addNewUser(Model model) {
+//        UserInfo user = new UserInfo();
+//        model.addAttribute("user", user);
+//        return serviceInfoUser.addUser(user);
+//
 //    }
 
-    @GetMapping("/users")
-    @PreAuthorize("hasAuthority('USER','ADMIN')")
-    public String viewHomePage(Model model) {
+    @PostMapping("/saveUser")
+    public String saveUser(Model model, @ModelAttribute("user") UserInfo userInfo) {
+        serviceInfoUser.addUser(userInfo);
         List<UserInfo> listUsers = serviceInfoUser.listAll();
         model.addAttribute("listUsers", listUsers);
-        return "user";
+        return "users";
     }
 
-    @RequestMapping("/editUser/{id}")
-    public ModelAndView showEditUserpage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("newUser");
-        Optional<UserInfo> user = serviceInfoUser.getUserId(id);
-        mav.addObject("user", user);
-        user = serviceInfoUser.get(id);
-        mav.addObject("user", user);
-        return mav;
+    @GetMapping("/users")
+    public String viewHomePageUser(Model model, String keyword) {
+        List<UserInfo> listUsers = serviceInfoUser.listAll();
+        model.addAttribute("listUsers", listUsers);
+        return "users";
     }
 
     @RequestMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable(name = "id") int id) {
+    public String deleteUser(Model model, @PathVariable(name = "id") int id) {
         serviceInfoUser.delete(id);
-        return "redirect:/user";
+        List<UserInfo> listUsers = serviceInfoUser.listAll();
+        model.addAttribute("listUsers", listUsers);
+        return "users";
     }
 
 }

@@ -1,18 +1,15 @@
 package com.example.kursverwaltung.config;
 
 import com.example.kursverwaltung.repository.UserInfoRepository;
+import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -48,9 +45,9 @@ public class SecurityConfig {
      public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          return http.csrf().disable()
                  .authorizeHttpRequests()
-                 .requestMatchers("/p/welcome","/p/newUser").permitAll()
+                 .requestMatchers("/person/newperson","/person/saveperson","/person/personen","/user/newUser","/user/**","/user/saveUser","/user/deleteUser/*").permitAll()
                  .and()
-                 .authorizeHttpRequests().requestMatchers("/p/**").authenticated()
+                 .authorizeHttpRequests().requestMatchers("/person/**").authenticated()
                  .and().formLogin()
                  .and().build();
      }

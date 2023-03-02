@@ -1,31 +1,18 @@
-<html lang="en"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
-
-<!--div th:insert="head :: head">  </div-->
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head :: head">  </head>
 <body>
-
 <!--div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div-->
-
-
-<div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
     <h2>List All Teilnehmer und Interessant</h2>
-
-
     <div align="left">
-        <h3><a th:href="@{'/newperson'}">Add new person</a></h3>
+        <h3><a th:href="@{'/person/newperson'}">Add new person</a></h3>
     </div>
-
-    <form th:action="@{/personen}" method="get">
+    <form th:action="@{/person/personen}" method="get">
         <input id="txtsearch" type="text" name="keyword">
         <button type="submit">Go</button>
     </form>
-
-
     <tr>
         <div class="col-sm-5" align="center">
             <div class="panel-body" align="center">
@@ -64,7 +51,7 @@
                             <a th:href="@{'/get/'+${person.personId}}">Add kurs</a>
                         </td>
                         <td>
-                            <a th:href="@{'/deleteperson/' + ${person.personId}}">Delete</a>
+                            <a th:href="@{'/person/deleteperson/' + ${person.personId}}">Delete</a>
                         </td>
                     </tr>
 
@@ -79,6 +66,6 @@
 
 </div>
     </section>
-</div>
+
 </body>
 </html>

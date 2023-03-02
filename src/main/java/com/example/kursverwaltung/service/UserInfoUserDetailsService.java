@@ -1,5 +1,6 @@
-package com.example.kursverwaltung.config;
+package com.example.kursverwaltung.service;
 
+import com.example.kursverwaltung.config.UserInfoUserDetails;
 import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

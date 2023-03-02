@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="head :: head">  </div>
+<head th:insert="head :: head">  </head>
 
 <body>
 
@@ -13,7 +13,7 @@
     <br />
     <div class="col-sm-4">
         <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
-        <form action="#" th:action="@{/saveperson}" th:object="${person}" method="post">
+        <form action="#" th:action="@{/person/saveperson}" th:object="${person}" method="post">
 
 
             <div alight="left">

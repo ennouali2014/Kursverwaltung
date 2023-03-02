@@ -13,15 +13,18 @@ public class KursverwaltungApplication {
 
 	public static void main(String[] args) {
 			SpringApplication.run(KursverwaltungApplication.class, args);
-	}
-
-	@Configuration
-	public class WebConfig implements WebMvcConfigurer {
-		@Override
-		public void addResourceHandlers(ResourceHandlerRegistry registry) {
-			registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-		}
+			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			//System.out.println(encoder.encode("root"));
 
 	}
+
+//	@Configuration
+//	public class WebConfig implements WebMvcConfigurer {
+//		@Override
+//		public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//			registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+//		}
+//
+//	}
 
 }

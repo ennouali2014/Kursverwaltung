@@ -1,8 +1,4 @@
-
-
-
-
-<nav th:fragment="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light" >
+<nav th:fragment="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light" xmlns:th="http://www.thymeleaf.org">
   <a class="navbar-brand" href="/">
  <!--    <img src="/assets/brand/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">  -->
     Kursverwaltung
@@ -12,10 +8,10 @@
 
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" th:href="@{'/newperson'}">Person verwalten </a>
+        <a class="nav-link" th:href="@{'/person/newperson'}">Person verwalten </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" th:href="@{'/personen'}">Personen-Liste</a>
+        <a class="nav-link" th:href="@{'/person/personen'}">Personen-Liste</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
@@ -23,6 +19,9 @@
       <li class="nav-item">
         <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
       </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{'/user/users'}">User-Liste</a>
+        </li>
       <li class="nav-item">
         <a class="nav-link" th:href="@{'/'}">Login</a>
       </li>

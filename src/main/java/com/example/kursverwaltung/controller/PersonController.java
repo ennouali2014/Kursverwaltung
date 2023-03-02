@@ -4,38 +4,28 @@ import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import java.util.List;
 
 @Controller
-@RequestMapping("/p")
+@RequestMapping("/person")
 public class PersonController {
-
     @Autowired
     private PersonService service;
-    @Autowired
-    private UserInfoUserDetailsService serviceInfoUser;
-
-    @PostMapping("/newUser")
-    //@PreAuthorize("hasAuthority('ADMIN')")
-    public String addNewUser(@RequestBody UserInfo userInfo) {
-        return serviceInfoUser.addUser(userInfo);
-    }
 
     @GetMapping("/welcome")
-    public String wel() {
-        return "Willkommen in Bremen";
+    public String welcome() {
+        return "welcome";
     }
 
     @GetMapping("/index2")
     public String widget(){return "index2";}
+
     @GetMapping("/personen")
-    @PreAuthorize("hasAuthority('USER','ADMIN')")
+   // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model, String keyword) {
         List<Person> listPerson = service.listAll();
         if(keyword!=null){
@@ -47,16 +37,17 @@ public class PersonController {
     }
 
     @GetMapping("/newperson")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     public String add(Model model) {
         model.addAttribute("person", new Person());
-        return "redirect:/personen";
+        return "newperson";
     }
+
     @PostMapping("/saveperson")
-    @PreAuthorize("hasAuthority('ADMIN')")
-    public String saveStudent(@ModelAttribute("person") Person person) {
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    public String savePerson(@ModelAttribute("person") Person person) {
         service.save(person);
-        return "redirect:/personen";
+        return "personen";
     }
 
     @RequestMapping("/editperson/{person_id}")
@@ -91,10 +82,6 @@ public class PersonController {
 
     }
 
-    @PutMapping("/{person_id}/kurs/{kurs_id}")
-    public Person assignKursToPerson(@PathVariable Long kurs_id, @PathVariable Long person_id) {
-        return service.assignKursToPerson(kurs_id, person_id);
-    }
 
     @RequestMapping("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId) {

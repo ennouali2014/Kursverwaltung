@@ -45,8 +45,8 @@ public class Person {
 
     }
 
-    public Person(Long personId,int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
-        this.personId=personId;
+    public Person(int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
+
         this.anrede = anrede;
         this.titel = title;
         this.vorname = vorname;
