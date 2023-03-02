@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-
+@RequestMapping("/k1")
 public class Kurs1Controller {
 
     @Autowired
@@ -41,7 +41,7 @@ public class Kurs1Controller {
     public String saveKurs1(@ModelAttribute Kurs1 kurs1, @RequestParam("start_datum1") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L) {
         kurs1.setStart_datum1(start_datum1_L);
         service.save(kurs1);
-        return "redirect:/kurs1";
+        return "redirect:/k1/kurs1";
        //(pattern = "dd.MM.yyyy") (iso = DateTimeFormat.ISO.DATE)
 
     }  //@ModelAttribute annotation is used to bind the model object from the form submission.
