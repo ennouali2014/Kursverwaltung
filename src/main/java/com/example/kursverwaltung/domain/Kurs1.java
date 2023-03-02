@@ -1,0 +1,81 @@
+package com.example.kursverwaltung.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
+
+@Entity
+@Table(name = "kurs1")
+public class Kurs1 {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long kurs1Id;
+
+    @Column(name = "kursname1", length = 100, nullable = false)
+    private String kursname1;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "start_datum1", nullable = false)
+    private LocalDate start_datum1;
+
+//    @DateTimeFormat
+//    private Date convertedStartDate1;
+
+    public Kurs1(String kursname1, LocalDate start_datum1) {
+
+        this.kursname1 = kursname1;
+        this.start_datum1 = start_datum1;
+
+    }
+
+    public Kurs1() {
+    }
+
+    public Long getKurs1Id() {
+        return kurs1Id;
+    }
+
+    public String getKursname1() {
+        return kursname1;
+    }
+
+    public void setKursname1(String kursname1) {
+        this.kursname1 = kursname1;
+    }
+
+
+    //    public Date getStart_datum1() {
+//        return convertedStartDate1;
+//    }
+    public LocalDate getStart_datum1() {
+        return start_datum1;
+    }
+
+//        public void setStart_datum1 (String start_datum1){
+//
+//            String pattern = "dd-MM-yyyy";
+//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//
+//            try {
+//                if (start_datum1 == null || start_datum1.isEmpty()) {
+//                    this.convertedStartDate1 = new Date();
+//                } else {
+//
+//                    this.convertedStartDate1 = simpleDateFormat.parse(start_datum1);
+//                }
+//            } catch (ParseException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
+
+
+    public void setStart_datum1(LocalDate start_datum1) {
+        this.start_datum1 = start_datum1;
+    }
+}

@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="head :: head">  </head>
+
+<body>
+
+<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+
+<div align="center">
+    <h1>User anlegen</h1>
+    <br />
+    <div class="col-sm-4">
+        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+        <form action="#" th:action="@{/user/saveUser}" th:object="${user}" method="post">
+
+
+            <div alight="left">
+                <tr>
+                    <label class="form-label" >Roles</label>
+                    <td>
+                        <select th:field="*{roles}" class="form-control" name="anrede">
+                            <option th:value="USER" th:text="USER">User</option>
+                            <option th:value="ADMIN" th:text="ADMIN">Admin</option>
+                        </select>
+                        <input type="hidden" th:field="*{id}" />
+
+                    </td>
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Username</label>
+                    <td><input  minlength="1" th:field="*{username}" class="form-control" placeholder="username" /></td>
+
+                </tr>
+            </div>
+            <div alight="left">
+
+                <tr>
+                    <label class="form-label" >Password</label>
+                    <td><input type="password" name="password" minlength="1" th:field="*{password}" class="form-control" placeholder="password" /></td>
+                </tr>
+            </div>
+
+            <tr>
+                <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

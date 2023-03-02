@@ -12,6 +12,7 @@ public class KursService {
     private KursRepository kursRepository;
 
     public void save(Kurs kurs){
+        //
         kursRepository.save(kurs);
     }
     public Kurs get(long id){

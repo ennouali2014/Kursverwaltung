@@ -1,0 +1,76 @@
+
+    .hbox {
+        width: 100%;
+    }
+
+    .vbox {
+        width: 50%;
+        float: left;
+        padding: 10px;
+    }
+
+    #inputSuchePersonen {
+      background-image: url('/assets/icon/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #listPersonTabelle {
+      border-collapse: collapse; /* Collapse borders */
+      width: 100%; /* Full-width */
+      border: 1px solid #ddd; /* Add a grey border */
+      font-size: 18px; /* Increase font-size */
+    }
+
+    #listPersonTabelle th, #listPersonTabelle td {
+      text-align: left; /* Left-align text */
+      padding: 12px; /* Add padding */
+    }
+
+    #listPersonTabelle tr {
+      /* Add a bottom border to all table rows */
+      border-bottom: 1px solid #ddd;
+    }
+
+    #listPersonTabelle tr.header, #listPersonTabelle tr:hover {
+      /* Add a grey background color to the table header and on hover */
+      background-color: #f1f1f1;
+    }
+
+  #inputSucheKurse {
+      background-image: url('/assets/icon/searchicon.png'); /* Add a search icon to input */
+      background-position: 10px 12px; /* Position the search icon */
+      background-repeat: no-repeat; /* Do not repeat the icon image */
+      width: 100%; /* Full-width */
+      font-size: 16px; /* Increase font-size */
+      padding: 12px 20px 12px 40px; /* Add some padding */
+      border: 1px solid #ddd; /* Add a grey border */
+      margin-bottom: 12px; /* Add some space below the input */
+    }
+
+    #listKurseTabelle {
+      border-collapse: collapse; /* Collapse borders */
+      width: 100%; /* Full-width */
+      border: 1px solid #ddd; /* Add a grey border */
+      font-size: 18px; /* Increase font-size */
+    }
+
+    #listKurseTabelle th, #listKurseTabelle td {
+      text-align: left; /* Left-align text */
+      padding: 12px; /* Add padding */
+    }
+
+    #listKurseTabelle tr {
+      /* Add a bottom border to all table rows */
+      border-bottom: 1px solid #ddd;
+    }
+
+    #listKurseTabelle tr.header, #listKurseTabelle tr:hover {
+      /* Add a grey background color to the table header and on hover */
+      background-color: #f1f1f1;
+    }

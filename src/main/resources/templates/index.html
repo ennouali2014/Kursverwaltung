@@ -1,66 +1,19 @@
-
-<html xmlns="http://www.w3.org/1999/xhtml"
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
-    <script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" ></script>
-</head>
+<head th:insert="head :: head">  </head>
+
 <body>
-<div>
-    <h2 >Spring Boot Crud System -Personen Registation</h2>
 
-        <div align = "left" >
-            <h3><a  th:href="@{'/new'}">Add new</a></h3>
-        </div>
+<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
 
-    <tr>
-        <div class="col-sm-5" align = "center">
-            <div class="panel-body" align = "center" >
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>Person ID</th>
-                        <th>Anrede</th>
-                        <th>Titel</th>
-                        <th>Vorname</th>
-                        <th>Nachname</th>
-                        <th>Strasse</th>
-                        <th>PLZ</th>
-                        <th>Ort</th>
-                        <th>Email</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr  th:each="person : ${listPerson }">
-                        <td th:text="${person.id}">person ID</td>
-                        <td th:text="${person.anrede}">Anrede</td>
-                        <td th:text="${person.titel}">Titel</td>
-                        <td th:text="${person.vorname}">Vorname</td>
-                        <td th:text="${person.nachname}">Nachname</td>
-                        <td th:text="${person.strasse}">Strasse</td>
-                        <td th:text="${person.plz}">PLZ</td>
-                        <td th:text="${person.ort}">Ort</td>
-                        <td th:text="${person.email}">Email</td>
-                        <td>
-                            <a th:href="@{'/edit/' + ${person.id}}">Edit</a>
-                        </td>
-                        <td>
-                            <a th:href="@{'/delete/' + ${person.id}}">Delete</a>
-                        </td>
-                    </tr>
 
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-
-    </tr>
-
-    </tbody>
-    </table>
+    <div align="left" >
+    <p style="width:250px">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
     </div>
+
 </body>
+
+
 </html>
