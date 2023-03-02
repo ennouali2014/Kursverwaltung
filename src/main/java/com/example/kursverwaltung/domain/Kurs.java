@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -28,16 +29,16 @@ public class Kurs {
     private int zyklus;
     @Temporal(TemporalType.DATE)
     @Column(name = "start_datum", nullable = false)
-    private Date start_datum;
+    private LocalDate start_datum;
     @Temporal(TemporalType.DATE)
     @Column(name = "ende_datum")
-    private Date ende_datum;
+    private LocalDate ende_datum;
     @Column(name = "min_tn_anzahl", nullable = false)
     private int min_tn_anzahl;
     @Column(name = "max_tn_anzahl", nullable = false)
     private int max_tn_anzahl;
     @Column(name = "freie_plaetze")
-    private int freie_plaetze;
+    private int freie_plaetze=0;
     @Column(name = "aktuelle_tn_anzahl", nullable = false)
     // spaeter wird nicht nullable sondern in add person in kurs Kalkuliert
     private int aktuelle_tn_anzahl;
@@ -49,11 +50,11 @@ public class Kurs {
     private Double mwst_euro;
     @Column(name = "mwst_prozent", nullable = false)
     private Double mwst_prozent;
-    @Column(name = "kurs_beschreibung", nullable = false)
+    @Column(name = "kurs_beschreibung", length = 400, nullable = false)
     private String kurs_beschreibung;
 
-    @DateTimeFormat
-    private Date convertedStartDate;
+//    @DateTimeFormat
+//    private Date convertedStartDate;
     @DateTimeFormat
     private Date convertedEndeDate;
 
@@ -69,24 +70,30 @@ public class Kurs {
     public Kurs() {
     }
 
-    public Kurs(String kursname, String status, int anzahl_tage, int zyklus, Date start_datum, int min_tn_anzahl, int max_tn_anzahl, Double gebuehr_brutto, Double mwst_prozent, String kurs_beschreibung) {
+    public Kurs(String kursname, String status, int anzahl_tage, int zyklus, LocalDate start_datum, int min_tn_anzahl, int max_tn_anzahl, Double gebuehr_brutto, Double mwst_prozent, String kurs_beschreibung) {
 
         this.kursname = kursname;
         this.status = status;
         this.anzahl_tage = anzahl_tage;
         this.zyklus = zyklus;
         this.start_datum = start_datum;
-        this.ende_datum = ende_datum;
+        // this.ende_datum = ende_datum;
         this.min_tn_anzahl = min_tn_anzahl;
         this.max_tn_anzahl = max_tn_anzahl;
         this.gebuehr_brutto = gebuehr_brutto;
         this.mwst_prozent = mwst_prozent;
         this.kurs_beschreibung = kurs_beschreibung;
+       // setStart_datum();
+        getEnde_datum();
+        getFreie_plaetze();
+        getGebuehr_netto();
+        getMwst_euro();
     }
 
     public Long getKursId() {
         return kursId;
     }
+
     public String getKursname() {
         return kursname;
     }
@@ -117,35 +124,37 @@ public class Kurs {
 
     public void setZyklus(int zyklus) {
         this.zyklus = zyklus;
+//        if(this.start_datum!=null){
+//
+//        }
     }
 
-    /* public Date getStartDatum() {
-         return startDatum;
-     }
-
-     public void setStartDatum(Date startDatum) {
-         this.startDatum = startDatum;
-     }*/
-    public Date getStart_datum() {
-        return convertedStartDate;
+    public LocalDate getStart_datum() {
+        return start_datum;
     }
 
-    public void setStartDatum(String startDatum) {
-        String pattern = "dd-MM-yyyy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        try {
-            this.convertedStartDate = simpleDateFormat.parse(startDatum);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
+    public void setStart_datum(LocalDate startDatum) {
+        this.start_datum=startDatum;
 
-
+//        String pattern = "dd-MM-yyyy";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+//
+//        try {
+//            if (startDatum == null || startDatum.isEmpty()) {
+//                this.convertedStartDate = new Date();
+//            } else {
+//
+//                this.convertedStartDate = simpleDateFormat.parse(startDatum);
+//            }
+//        } catch (ParseException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
-    public Date getEnde_datum() {
-        //return convertedEndeDate;
-        return ende_datum;
-    }
+//    public Date getEnde_datum() {
+//        return convertedEndeDate;
+//
+//    }
 
     /* public void setEnde_datum(String endeDatum) {
          String pattern = "dd-MM-yyyy";
@@ -157,22 +166,23 @@ public class Kurs {
          }
 
      }*/
-    public void setEnde_datum() {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(start_datum);
-        cal.add(Calendar.DAY_OF_MONTH, anzahl_tage);
-        this.ende_datum = cal.getTime();
-    }
+//    public void setEnde_datum() {
+//        Calendar cal = Calendar.getInstance();
+//        cal.setTime(start_datum);
+//        cal.add(Calendar.DAY_OF_MONTH, anzahl_tage);
+//        this.ende_datum = cal.getTime();
+//       // Math.round((float) anzahl_tage / zyklus)) * 7 * 86400000L;
+//    }
 
 
-    /* public Date getEndeDatum() {
-         return endeDatum;
+     public LocalDate getEnde_datum() {
+         return ende_datum;
      }
 
-     public void setEndeDatum(Date endeDatum) {
-         this.endeDatum = endeDatum;
+     public void setEnde_datum(LocalDate ende_datum) {
+         this.ende_datum = ende_datum;
      }
- */
+
     public int getMin_tn_anzahl() {
         return min_tn_anzahl;
     }
@@ -201,7 +211,7 @@ public class Kurs {
         return aktuelle_tn_anzahl;
     }
 
-    public void setAktuelle_tn_anzahlnZahl(int aktuelle_tn_anzahl) {
+    public void setAktuelle_tn_anzahl(int aktuelle_tn_anzahl) {
         this.aktuelle_tn_anzahl = aktuelle_tn_anzahl;
     }
 
@@ -217,7 +227,7 @@ public class Kurs {
         return gebuehr_netto;
     }
 
-    public void setGebuehr_netto(Double gebuehrNetto) {
+    public void setGebuehr_netto() {
         this.gebuehr_netto = Math.round((gebuehr_brutto / (100 + mwst_prozent) * 100) * 100.0) / 100.0;
     }
 
@@ -225,7 +235,8 @@ public class Kurs {
         return mwst_euro;
     }
 
-    public void setMwst_euro(Double mwstEuro) {
+    public void setMwst_euro() {
+
         this.mwst_euro = Math.round((gebuehr_brutto / (100 + mwst_prozent) * mwst_prozent) * 100.0) / 100.0;
     }
 
@@ -233,7 +244,7 @@ public class Kurs {
         return mwst_prozent;
     }
 
-    public void setMwstProzent(Double mwstProzent) {
+    public void setMwst_prozent(Double mwstProzent) {
         this.mwst_prozent = mwstProzent;
     }
 
@@ -241,7 +252,7 @@ public class Kurs {
         return kurs_beschreibung;
     }
 
-    public void setKursBeschreibung(String kursBeschreibung) {
+    public void setKurs_beschreibung(String kursBeschreibung) {
         this.kurs_beschreibung = kursBeschreibung;
     }
 

@@ -1,11 +1,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="head :: head">  </head>
+<div th:insert="~{head :: head}"></div>
 
 <body>
 
-<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+<div th:insert="~{navbar :: navbar}" class="navbar sticky-top navbar-expand-lg navbar-light bg-light"></div>
+
 
 <section class="wrapper">
         <div class="row">
