@@ -47,7 +47,7 @@ public class PersonController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     public String savePerson(@ModelAttribute("person") Person person) {
         service.save(person);
-        return "personen";
+        return "redirect:/person/personen";
     }
 
     @RequestMapping("/editperson/{person_id}")
@@ -62,7 +62,7 @@ public class PersonController {
     @RequestMapping("/deleteperson/{personId}")
     public String deletePerson(@PathVariable(name = "personId") int personId) {
         service.delete(personId);
-        return "redirect:/personen";
+        return "redirect:/person/personen";
     }
     @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
@@ -78,7 +78,7 @@ public class PersonController {
             person.setInKursinteressieren(person.inKursinteressieren);
         }
         service.save(person);
-        return "redirect:/personen";
+        return "redirect:/person/personen";
 
     }
 

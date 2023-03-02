@@ -33,11 +33,9 @@ public class UserInfoController {
 //    }
 
     @PostMapping("/saveUser")
-    public String saveUser(Model model, @ModelAttribute("user") UserInfo userInfo) {
+    public String saveUser( @ModelAttribute("user") UserInfo userInfo) {
         serviceInfoUser.addUser(userInfo);
-        List<UserInfo> listUsers = serviceInfoUser.listAll();
-        model.addAttribute("listUsers", listUsers);
-        return "users";
+        return "redirect:/user/users";
     }
 
     @GetMapping("/users")
@@ -48,11 +46,9 @@ public class UserInfoController {
     }
 
     @RequestMapping("/deleteUser/{id}")
-    public String deleteUser(Model model, @PathVariable(name = "id") int id) {
+    public String deleteUser( @PathVariable(name = "id") int id) {
         serviceInfoUser.delete(id);
-        List<UserInfo> listUsers = serviceInfoUser.listAll();
-        model.addAttribute("listUsers", listUsers);
-        return "users";
+        return "redirect:/user/users";
     }
 
 }
