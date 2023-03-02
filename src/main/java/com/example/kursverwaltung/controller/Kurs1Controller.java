@@ -38,8 +38,10 @@ public class Kurs1Controller {
     //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
     //public String saveKurs1(@ModelAttribute("kurs1") Kurs1 kurs1) {
 
-    public String saveKurs1(@ModelAttribute Kurs1 kurs1, @RequestParam("start_datum1") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L) {
+    public String saveKurs1(@ModelAttribute Kurs1 kurs1, @RequestParam("start_datum1") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L ) {
         kurs1.setStart_datum1(start_datum1_L);
+        long milliseconds = Math.round((float) kurs1.getAnzahl_tage1() / kurs1.getZyklus1()) * 7 * 86400000L;
+        kurs1.setEnde_datum1(kurs1.getStart_datum1().plusDays((milliseconds / 86400000L)));
         service.save(kurs1);
         return "redirect:/k1/kurs1";
        //(pattern = "dd.MM.yyyy") (iso = DateTimeFormat.ISO.DATE)
@@ -66,7 +68,7 @@ public class Kurs1Controller {
     @RequestMapping("/deletekurs1/{kurs1Id}")
     public String deleteKurs(@PathVariable(name = "kurs1Id") int kurs1Id) {
         service.delete(kurs1Id);
-        return "redirect:/kurs1";
+        return "redirect:/k1/kurs1";
     }
 
 }

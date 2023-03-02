@@ -77,17 +77,16 @@ public class Kurs {
         this.anzahl_tage = anzahl_tage;
         this.zyklus = zyklus;
         this.start_datum = start_datum;
-        // this.ende_datum = ende_datum;
         this.min_tn_anzahl = min_tn_anzahl;
         this.max_tn_anzahl = max_tn_anzahl;
         this.gebuehr_brutto = gebuehr_brutto;
         this.mwst_prozent = mwst_prozent;
         this.kurs_beschreibung = kurs_beschreibung;
-       // setStart_datum();
-        getEnde_datum();
-        getFreie_plaetze();
-        getGebuehr_netto();
-        getMwst_euro();
+
+//        getEnde_datum();
+//        getFreie_plaetze();
+//        getGebuehr_netto();
+//        getMwst_euro();
     }
 
     public Long getKursId() {
@@ -135,7 +134,7 @@ public class Kurs {
 
     public void setStart_datum(LocalDate startDatum) {
         this.start_datum=startDatum;
-
+    }
 //        String pattern = "dd-MM-yyyy";
 //        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 //
@@ -149,7 +148,7 @@ public class Kurs {
 //        } catch (ParseException e) {
 //            throw new RuntimeException(e);
 //        }
-    }
+
 
 //    public Date getEnde_datum() {
 //        return convertedEndeDate;

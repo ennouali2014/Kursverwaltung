@@ -9,7 +9,6 @@
 
 <div align="center">
     <div class="col-sm-4">
-
         <h1>Kurs1 anlegen/editieren</h1>
         <br/>
         <form action="#" th:action="@{/k1/savekurs1}" th:object="${kurs1}" method="post">
@@ -24,6 +23,15 @@
                                 <input type="text" th:field="*{kursname1}" class="form-control"
                                        placeholder="kursname1"  required/>
                                 <input type="hidden" th:field="*{kurs1Id}"/>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">anzahlTage1</label>
+                            <td>
+
+                                <input type="number" th:field="*{anzahl_tage1}" class="form-control"
+                                       placeholder="anzahlTage1" required/>
 
                             </td>
                         </tr>
@@ -42,6 +50,20 @@
                 </div>
                 <div class="vbox">
                     <div align="center">
+                        <tr>
+                            <label class="form-label">zyklus</label>
+                            <td>
+                                <input type="number" th:field="*{zyklus1}" class="form-control"
+                                       placeholder="zyklus" required/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <label class="form-label">endeDatum</label>
+                            <td>
+                                <input type="date" th:field="*{ende_datum1}" class="form-control"
+                                       placeholder="endeDatum" disabled/>
+                            </td>
+                        </tr>
                     </div>
 
                 </div>

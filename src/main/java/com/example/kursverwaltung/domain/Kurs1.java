@@ -24,14 +24,19 @@ public class Kurs1 {
     @Column(name = "start_datum1", nullable = false)
     private LocalDate start_datum1;
 
-//    @DateTimeFormat
-//    private Date convertedStartDate1;
+    @Column(name = "anzahl_tage1", nullable = false)
+    private int anzahl_tage1;
+    @Column(name = "zyklus1", nullable = false)
+    private int zyklus1;
+    @Temporal(TemporalType.DATE)
+    @Column(name = "ende_datum1")
+    private LocalDate ende_datum1;
 
-    public Kurs1(String kursname1, LocalDate start_datum1) {
-
+    public Kurs1(String kursname1, LocalDate start_datum1, int anzahl_tage1, int zyklus1) {
         this.kursname1 = kursname1;
         this.start_datum1 = start_datum1;
-
+        this.anzahl_tage1 = anzahl_tage1;
+        this.zyklus1 = zyklus1;
     }
 
     public Kurs1() {
@@ -50,9 +55,7 @@ public class Kurs1 {
     }
 
 
-    //    public Date getStart_datum1() {
-//        return convertedStartDate1;
-//    }
+
     public LocalDate getStart_datum1() {
         return start_datum1;
     }
@@ -77,5 +80,29 @@ public class Kurs1 {
 
     public void setStart_datum1(LocalDate start_datum1) {
         this.start_datum1 = start_datum1;
+    }
+
+    public int getAnzahl_tage1() {
+        return anzahl_tage1;
+    }
+
+    public void setAnzahl_tage1(int anzahl_tage1) {
+        this.anzahl_tage1 = anzahl_tage1;
+    }
+
+    public int getZyklus1() {
+        return zyklus1;
+    }
+
+    public void setZyklus1(int zyklus1) {
+        this.zyklus1 = zyklus1;
+    }
+
+    public LocalDate getEnde_datum1() {
+        return ende_datum1;
+    }
+
+    public void setEnde_datum1(LocalDate ende_datum1) {
+        this.ende_datum1 = ende_datum1;
     }
 }

@@ -39,6 +39,8 @@ public class KursController {
     @PostMapping("/savekurs")
     public String saveKurs(@ModelAttribute Kurs kurs, @RequestParam("start_datum") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L) {
         kurs.setStart_datum(start_datum1_L);
+        long milliseconds = Math.round((float) kurs.getAnzahl_tage() / kurs.getZyklus()) * 7 * 86400000L;
+        kurs.setEnde_datum(kurs.getStart_datum().plusDays((milliseconds / 86400000L)));
         service.save(kurs);
         return "redirect:/kurs";
 
