@@ -4,7 +4,12 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
 <html lang="en">
 
+<head th:insert="head :: head">  </head>
+
 <body>
+
+<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+
 <div layout:fragment="content">
   <section class="wrapper">
     <div class="row">
