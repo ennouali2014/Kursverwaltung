@@ -15,7 +15,7 @@
                 <i class="fs-4 bi-customer"></i> <span class="ms-1 d-none d-sm-inline">Person</span></a>
             <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a th:href="@{'/person/newperson'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Person verwalten</span> PV</a>
+                    <a th:href="@{'/person/newperson'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Person neu</span> PN</a>
                 </li>
                 <li>
                     <a th:href="@{'/person/personen'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Personenliste</span> PL</a>
@@ -27,7 +27,7 @@
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Kurs</span></a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a th:href="@{'/kurs/newkurs'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kurs verwalten</span> KV</a>
+                    <a th:href="@{'/kurs/newkurs'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kurs neu</span> KN</a>
                 </li>
                 <li>
                     <a th:href="@{'/kurs'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kursliste</span> KL</a>
@@ -39,10 +39,10 @@
                 <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Kurs1</span></a>
             <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
                 <li class="w-100">
-                    <a th:href="@{'/kurs1/newkurs1'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kurs1 verwalten</span> KV1</a>
+                    <a th:href="@{'/k1/kurs1/newkurs1'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kurs1 neu</span> KN1</a>
                 </li>
                 <li>
-                    <a th:href="@{'/kurs1'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kursliste1</span> KL1</a>
+                    <a th:href="@{'/k1/kurs1'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kursliste1</span> KL1</a>
                 </li>
             </ul>
         </li>
@@ -65,7 +65,7 @@
                 <hr class="dropdown-divider">
             </li>
             <li class="dropdown-item">
-                <a class="nav-link" th:href="@{'/logi'}">Login</a>
+                <a class="nav-link" th:href="@{'/public'}">Login</a>
             </li>
             <li class="dropdown-item">
                 <a class="nav-link" th:href="@{'/logout'}">Logout</a>

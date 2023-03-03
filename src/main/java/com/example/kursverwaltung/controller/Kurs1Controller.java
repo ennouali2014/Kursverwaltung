@@ -28,7 +28,7 @@ public class Kurs1Controller {
         return "kurs1";
     }
 
-    @GetMapping("/kurs1/newkurs")
+    @GetMapping("/kurs1/newkurs1")
     public String add(Model model) {
         model.addAttribute("kurs1", new Kurs1());
         return "newkurs1";
