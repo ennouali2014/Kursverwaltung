@@ -1,38 +1,62 @@
-<div th:fragment="navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light" xmlns:th="http://www.thymeleaf.org">
-  <a class="navbar-brand" href="/">
- <!--    <img src="/assets/brand/brand.png" width="30" height="30" class="d-inline-block align-top" alt="">  -->
-    Kursverwaltung
-  </a>
 
-  <div class="navbar-expand-lg" id="navbarNav">
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{'/person/newperson'}">Person verwalten </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{'/person/personen'}">Personen-Liste</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{'/kurs/newkurs'}">Kurs verwalten</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{'/kurs'}">Kurs-Liste</a>
-      </li>
+<div th:fragment="navbar" class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span class="fs-5 d-none d-sm-inline">Menu</span>
+    </a>
+    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li class="nav-item">
-            <a class="nav-link" th:href="@{'/user/users'}">User-Liste</a>
+            <a href="#" class="nav-link align-middle px-0">
+                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+            </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{'/logout'}">Logout</a>
+        <li>
+            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                <i class="fs-4 bi-customer"></i> <span class="ms-1 d-none d-sm-inline">Person</span></a>
+            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                <li class="w-100">
+                    <a th:href="@{'/person/newperson'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Person verwalten</span> PV</a>
+                </li>
+                <li>
+                    <a th:href="@{'/person/personen'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Personenliste</span> PL</a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{'/k1/kurs1/newkurs'}">Kurs1 verwalten</a>
+        <li>
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Kurs</span></a>
+            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                <li class="w-100">
+                    <a th:href="@{'/kurs/newkurs'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kurs verwalten</span> KV</a>
+                </li>
+                <li>
+                    <a th:href="@{'/kurs'}" class="nav-link px-0"> <span class="d-none d-sm-inline">Kursliste</span> KL</a>
+                </li>
+            </ul>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{'/k1/kurs1'}">Kurs1-Liste</a>
-        </li>
+
+
+
     </ul>
+    <hr>
+    <div class="dropdown pb-4">
+        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+           id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
+                 class="rounded-circle">
+            <span class="d-none d-sm-inline mx-1">User</span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-item">
+                <a class="nav-link" th:href="@{'/logout'}">Logout</a>
+            </li>
 
-  </div>
-
+        </ul>
+    </div>
 </div>
