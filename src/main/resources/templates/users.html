@@ -1,61 +1,87 @@
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="head :: head">  </head>
+<head th:insert="head :: head"></head>
 
 <body>
 
-<div th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </div>
 
-<div>
-    <h2>List All Users</h2>
-    <div align="left">
-        <h3><a th:href="@{'/user/newUser'}">Add new user</a></h3>
-    </div>
-    <div align="left">
-      <!--  <h3><a th:href="@{'/user/newUser'}">Add new user</a></h3> -->
-    </div>
-    <form th:action="@{'/user/users'}" method="get">
-        <input id="txtsearch" type="text" name="keyword">
-        <button type="submit">Go</button>
-    </form>
-    <tr>
-        <div class="col-sm-5" align="center">
-            <div class="panel-body" align="center">
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th>UserId</th>
-                        <th>Username</th>
-<!--                        <th>Password</th>-->
-                        <th>Roles</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:if="${listUsers.empty}">
-                        <td colspan="2"> kein User vorhanden! </td>
-                    </tr>
+<!--Main layout-->
 
-                    <tr th:each="userInfo :${listUsers}">
-                        <td th:text="${userInfo.id}">User ID</td>
-                        <td th:text="${userInfo.username}">Username</td>
-<!--                        <td name="password" th:utext="${userInfo.password}">Password</td>-->
 
-                        <td th:text="${userInfo.roles}">Roles</td>
-                        <td>
-                            <a th:href="@{'/user/deleteUser/' + ${userInfo.id}}">Delete</a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+
+            <div th:insert="~{navbar :: navbar}"></div>
+
         </div>
-    </tr>
+        <div class="col py-3">
 
-    </tbody>
-    </table>
+            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können
+            </noscript>
 
+            <!-- hier den individuellen Bereich einer Site einfügen -->
+
+
+            <div>
+                <h2>List All Users</h2>
+                <div align="left">
+                    <h3><a th:href="@{'/user/newUser'}">Add new user</a></h3>
+                </div>
+                <div align="left">
+                    <!--  <h3><a th:href="@{'/user/newUser'}">Add new user</a></h3> -->
+                </div>
+                <form th:action="@{'/user/users'}" method="get">
+                    <input id="txtsearch" type="text" name="keyword">
+                    <button type="submit">Go</button>
+                </form>
+                <tr>
+                    <div class="col-sm-5" align="center">
+                        <div class="panel-body" align="center">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>UserId</th>
+                                    <th>Username</th>
+                                    <!--                        <th>Password</th>-->
+                                    <th>Roles</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:if="${listUsers.empty}">
+                                    <td colspan="2"> kein User vorhanden!</td>
+                                </tr>
+
+                                <tr th:each="userInfo :${listUsers}">
+                                    <td th:text="${userInfo.id}">User ID</td>
+                                    <td th:text="${userInfo.username}">Username</td>
+                                    <!--                        <td name="password" th:utext="${userInfo.password}">Password</td>-->
+
+                                    <td th:text="${userInfo.roles}">Roles</td>
+                                    <td>
+                                        <a th:href="@{'/user/deleteUser/' + ${userInfo.id}}">Delete</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </tr>
+
+                </tbody>
+                </table>
+
+            </div>
+
+
+            <!-- hier endet indiviueller bereich -->
+
+
+        </div>
+    </div>
 </div>
+
+
 </body>
 </html>

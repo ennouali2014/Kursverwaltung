@@ -1,74 +1,97 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="head :: head">  </head>
+<head th:insert="head :: head"></head>
 
 <body>
 
-<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+<!--Main layout-->
 
 
-<div class="container">
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+
+            <div th:insert="~{navbar :: navbar}"></div>
+
+        </div>
+        <div class="col py-3">
+
+            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können
+            </noscript>
+
+            <!-- hier den individuellen Bereich einer Site einfügen -->
 
 
-        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+            <div class="container">
+                <div class="container-fluid">
 
-        <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
-        <form action="#"
 
-              th:action="@{'/addKursToPerson/'+${person.personId}}"
+                    <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
 
-              enctype="multipart/form-data">
-            <!--div th:with="person=${person}, kurse=${kurse}"-->
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Data Student Info</div>
-                    <div class="panel-body" style="padding-left: 5px;">
-                        Firstname : <b th:text="${person.vorname}"></b>
-                        <br/>
-                        Lastname : <b th:text="${person.nachname}"></b>
-                        <br/>
-                        Email : <b th:text="${person.email}"></b>
-                        <br/>
-                        Interessant für diese Kurse : <span th:each="kurs : ${person.inKursinteressieren}">
+                    <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                    <form action="#"
+
+                          th:action="@{'/addKursToPerson/'+${person.personId}}"
+
+                          enctype="multipart/form-data">
+                        <!--div th:with="person=${person}, kurse=${kurse}"-->
+                        <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Data Student Info</div>
+                                <div class="panel-body" style="padding-left: 5px;">
+                                    Firstname : <b th:text="${person.vorname}"></b>
+                                    <br/>
+                                    Lastname : <b th:text="${person.nachname}"></b>
+                                    <br/>
+                                    Email : <b th:text="${person.email}"></b>
+                                    <br/>
+                                    Interessant für diese Kurse : <span th:each="kurs : ${person.inKursinteressieren}">
                             <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
                         </span>
-                        <br/>
-                        Teilnehmer in diese Kurse : <span th:each="kurs : ${person.inKursteilnehmen}">
+                                    <br/>
+                                    Teilnehmer in diese Kurse : <span th:each="kurs : ${person.inKursteilnehmen}">
                             <br/>&nbsp;&nbsp;<b th:text="${kurs.kursname}"></b>
                         </span>
-                    </div>
-                </div>
-                <div>
-                    <label>
+                                </div>
+                            </div>
+                            <div>
+                                <label>
 
-                        <select class="form-control" name="choix">
-                            <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
-                            <option th:each="ch : ${choix}"
-                                    th:value="${ch}"
-                                    th:text="${ch}"></option>
-                        </select>
-                    </label>
+                                    <select class="form-control" name="choix">
+                                        <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                                        <option th:each="ch : ${choix}"
+                                                th:value="${ch}"
+                                                th:text="${ch}"></option>
+                                    </select>
+                                </label>
 
-                </div>
-                <div class="col-md-6">
+                            </div>
+                            <div class="col-md-6">
 
-                    <select class="form-control" name="kursId">
-                        <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.service.PersonService"*/-->
-                        <option th:each="kurs : ${kurse}"
-                                th:value="${kurs.kursId}"
-                                th:text="${kurs.kursname}"></option>
-                    </select>
+                                <select class="form-control" name="kursId">
+                                    <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.service.PersonService"*/-->
+                                    <option th:each="kurs : ${kurse}"
+                                            th:value="${kurs.kursId}"
+                                            th:text="${kurs.kursname}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <button type="submit" class="btn btn-primary">
+                            Add Course
+                        </button>
+                        <!--/div-->
+                    </form>
                 </div>
             </div>
-            <br/>
-            <button type="submit" class="btn btn-primary">
-                Add Course
-            </button>
-            <!--/div-->
-        </form>
+
+            <!-- hier endet indiviueller bereich -->
+
+
+        </div>
     </div>
 </div>
+
 </body>
 </html>
