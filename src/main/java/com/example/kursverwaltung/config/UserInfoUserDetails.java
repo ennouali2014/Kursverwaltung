@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 public class UserInfoUserDetails implements UserDetails {
 
-
     private String username;
     private String password;
 

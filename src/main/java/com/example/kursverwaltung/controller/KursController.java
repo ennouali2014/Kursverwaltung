@@ -16,7 +16,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Controller
-//@RequestMapping("/k")
+@RequestMapping("/k")
 public class KursController {
 
     @Autowired
