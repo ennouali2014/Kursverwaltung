@@ -43,15 +43,24 @@ public class SecurityConfig {
 
         }*/
 
-    @Bean
+   /* @Bean
     public LogoutFilter logoutFilter() {
         LogoutFilter logoutFilter = new LogoutFilter("/logoutSuccess", new SecurityContextLogoutHandler());
         logoutFilter.setFilterProcessesUrl("/logout");
         return logoutFilter;
-    }
-
+    }*/
 
     @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http.csrf().disable()
+                .authorizeHttpRequests()
+                .requestMatchers("/logout","/","/person/welcome","/k1/**","/kurs/**","/person/newperson","/person/saveperson","/person/personen","/user/newUser","/user/**","/user/saveUser","/user/deleteUser/*").permitAll()
+                .and()
+                .authorizeHttpRequests().requestMatchers("/public","person/**").authenticated()
+                .and().formLogin()
+                .and().build();
+    }
+  /*  @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
@@ -62,11 +71,11 @@ public class SecurityConfig {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
+                .logoutSuccessUrl("/index")
                 .and()
                 .addFilterBefore(logoutFilter(), LogoutFilter.class)
                 .build();
-    }
+    }*/
 
  /*   @Bean
     public PasswordEncoder passwordEncoder() {

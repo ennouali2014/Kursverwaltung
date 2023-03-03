@@ -6,6 +6,7 @@ import com.example.kursverwaltung.service.PersonService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -29,17 +30,21 @@ public class mainController {
     public String viewHomePage(Model model) {
         return "index";
     }
-    @GetMapping("/logi")
-    public String login(Model model) {
+    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
+    @GetMapping("/public")
+    public String personenlistePublic(Model model) {
         return "redirect:/person/personen";
     }
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+
+
+
+   /* @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/logoutSuccess";
-    }
+        return "redirect:/index";
+    }*/
 
 }
