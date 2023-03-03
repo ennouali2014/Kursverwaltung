@@ -13,7 +13,7 @@ import java.util.Set;
 @Repository
 public interface PersonRepository extends JpaRepository<Person,Long> {
     Person findByPersonId(Long persondId);
-    @Query(value = "select * from person p where p.vorname like %:keyword% or p.nachname like %:keyword% ",nativeQuery = true)
+    @Query(value = "select * from person p where p.vorname like %:keyword% or p.nachname like %:keyword% or p.email like %:keyword% or p.ort like %:keyword% or p.strasse like %:keyword% ",nativeQuery = true)
     List<Person> findByKeyword(@Param("keyword") String keyword);
 
 }
