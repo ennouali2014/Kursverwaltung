@@ -1,5 +1,6 @@
 package com.example.kursverwaltung.controller;
 
+import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import com.example.kursverwaltung.domain.UserInfo;
 import lombok.extern.slf4j.Slf4j;
@@ -40,15 +41,21 @@ public class UserInfoController {
 
     @GetMapping("/users")
     public String viewHomePageUser(Model model, String keyword) {
+
         List<UserInfo> listUsers = serviceInfoUser.listAll();
-        model.addAttribute("listUsers", listUsers);
+        if (keyword != null) {
+            model.addAttribute("listUsers", serviceInfoUser.findByKeyword(keyword));
+        } else {
+            model.addAttribute("listUsers", listUsers);
+
+        }
         return "users";
     }
-
     @RequestMapping("/deleteUser/{id}")
     public String deleteUser( @PathVariable(name = "id") int id) {
         serviceInfoUser.delete(id);
         return "redirect:/user/users";
     }
+
 
 }

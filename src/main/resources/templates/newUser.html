@@ -5,7 +5,24 @@
 
 <body>
 
-<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">  </nav>
+<!--<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">  </nav>-->
+
+
+<!--Main layout-->
+
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+
+            <div th:insert="~{navbar :: navbar}"></div>
+
+        </div>
+        <div class="col py-3">
+
+            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können</noscript>
+
+            <!-- hier den individuellen Bereich einer Site einfügen -->
 
 <div align="center">
     <h1>User anlegen</h1>
@@ -51,5 +68,13 @@
         </form>
     </div>
 </div>
+
+            <!-- hier endet indiviueller bereich -->
+
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
