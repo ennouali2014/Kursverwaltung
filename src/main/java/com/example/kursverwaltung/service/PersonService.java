@@ -2,29 +2,18 @@ package com.example.kursverwaltung.service;
 
 import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
-import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.KursRepository;
 import com.example.kursverwaltung.repository.PersonRepository;
-import com.example.kursverwaltung.repository.UserInfoRepository;
 
-import com.mysql.cj.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class PersonService {
     @Autowired
     private PersonRepository repo;
-
-  /*  @Autowired
-    private UserInfoRepository userInfoRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;*/
 
     @Autowired
     private KursRepository repoK;

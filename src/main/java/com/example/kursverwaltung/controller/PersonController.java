@@ -21,9 +21,6 @@ public class PersonController {
         return "welcome";
     }
 
-    @GetMapping("/index2")
-    public String widget(){return "index2";}
-
     @GetMapping("/personen")
    // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model, String keyword) {
@@ -55,8 +52,8 @@ public class PersonController {
         ModelAndView mav = new ModelAndView("newperson");
         Person person = service.getPersonId(id);
         mav.addObject("person", person);
-        person = service.get(id);
-        mav.addObject("person", person);
+        //person = service.get(id);
+        //mav.addObject("person", person);
         return mav;
     }
     @RequestMapping("/deleteperson/{personId}")

@@ -4,7 +4,6 @@
 
 <div th:insert="~{head :: head}"></div>
 
-
 <body>
 
 
@@ -25,172 +24,178 @@
 
             <!-- hier den individuellen Bereich einer Site einfügen -->
 
+
             <div align="center">
                 <div class="col-sm-4">
-                    <h1>Kurs anlegen/editieren</h1>
+                    <h1>Kurs1 anlegen/editieren</h1>
                     <br/>
-                    <div class="col-sm-4">
-                        <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
-                        <form action="#" th:action="@{/savekurs}" th:object="${kurs}" method="post">
-                            <div id="hbox">
-                                <div class="vbox">
+                    <!--/*@thymesVar id="kurs1" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                    <form action="#" th:action="@{/k1/kurs1/savekurs}" th:object="${kurs1}" method="post">
+                        <div id="hbox">
+                            <div class="vbox">
 
-                                    <div align="center">
-                                        <tr>
-                                            <label class="form-label">Kursname</label>
-                                            <td>
-                                                <input type="text" th:field="*{kursname}" class="form-control"
-                                                       placeholder="kursname" required/>
-                                                <input type="hidden" th:field="*{kursId}"/>
+                                <div align="center">
 
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <label class="form-label">Kursname</label>
+                                        <td>
+                                            <input type="text" th:field="*{kursname}" class="form-control"
+                                                   placeholder="kursname" required/>
+                                            <input type="hidden" th:field="*{kursId}"/>
 
-                                        <tr>
-                                            <label class="form-label">anzahlTage</label>
-                                            <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">anzahlTage1</label>
+                                        <td>
 
-                                                <input type="number" th:field="*{anzahl_tage}" class="form-control"
-                                                       placeholder="anzahlTage" required/>
+                                            <input type="number" min="0" oninput="validity.valid||(value='');"
+                                                   th:field="*{anzahl_tage}" class="form-control"
+                                                   placeholder="anzahlTage" required/>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">startDatum</label>
-                                            <td>
-                                                <input type="date" th:field="*{start_datum}" id="start_date"
-                                                       name="start_date"
-                                                       th:value="${#dates.format(kurs.start_datum, 'dd.MM.yyyy')}"
-                                                       class="form-control"
-                                                       placeholder="startDatum" required/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">minTnZahl</label>
-                                            <td>
-                                                <input type="number" th:field="*{min_tn_anzahl}" class="form-control"
-                                                       placeholder="minTnZahl"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">aktuelleTnZahll</label>
-                                            <td>
-                                                <input type="number" th:field="*{aktuelle_tn_anzahl}"
-                                                       class="form-control"
-                                                       placeholder="aktuelleTnZahl"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">gebuehrBrutto</label>
-                                            <td>
-                                                <input type="number" th:field="*{gebuehr_brutto}" class="form-control"
-                                                       placeholder="gebuehrBrutto"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">mwstProzent</label>
-                                            <td>
-                                                <input type="number" th:field="*{mwst_prozent}" class="form-control"
-                                                       placeholder="mwstProzent"/>
-                                            </td>
-                                        </tr>
-                                    </div>
+                                        </td>
+                                    </tr>
 
+                                    <tr>
+                                        <label class="form-label">startDatum</label>
+                                        <td>
+                                            <!--/*@thymesVar id="strDateFormat" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                                            <input type="text" th:field="*{start_datum}"
+                                                   class="form-control" id="start_datum" name="start_datum"
+                                                   placeholder="startDatum" required
+                                                   th:value="${strDateFormat}"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">minTnZahl</label>
+                                        <td>
+                                            <input type="number" min="0" oninput="validity.valid||(value='');"
+                                                   th:field="*{min_tn_anzahl}" class="form-control"
+                                                   placeholder="minTnZahl" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">aktuelleTnZahll</label>
+                                        <td>
+                                            <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
+                                                   placeholder="aktuelleTnZahl" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">gebuehrBrutto</label>
+                                        <td>
+                                            <input type="number" min="0" oninput="validity.valid||(value='');"
+                                                   th:field="*{gebuehr_brutto}" class="form-control"
+                                                   placeholder="gebuehrBrutto" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">mwstProzent</label>
+                                        <td>
+                                            <input type="number" min="0" oninput="validity.valid||(value='');"
+                                                   th:field="*{mwst_prozent}" class="form-control"
+                                                   placeholder="mwstProzent" required/>
+                                        </td>
+                                    </tr>
                                 </div>
 
-                                <div class="vbox">
-                                    <div align="center">
-
-                                        <tr>
-                                            <label class="form-label">Status</label>
-                                            <td>
-                                                <select th:field="*{status}" class="form-control" name="status">
-                                                    <option th:value="1" th:text="Active">Active</option>
-                                                    <option th:value="2" th:text="Geplant">Geplant</option>
-                                                    <option th:value="3" th:text="abgesagt">Abgesagt</option>
-                                                </select>
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">zyklus</label>
-                                            <td>
-                                                <input type="number" th:field="*{zyklus}" class="form-control"
-                                                       placeholder="zyklus" required/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">endeDatum</label>
-                                            <td>
-                                                <input type="date" th:field="*{ende_datum}" class="form-control"
-                                                       placeholder="endeDatum" disabled/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">maxTnZahl</label>
-                                            <td>
-                                                <input type="number" th:field="*{max_tn_anzahl}" class="form-control"
-                                                       placeholder="maxTnZahl"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">freiePlaetze</label>
-                                            <td>
-                                                <input type="number" th:field="*{freie_plaetze}" class="form-control"
-                                                       placeholder="freiePlaetze"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">gebuehrNetto</label>
-                                            <td>
-                                                <input type="number" th:field="*{gebuehr_netto}" class="form-control"
-                                                       placeholder="gebuehrNetto"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <label class="form-label">mwstEuro</label>
-                                            <td>
-                                                <input type="number" th:field="*{mwst_euro}" class="form-control"
-                                                       placeholder="mwstEuro"/>
-                                            </td>
-                                        </tr>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="vbox">
-
-                                    <div align="center">
-
-                                        <tr>
-                                            <label class="form-label">kurs_beschreibung</label>
-                                            <td>
-                                                <input type="text" name="kurs_beschreibung"
-                                                       th:field="*{kurs_beschreibung}"
-                                                       class="form-control"
-                                                       placeholder="kursBeschreibung"/>
-                                            </td>
-                                        </tr>
-
-                                    </div>
-
-                                    <div>
-                                        <br>
-                                        <tr>
-                                            <td colspan="2">
-                                                <button type="submit" class="btn btn-info">Save</button>
-                                            </td>
-                                        </tr>
-                                    </div>
-                                </div>
                             </div>
-                        </form>
-                    </div>
+                            <div class="vbox">
+                                <div align="center">
+                                    <tr>
+                                        <label class="form-label">Status</label>
+                                        <td>
+                                            <select th:field="*{status}" class="form-control" name="status" required>
+                                                <option th:value="Active" th:text="Active">Active</option>
+                                                <option th:value="Geplant" th:text="Geplant">Geplant</option>
+
+                                            </select>
+
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <label class="form-label">zyklus</label>
+                                        <td>
+                                            <input type="number" min="0" max="7" oninput="validity.valid||(value='');"
+                                                   th:field="*{zyklus}" class="form-control"
+                                                   placeholder="zyklus" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">endeDatum</label>
+                                        <td>
+                                            <input type="date" th:field="*{ende_datum}" class="form-control"
+                                                   placeholder="endeDatum" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">maxTnZahl</label>
+                                        <td>
+                                            <input type="number" min="0" oninput="validity.valid||(value='');"
+                                                   th:field="*{max_tn_anzahl}" class="form-control"
+                                                   placeholder="maxTnZahl" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">freiePlaetze</label>
+                                        <td>
+                                            <input type="number" th:field="*{freie_plaetze}" class="form-control"
+                                                   placeholder="freiePlaetze" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">gebuehrNetto</label>
+                                        <td>
+                                            <input type="number" th:field="*{gebuehr_netto}" class="form-control"
+                                                   placeholder="gebuehrNetto" disabled/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <label class="form-label">mwstEuro</label>
+                                        <td>
+                                            <input type="number" th:field="*{mwst_euro}" class="form-control"
+                                                   placeholder="mwstEuro" disabled/>
+                                        </td>
+                                    </tr>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="vbox">
+                            <div align="center">
+
+                                <tr>
+                                    <label class="form-label">kurs_beschreibung</label>
+                                    <td>
+                                        <input type="text" name="kurs_beschreibung" th:field="*{kurs_beschreibung}"
+                                               class="form-control"
+                                               placeholder="kursBeschreibung"/>
+                                    </td>
+                                </tr>
+
+                            </div>
+
+                            <div>
+                                <br>
+                                <tr>
+                                    <td colspan="2">
+                                        <button type="submit" class="btn btn-info">Save</button>
+                                    </td>
+                                </tr>
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
 </body>
+
+
 </html>

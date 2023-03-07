@@ -66,10 +66,10 @@
                                         <td th:text="${person.ort}">Ort</td>
                                         <td th:text="${person.email}">Email</td>
                                         <td>
-                                            <a th:href="@{'/editperson/' + ${person.personId}}">Edit</a>
+                                            <a th:href="@{'/person/editperson/' + ${person.personId}}">Edit</a>
                                         </td>
                                         <td>
-                                            <a th:href="@{'/get/'+${person.personId}}">Add kurs</a>
+                                            <a th:href="@{'/person/get/'+${person.personId}}">Add kurs</a>
                                         </td>
                                         <td>
                                             <a th:href="@{'/person/deleteperson/' + ${person.personId}}">Delete</a>

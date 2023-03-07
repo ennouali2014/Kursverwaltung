@@ -1,9 +1,7 @@
 package com.example.kursverwaltung.controller;
 
 import com.example.kursverwaltung.domain.Kurs;
-import com.example.kursverwaltung.domain.Kurs1;
 import com.example.kursverwaltung.service.KursService;
-import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -12,73 +10,87 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Controller
-@RequestMapping("/k")
+@RequestMapping("/k1")
 public class KursController {
 
     @Autowired
     private KursService service;
 
-    @GetMapping("/kurs")
+    @GetMapping("/kurs1/kurse")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model) {
         List<Kurs> listKurse = service.listAll();
-        model.addAttribute("listKurse", listKurse);
+        model.addAttribute("kurse", listKurse);
         // System.out.println("Get / ");
-        return "kurs";
+        return "kurse";
     }
 
-    @GetMapping("/kurs/newkurs")
+    @GetMapping("/kurs1/newkurs")
     public String add(Model model) {
-        model.addAttribute("kurs", new Kurs());
+        model.addAttribute("kurs1", new Kurs());
         return "newkurs";
     }
 
-    @PostMapping("/savekurs")
-    public String saveKurs(@ModelAttribute Kurs kurs, @RequestParam("start_datum") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L) {
-        kurs.setStart_datum(start_datum1_L);
-        long milliseconds = Math.round((float) kurs.getAnzahl_tage() / kurs.getZyklus()) * 7 * 86400000L;
-        kurs.setEnde_datum(kurs.getStart_datum().plusDays((milliseconds / 86400000L)));
-        service.save(kurs);
-        return "redirect:/kurs";
 
-        // @PostMapping("/save")
-//        public String saveKurs(@ModelAttribute Kurs kurs, @RequestParam("start_datum") String startDatumStr) {
-//            try {
-//                LocalDate startDatum = LocalDate.parse(startDatumStr);
-//                kurs.setStart_datum(startDatum);
-//                kurs.setEnde_datum(startDatum.plusDays(kurs.getAnzahl_tage() * kurs.getZyklus()));
-//                kurs.setAktuelle_tn_anzahl(0);
-//                kurs.setFreie_plaetze(kurs.getMax_tn_anzahl()-kurs.getAktuelle_tn_anzahl);
-//                kurs.setGebuehr_netto(Math.round((kurs.getGebuehr_brutto() / (100 + kurs.getMwst_prozent()) * 100) * 100.0) / 100.0);
-//                kurs.setMwst_euro(Math.round((kurs.getGebuehr_brutto() / (100 + kurs.getMwst_prozent()) * kurs.getMwst_prozent()) * 100.0) / 100.0);
-//                service.save(kurs);
-//                return "redirect:/";
-//            } catch (DateTimeParseException e) {
-//                return "redirect:/?error=startdatum";
-//            }
+    @PostMapping("/kurs1/savekurs")
+    //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
+    public String saveKurs(@ModelAttribute ("kurs1") Kurs kurs1,
+                            @RequestParam("start_datum") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L,
+                            @RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
+                            @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
+                            @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
+                            @RequestParam("mwst_prozent") Double mwst_prozent1) {
+//        if (kurs1 == null || start_datum1_L == null || aktuelle_tn_anzahl1 == null || max_tn_anzahl1 == null) {
+//
+//            return "error";
 //        }
-//        we're using the @RequestParam annotation to retrieve the value of the `start
 
-    }
+        kurs1.setStart_datum(start_datum1_L);
+        // long milliseconds = Math.round((float) kurs1.getAnzahl_tage1() / kurs1.getZyklus1()) * 7 * 86400000L;
+        long milliseconds = (Math.round((float) (kurs1.getAnzahl_tage() / kurs1.getZyklus()) - 1) * 7L + kurs1.getZyklus()) * 86400000L;
+        kurs1.setEnde_datum(kurs1.getStart_datum().plusDays((milliseconds / 86400000L)));
 
-    @RequestMapping("/editkurs/{kursId}")
+        kurs1.setMax_tn_anzahl(max_tn_anzahl1);
+        kurs1.setAktuelle_tn_anzahl(aktuelle_tn_anzahl1);
+        if (kurs1.getMax_tn_anzahl() >= kurs1.getAktuelle_tn_anzahl()) {
+            kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs1.getAktuelle_tn_anzahl());
+
+        } else {
+
+            kurs1.setFreie_plaetze(0);
+        }
+        kurs1.setGebuehr_brutto(gebuehr_brutto1);
+        kurs1.setMwst_prozent(mwst_prozent1);
+        kurs1.setGebuehr_netto(Math.round((kurs1.getGebuehr_brutto() / (100 + kurs1.getMwst_prozent()) * 100) * 100.0) / 100.0);
+        kurs1.setMwst_euro(Math.round((kurs1.getGebuehr_brutto() / (100 + kurs1.getMwst_prozent()) * kurs1.getMwst_prozent()) * 100.0) / 100.0);
+
+        service.save(kurs1);
+        return "redirect:/k1/kurs1/kurse";
+
+        //(pattern = "dd.MM.yyyy") (iso = DateTimeFormat.ISO.DATE)
+
+    }  //@ModelAttribute annotation is used to bind the model object from the form submission.
+
+
+    @RequestMapping("/kurs1/editkurs/{kursId}")
     public ModelAndView showEditKursPage(@PathVariable(name = "kursId") int kursId) {
-        ModelAndView modelAndView = new ModelAndView("newkurs");
-        Kurs kurs = service.get(kursId);
-        modelAndView.addObject("kurs", kurs);
-        return modelAndView;
+        ModelAndView modelAndView1 = new ModelAndView("newkurs");
+        Kurs kurs1 = service.get(kursId);
+        System.out.println(kurs1.convertDateToString(kurs1.getStart_datum()));
+        modelAndView1.addObject("kurs1", kurs1);
+        modelAndView1.addObject("strDateFormat",kurs1.convertDateToString(kurs1.getStart_datum()));
+        return modelAndView1;
     }
 
-    @RequestMapping("/deletekurs/{kursId}")
+    @RequestMapping("/kurs1/deletekurs/{kursId}")
     public String deleteKurs(@PathVariable(name = "kursId") int kursId) {
         service.delete(kursId);
-        return "redirect:/kurs";
+        return "redirect:/k1/kurs1/kurse";
     }
 
-//    @RequestMapping("/get/{kursId}")
-//    public ModelAndView getKursId(@PathVariable Long kursId) {
-//    }
 }
+
+

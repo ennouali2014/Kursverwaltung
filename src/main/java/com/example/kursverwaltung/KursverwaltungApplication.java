@@ -13,8 +13,8 @@ public class KursverwaltungApplication {
 
 	public static void main(String[] args) {
 			SpringApplication.run(KursverwaltungApplication.class, args);
-			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			//System.out.println(encoder.encode("root"));
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			System.out.println(encoder.encode("root"));
 
 	}
 

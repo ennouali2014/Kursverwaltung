@@ -11,12 +11,12 @@ public class KursService {
     @Autowired
     private KursRepository kursRepository;
 
-    public void save(Kurs kurs){
+    public void save(Kurs kurs1){
         //
-        kursRepository.save(kurs);
+        kursRepository.save(kurs1);
     }
     public Kurs get(long id){
-        return kursRepository.findById(id).get();
+        return kursRepository.findByKursId(id);
     }
     public void delete(long id){
         kursRepository.deleteById(id);
