@@ -24,78 +24,89 @@
 
             <!-- hier den individuellen Bereich einer Site einfügen -->
 
-            <div align="left">
+<div align="left">
 
-                <form class="form-inline">
-                    <h3><a th:href="@{'/k1/kurs1/newkurs'}" class="btn btn-light my-2 my-sm-0">Kurs1 hinzufügen</a></h3>
+    <form class="form-inline">
+        <h3><a th:href="@{'/k1/kurs1/newkurs1'}" class="btn btn-light my-2 my-sm-0">Kurs1 hinzufügen</a></h3>
 
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                        </div>
-                        <input type="text" class="form-control" id="inputSucheKurse" onkeyup="suchFunctionPerson()"
-                               placeholder="Suchbegriff hier eingeben ..." aria-label="Username"
-                               aria-describedby="basic-addon1">
-                    </div>
-                </form>
+        <div class="input-group">
+            <div class="input-group-prepend">
             </div>
+            <input type="text" class="form-control" id="inputSucheKurse" onkeyup="suchFunctionPerson()"
+                   placeholder="Suchbegriff hier eingeben ..." aria-label="Username"
+                   aria-describedby="basic-addon1">
+        </div>
+    </form>
+</div>
 
-            <tr>
-                <div class="col-sm-5" align="center">
-                    <div class="panel-body" align="center">
-                        <table class="table">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th>Kurs1 ID</th>
-                                <th>Kursname1</th>
-                                <th>AnzahlTage</th>
-                                <th>Zyklus</th>
-                                <th>StartDatum</th>
-                                <th>Endedatum</th>
+<tr>
+    <div class="col-sm-5" align="center">
+        <div class="panel-body" align="center">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th>Kurs1 ID</th>
+                    <th>Kursname</th>
+                    <th>Status</th>
+                    <th>AnzahlTage</th>
+                    <th>Zyklus</th>
+                    <th>StartDatum</th>
+                    <th>Endedatum</th>
+                    <th>MinTnAnzahl</th>
+                    <th>MaxTnAnzahl</th>
+                    <th>FreiPlaeze</th>
+                    <th>AktuelleTnAnzahl</th>
+                    <th>gebuehrBrutto</th>
+                    <th>gebuehrNetto</th>
+                    <th>mwstEuro</th>
+                    <th>mwstProzent</th>
+                    <th>kursBeschreibung</th>
 
-                            </tr>
-                            </thead>
-                            <!--   <tr th:if="${listKurse1.empty}">
-                                   <td colspan="4"> keine Kurse vorhanden</td>
-                               </tr>
-                               -->
-                            <tr th:each="kurs1 : ${listKurse1}">
-                                <td th:text="${kurs1.kurs1Id}">Kurs1ID</td>
-                                <td th:text="${kurs1.kursname1}">Kursname1</td>
-                                <!--  <td th:text="${kurs.status}">Status</td> -->
-                                <td th:text="${kurs1.anzahl_tage1}">AnzahlTage</td>
-                                <td th:text="${kurs1.zyklus1}">Zyklus</td>
+                </tr>
+                </thead>
+                   <tr th:if="${listKurse1.isEmpty()}">
+                       <td colspan="4"> keine Kurse vorhanden</td>
+                   </tr>
 
-                                <td th:text="${kurs1.start_datum1}">StartDatum</td>
+                <tr th:each="kurs1 : ${listKurse1}">
+                    <td th:text="${kurs1.kurs1Id}">KursID</td>
+                    <td th:text="${kurs1.kursname1}">Kursname1</td>
+                    <td th:text="${kurs1.status1}">Status</td>
+                    <td th:text="${kurs1.anzahl_tage1}">AnzahlTage</td>
+                    <td th:text="${kurs1.zyklus1}">Zyklus</td>
 
-                                <td th:text="${kurs1.ende_datum1}">Endedatum</td>
-                                <!-- <td th:text="${kurs.minTnZahl}">MinTnAnzahl</td>
-                                 <td th:text="${kurs.maxTnZahl}">MaxTnAnzahl</td>
-                                 <td th:text="${kurs.freiePlaetze}">FreiPlaezeKurs ID</td>
-                                 <td th:text="${kurs.aktuelleTnZahl}">AktuelleTnAnzahl</td>
-                                 <td th:text="${kurs.gebuehrBrutto}">gebuehrBrutto</td>
-                                 <td th:text="${kurs.gebuehrNetto}">gebuehrNetto</td>
-                                 <td th:text="${kurs.mwstEuro}">mwstEuro</td>
-                                 <td th:text="${kurs.mwstProzent}">mwstProzent</td>
-                                 <td th:text="${kurs.kursBeschreibung}">kursBeschreibung</td>
-                                 -->
-                                <td>
-                                    <a th:href="@{'/k1/editkurs1/' + ${kurs1.kurs1Id}}">Edit</a>
-                                </td>
-                                <td>
-                                    <a th:href="@{'/get/'+${kurs1.kurs1Id}}">Add kurs1</a>
-                                </td>
+                    <td th:text="${kurs1.start_datum1}">StartDatum</td>
 
-                                <td>
-                                    <a th:href="@{'/k1/deletekurs1/' + ${kurs1.kurs1Id}}">Delete</a>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                    <td th:text="${kurs1.ende_datum1}">Endedatum</td>
+                    <td th:text="${kurs1.min_tn_anzahl1}">MinTnAnzahl</td>
+                    <td th:text="${kurs1.max_tn_anzahl1}">MaxTnAnzahl</td>
+                    <td th:text="${kurs1.freie_plaetze1}">FreiPlaezeKurs ID</td>
+                    <td th:text="${kurs1.aktuelle_tn_anzahl1}">AktuelleTnAnzahl</td>
+                    <td th:text="${kurs1.gebuehr_brutto1}">gebuehrBrutto</td>
+                    <td th:text="${kurs1.gebuehr_netto1}">gebuehrNetto</td>
+                    <td th:text="${kurs1.mwst_euro1}">mwstEuro</td>
+                    <td th:text="${kurs1.mwst_prozent1}">mwstProzent</td>
+
+                    <td th:text="${kurs1.kurs_beschreibung}">kursBeschreibung</td>
+
+                    <td>
+                        <a th:href="@{'/k1/editkurs1/' + ${kurs1.kurs1Id}}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'/k1/kurs1/newkurs1'}">Add kurs</a>
+                    </td>
+
+                    <td>
+                        <a th:href="@{'/k1/deletekurs1/' + ${kurs1.kurs1Id}}">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
 
-                    </div>
-                </div>
-            </tr>
+        </div>
+    </div>
+</tr>
 
 
             <!-- hier endet indiviueller bereich -->
