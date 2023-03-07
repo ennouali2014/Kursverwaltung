@@ -14,7 +14,8 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
 
-            <div th:fragment="navbar" class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+            <div th:fragment="navbar"
+                 class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Menu</span>
                 </a>
@@ -66,26 +67,104 @@
 
         </div>
 
-<br><br>
+
+
+
+        <br><br>
         <div align="left">
-            <p style="width:250px">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor
-                invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                dolores
-                et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                ipsum
-                dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna
-                aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-                kasd
-                gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p></div>
+
+            <img src="C:\Users\Akademie\IdeaProjects\Kursverwaltung\src\main\resources\assets\kurs.jpg" alt="teacher classes" width="612" height="344">
+            <br><br>
+            <p>Die besten Informatik-Kurse der Welt. Jetzt ausprobieren!</p>
+            <br><br>
+            <p style="width:612px">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+                est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+                sanctus est Lorem ipsum dolor sit amet.</p>
+            <br><br>
+            <section class="wrapper"> <!-- th:if="${kurs1.status1 == Active and ${listKurse1.isEmpty() }"-->
+                <div class="row">
+                    <h2>Unser aktuelles Kursangebot</h2>
+                    <!--                    <div align="left">-->
+                    <!--                        <h3><a th:href="@{'/k1/kurs1/newkurs1'}" class="btn btn-light my-2 my-sm-0">Kurs1-->
+                    <!--                            hinzufügen</a></h3>-->
+                    <!--                    </div>-->
+                    <!--                        <form class="form-inline">-->
+
+                    <!--                    <div class="input-group">-->
+                    <!--                        <div class="input-group-prepend">-->
+                    <!--                        </div>-->
+                    <!--                        <input type="text" class="form-control" id="inputSucheKurse1" onkeyup="suchFunctionKurs()"-->
+                    <!--                               placeholder="Suchbegriff hier eingeben ..." aria-label="Username"-->
+                    <!--                               aria-describedby="basic-addon1">-->
+                    <!--                    </div>-->
+
+                    <form th:action="@{'/k1/kurs1'}" method="get">
+                        <input id="txtsearch" type="text" name="keyword">
+                        <button type="submit">Suchen</button>
+                    </form>
+
+                    <!--                        </form>-->
+                </div>
+<br><br>
+                <tr>
+                    <div class="col-sm-5" align="center">
+                        <div class="panel-body" align="center">
+
+                            <table class="table">
+
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th>Kurs1 ID</th>
+                                    <th>Kursname</th>
+                                    <th>Ges Anzahl Tage</th>
+                                    <th>Tage je Woche</th>
+                                    <th>Start Datum</th>
+                                    <th>End Datum</th>
+                                    <th>Freie Plaetze</th>
+                                    <th>Gebuehr inkl. Mwst</th>
+                                    <th>Kurs Beschreibung</th>
+
+                                </tr>
+                                </thead>
+                                <tr th:if="${listKurse1.isEmpty()}">
+                                    <td colspan="4"> keine Kurse vorhanden</td>
+                                </tr>
+
+                                <tr th:each="kurs1 : ${listKurse1}" th:if="${kurs1.kurs.status1.}">
+                                    <td th:text="${kurs1.kurs1Id}">KursID</td>
+                                    <td th:text="${kurs1.kursname1}">Kursname1</td>
+                                    <td th:text="${kurs1.anzahl_tage1}">AnzahlTage</td>
+                                    <td th:text="${kurs1.zyklus1}">Zyklus</td>
+                                    <td th:text="${kurs1.start_datum1}">StartDatum</td>
+                                    <td th:text="${kurs1.ende_datum1}">Endedatum</td>
+                                    <td th:text="${kurs1.freie_plaetze1}">FreiPlaezeKurs ID</td>
+                                    <td th:text="${kurs1.gebuehr_brutto1}">gebuehrBrutto</td>
+                                    <td th:text="${kurs1.kurs_beschreibung}">kursBeschreibung</td>
+
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                </tr>
+
+        </section>
+
     </div>
+</div>
 
-    <!-- hier endet indiviueller bereich -->
+<!-- hier endet indiviueller bereich -->
 
 
-        </div>
-    </div>
+</div>
+</div>
 </div>
 
 </body>
