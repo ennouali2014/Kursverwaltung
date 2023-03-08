@@ -27,11 +27,16 @@ public class UserInfoUserDetailsService implements UserDetailsService {
     }
 
     private void LoadUsers() {
-        repository.save(new UserInfo(1,"root", passwordEncoder.encode("root"), "ADMIN"));
+        UserInfo userInfo = repository.findByUsername("root");
+        if (userInfo == null) {
+            userInfo = new UserInfo(1, "root", passwordEncoder.encode("root"), "ADMIN");
+            repository.save(userInfo);
+        }
     }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserInfo> userInfo = repository.findByUsername(username);
+        Optional<UserInfo> userInfo = Optional.ofNullable(repository.findByUsername(username));
         return userInfo.map(UserInfoUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found! " + username));
     }
