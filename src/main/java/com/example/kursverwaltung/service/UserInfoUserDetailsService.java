@@ -29,7 +29,7 @@ public class UserInfoUserDetailsService implements UserDetailsService {
     }
 
     private void LoadUsers() {
-        repository.save(new UserInfo(1,"boot", passwordEncoder.encode("boot"), "ADMIN"));
+        repository.save(new UserInfo(1,"root", passwordEncoder.encode("root"), "ADMIN"));
     }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
