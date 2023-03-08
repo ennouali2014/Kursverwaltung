@@ -20,6 +20,17 @@ public class UserInfoUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    //			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//			System.out.println(encoder.encode("root"));
+    @Autowired
+    public void DataLoader(UserInfoRepository userRepository) {
+        this.repository = userRepository;
+        LoadUsers();
+    }
+
+    private void LoadUsers() {
+        repository.save(new UserInfo(1,"boot", passwordEncoder.encode("boot"), "ADMIN"));
+    }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserInfo> userInfo = repository.findByUsername(username);
