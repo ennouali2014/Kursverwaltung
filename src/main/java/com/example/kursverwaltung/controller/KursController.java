@@ -38,7 +38,7 @@ public class KursController {
     @PostMapping("/kurs1/savekurs")
     //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
     public String saveKurs(@ModelAttribute ("kurs1") Kurs kurs1,
-                            @RequestParam("start_datum") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L,
+                            @RequestParam("start_datum") LocalDate start_datum1_L,
                             @RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
                             @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
                             @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
@@ -79,9 +79,7 @@ public class KursController {
     public ModelAndView showEditKursPage(@PathVariable(name = "kursId") int kursId) {
         ModelAndView modelAndView1 = new ModelAndView("newkurs");
         Kurs kurs1 = service.get(kursId);
-        System.out.println(kurs1.convertDateToString(kurs1.getStart_datum()));
         modelAndView1.addObject("kurs1", kurs1);
-        modelAndView1.addObject("strDateFormat",kurs1.convertDateToString(kurs1.getStart_datum()));
         return modelAndView1;
     }
 

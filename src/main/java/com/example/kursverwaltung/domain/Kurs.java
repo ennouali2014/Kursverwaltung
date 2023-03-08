@@ -2,6 +2,7 @@ package com.example.kursverwaltung.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,6 +26,7 @@ public class Kurs {
     @Column(name = "status", length = 100, nullable = false)
     private String status;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_datum", nullable = false)
     private LocalDate start_datum;
 
@@ -33,6 +35,7 @@ public class Kurs {
     @Column(name = "zyklus", nullable = false)
     private int zyklus;
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "ende_datum")
     private LocalDate ende_datum;
     @Column(name = "min_tn_anzahl", nullable = false)

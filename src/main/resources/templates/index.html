@@ -131,7 +131,7 @@
                                     <td colspan="4"> keine Kurse vorhanden</td>
                                 </tr>
 
-                                <tr th:each="kurs1 : ${kurse}" th:if="${kurs1.kurs.status.}">
+                                <tr th:each="kurs1 : ${kurse}" th:if="${kurs1.status}">
                                     <td th:text="${kurs1.kursId}">KursID</td>
                                     <td th:text="${kurs1.kursname}">Kursname1</td>
                                     <td th:text="${kurs1.anzahl_tage}">AnzahlTage</td>

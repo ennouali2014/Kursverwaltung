@@ -60,10 +60,11 @@
                                         <label class="form-label">startDatum</label>
                                         <td>
                                             <input type="date" th:field="*{start_datum}"
-                                                   class="form-control" id="start_datum" name="start_datum"
+                                                   class="form-control" name="start_datum"
                                                    placeholder="startDatum" required
-                                                   th:value="${#dates.format(kurs1.start_datum,'dd.MM.yyyy')}"/>
+                                            />
                                         </td>
+
                                     </tr>
                                     <tr>
                                         <label class="form-label">minTnZahl</label>
