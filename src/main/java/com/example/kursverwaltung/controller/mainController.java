@@ -21,6 +21,7 @@ public class mainController {
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
+        model.addAttribute("kurse", kursService.listAll());
         return "index";
     }
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")

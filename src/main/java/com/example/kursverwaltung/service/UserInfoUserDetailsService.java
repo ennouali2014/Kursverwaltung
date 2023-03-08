@@ -1,7 +1,6 @@
 package com.example.kursverwaltung.service;
 
 import com.example.kursverwaltung.config.UserInfoUserDetails;
-import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +54,11 @@ public class UserInfoUserDetailsService implements UserDetailsService {
         return repository.findById(id);
     }
 
-    public List<UserInfo> findByKeyword(String keyword){
-        return repository.findByKeyword(keyword);}
+    public List<UserInfo> getUserList() {
+        return repository.findAll();
+    }
+
+    public List<UserInfo> findByKeyword(String keyword) {
+        return repository.findByKeyword(keyword);
+    }
 }

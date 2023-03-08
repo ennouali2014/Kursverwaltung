@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="head :: head"></head>
+<head th:insert="~{head :: head}"></head>
 
 <body>
 
@@ -67,9 +67,6 @@
 
         </div>
 
-
-
-
         <br><br>
         <div align="left">
 
@@ -130,24 +127,24 @@
 
                                 </tr>
                                 </thead>
-                                <tr th:if="${listKurse1.isEmpty()}">
+                                <tr th:if="${kurse.isEmpty()}">
                                     <td colspan="4"> keine Kurse vorhanden</td>
                                 </tr>
 
-                                <tr th:each="kurs1 : ${listKurse1}" th:if="${kurs1.kurs.status1.}">
-                                    <td th:text="${kurs1.kurs1Id}">KursID</td>
-                                    <td th:text="${kurs1.kursname1}">Kursname1</td>
-                                    <td th:text="${kurs1.anzahl_tage1}">AnzahlTage</td>
-                                    <td th:text="${kurs1.zyklus1}">Zyklus</td>
-                                    <td th:text="${kurs1.start_datum1}">StartDatum</td>
-                                    <td th:text="${kurs1.ende_datum1}">Endedatum</td>
-                                    <td th:text="${kurs1.freie_plaetze1}">FreiPlaezeKurs ID</td>
-                                    <td th:text="${kurs1.gebuehr_brutto1}">gebuehrBrutto</td>
+                                <tr th:each="kurs1 : ${kurse}" th:if="${kurs1.kurs.status.}">
+                                    <td th:text="${kurs1.kursId}">KursID</td>
+                                    <td th:text="${kurs1.kursname}">Kursname1</td>
+                                    <td th:text="${kurs1.anzahl_tage}">AnzahlTage</td>
+                                    <td th:text="${kurs1.zyklus}">Zyklus</td>
+                                    <td th:text="${kurs1.start_datum}">StartDatum</td>
+                                    <td th:text="${kurs1.ende_datum}">Endedatum</td>
+                                    <td th:text="${kurs1.freie_plaetze}">FreiPlaezeKurs ID</td>
+                                    <td th:text="${kurs1.gebuehr_brutto}">gebuehrBrutto</td>
                                     <td th:text="${kurs1.kurs_beschreibung}">kursBeschreibung</td>
 
 
                                 </tr>
-                                </tbody>
+
                             </table>
 
 

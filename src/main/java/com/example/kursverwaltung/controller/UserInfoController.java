@@ -21,17 +21,10 @@ public class UserInfoController {
     private UserInfoUserDetailsService serviceInfoUser;
 
     @GetMapping("/newUser")
-    public String addNewUser2(Model model) {
+    public String addNewUser(Model model) {
         model.addAttribute("user", new UserInfo());
         return "newUser";
     }
-//    @PostMapping("/newUser")
-//    public String addNewUser(Model model) {
-//        UserInfo user = new UserInfo();
-//        model.addAttribute("user", user);
-//        return serviceInfoUser.addUser(user);
-//
-//    }
 
     @PostMapping("/saveUser")
     public String saveUser( @ModelAttribute("user") UserInfo userInfo) {
