@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
-<div th:insert="~{head :: head}"></div>
+<head th:insert="~{head :: head}"></head>
 
 <body>
 
@@ -27,7 +27,7 @@
 
             <div align="center">
                 <div class="col-sm-4">
-                    <h1>Kurs1 anlegen/editieren</h1>
+                    <h1>Kurs anlegen/editieren</h1>
                     <br/>
                     <!--/*@thymesVar id="kurs1" type="com.example.kursverwaltung.domain.Kurs"*/-->
                     <form action="#" th:action="@{/k1/kurs1/savekurs}" th:object="${kurs1}" method="post">
@@ -40,18 +40,18 @@
                                         <label class="form-label">Kursname</label>
                                         <td>
                                             <input type="text" th:field="*{kursname}" class="form-control"
-                                                   placeholder="kursname" required/>
+                                                   placeholder="Kursname" required/>
                                             <input type="hidden" th:field="*{kursId}"/>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">anzahlTage1</label>
+                                        <label class="form-label">Anzahl Tage</label>
                                         <td>
 
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
                                                    th:field="*{anzahl_tage}" class="form-control"
-                                                   placeholder="anzahlTage" required/>
+                                                   placeholder="Anzahl Tage" required/>
 
                                         </td>
                                     </tr>
@@ -64,37 +64,36 @@
                                                    placeholder="startDatum" required
                                             />
                                         </td>
-
                                     </tr>
                                     <tr>
                                         <label class="form-label">minTnZahl</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
                                                    th:field="*{min_tn_anzahl}" class="form-control"
-                                                   placeholder="minTnZahl" required/>
+                                                   placeholder="Min Teilnehmer" required/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">aktuelleTnZahll</label>
+                                        <label class="form-label">Aktuelle Teilnehmerzahl</label>
                                         <td>
                                             <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
-                                                   placeholder="aktuelleTnZahl" required/>
+                                                   placeholder="Aktuelle Teilnehmerzahl" required/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">gebuehrBrutto</label>
+                                        <label class="form-label">Gebuehr Brutto</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
                                                    th:field="*{gebuehr_brutto}" class="form-control"
-                                                   placeholder="gebuehrBrutto" required/>
+                                                   placeholder="Gebuehr Brutto" required/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">mwstProzent</label>
+                                        <label class="form-label">Mwst Prozent</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
                                                    th:field="*{mwst_prozent}" class="form-control"
-                                                   placeholder="mwstProzent" required/>
+                                                   placeholder="Mwst Prozent" required/>
                                         </td>
                                     </tr>
                                 </div>
@@ -115,47 +114,47 @@
                                     </tr>
 
                                     <tr>
-                                        <label class="form-label">zyklus</label>
+                                        <label class="form-label">Tage je Woche</label>
                                         <td>
                                             <input type="number" min="0" max="7" oninput="validity.valid||(value='');"
                                                    th:field="*{zyklus}" class="form-control"
-                                                   placeholder="zyklus" required/>
+                                                   placeholder="Tage je Woche" required/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">endeDatum</label>
+                                        <label class="form-label">End Datum</label>
                                         <td>
                                             <input type="date" th:field="*{ende_datum}" class="form-control"
-                                                   placeholder="endeDatum" disabled/>
+                                                   placeholder="End Datum" disabled/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">maxTnZahl</label>
+                                        <label class="form-label">Max Teilnehmer</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
                                                    th:field="*{max_tn_anzahl}" class="form-control"
-                                                   placeholder="maxTnZahl" required/>
+                                                   placeholder="max Teilnehmer" required/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">freiePlaetze</label>
+                                        <label class="form-label">freie Plaetze</label>
                                         <td>
                                             <input type="number" th:field="*{freie_plaetze}" class="form-control"
-                                                   placeholder="freiePlaetze" disabled/>
+                                                   placeholder="freie Plaetze" disabled/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">gebuehrNetto</label>
+                                        <label class="form-label">Gebuehr Netto</label>
                                         <td>
                                             <input type="number" th:field="*{gebuehr_netto}" class="form-control"
-                                                   placeholder="gebuehrNetto" disabled/>
+                                                   placeholder="Gebuehr Netto" disabled/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <label class="form-label">mwstEuro</label>
+                                        <label class="form-label">Mwst Euro</label>
                                         <td>
                                             <input type="number" th:field="*{mwst_euro}" class="form-control"
-                                                   placeholder="mwstEuro" disabled/>
+                                                   placeholder="Mwst Euro" disabled/>
                                         </td>
                                     </tr>
 
@@ -168,11 +167,11 @@
                             <div align="center">
 
                                 <tr>
-                                    <label class="form-label">kurs_beschreibung</label>
+                                    <label class="form-label">Kursbeschreibung</label>
                                     <td>
                                         <input type="text" name="kurs_beschreibung" th:field="*{kurs_beschreibung}"
                                                class="form-control"
-                                               placeholder="kursBeschreibung"/>
+                                               placeholder="Kursbeschreibung"/>
                                     </td>
                                 </tr>
 
