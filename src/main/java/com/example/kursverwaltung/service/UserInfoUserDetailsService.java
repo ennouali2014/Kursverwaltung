@@ -20,8 +20,6 @@ public class UserInfoUserDetailsService implements UserDetailsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    //			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//			System.out.println(encoder.encode("root"));
     @Autowired
     public void DataLoader(UserInfoRepository userRepository) {
         this.repository = userRepository;
