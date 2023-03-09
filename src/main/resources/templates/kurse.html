@@ -64,13 +64,13 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:if="${kurse.isEmpty()}">
+                            <tr th:if="${listKurse.isEmpty()}">
                                 <td colspan="4"> keine Kurse vorhanden</td>
                             </tr>
                             <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
 
                             <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
-                            <tr th:each="kurs : ${kurse}">
+                            <tr th:each="kurs : ${listKurse}">
 
                                 <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
                                 <td th:text="${kurs.kursId}"></td>

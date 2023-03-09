@@ -1,6 +1,7 @@
 package com.example.kursverwaltung.service;
 
 import com.example.kursverwaltung.domain.Kurs;
+import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.repository.KursRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,7 @@ public class KursService {
     public List<Kurs> listAll() {
         return kursRepository.findAll();
     }
+    public List<Kurs> findByKeyword(String keyword){
+        return kursRepository.findByKeyword(keyword);}
 
 }
