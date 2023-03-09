@@ -1,7 +1,10 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="~{head :: head}"></head>
+<!--head th:insert="~{head :: head}"></head-->
 
 <body>
 
@@ -11,24 +14,25 @@
 <!--Main layout-->
 
 
-<div class="container-fluid">
+<!--div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
 
             <div th:insert="~{navbar :: navbar}"></div>
 
         </div>
-        <div class="col py-3">
-
-            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können</noscript>
+        <div class="col py-3"-->
 
             <!-- hier den individuellen Bereich einer Site einfügen -->
-
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
 <div align="center">
     <h1>User anlegen</h1>
     <br />
     <div class="col-sm-4">
-        <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+
+        <!--/*@thymesVar id="user" type="com.example.kursverwaltung.domain.UserInfo"*/-->
         <form action="#" th:action="@{/user/saveUser}" th:object="${user}" method="post">
 
 
@@ -71,8 +75,11 @@
 
             <!-- hier endet indiviueller bereich -->
 
-        </div>
+        <!--/div>
     </div>
+</div-->
+        </div>
+    </section>
 </div>
 
 

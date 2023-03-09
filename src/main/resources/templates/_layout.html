@@ -292,25 +292,11 @@
                     <ul class="dropdown-menu extended logout">
                         <div class="log-arrow-up"></div>
                         <li class="eborder-top">
-                            <a th:href="@{/employee/profile}"><i class="icon_profile"></i> My Profile</a>
+                            <a th:href="@{/employee/profile}"><i class="icon_profile"></i> Mein Profil</a>
                         </li>
+
                         <li>
-                            <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-                        </li>
-                        <li>
-                            <a th:href="@{/logout}"><i class="icon_key_alt"></i> Log Out</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_key_alt"></i> Documentation</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="icon_key_alt"></i> Documentation</a>
+                            <a href="@{'/logout'}"><i class="icon_key_alt"></i>Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -334,34 +320,28 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="fa fa-truck"></i>
-                        <span>Fleet</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="/fleet">Fleet Home</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
                         <i class="fa fa-users"></i>
                         <span>HR</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/hr">HR Home</a></li>
+                        <li><a class="" th:href="@{'/person/newperson'}">Neu Person</a></li>
+                        <li><a class="" th:href="@{'/person/personen'}">Alle Personen</a></li>
+                        <!--li><a class="" href="/hr">HR Home</a></li-->
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="fa fa-usd"></i>
-                        <span>Accounts</span>
+                        <i class="fa fa-book"></i>
+                        <span>Kurse</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/accounts">Accounts Home</a></li>
+                        <li><a class="" th:href="@{'/k1/kurs1/newkurs'}">Neu Kurs</a></li>
+                        <li><a class="" th:href="@{'/k1/kurs1/kurse'}">Alle Kurse</a></li>
                     </ul>
                 </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-question"></i>
@@ -372,29 +352,7 @@
                         <li><a class="" href="/helpdesk">HelpDesk</a></li>
                     </ul>
                 </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="fa fa-gear"></i>
-                        <span>Parameters</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="/parameters">Parameters Home</a></li>
-                    </ul>
-                </li>
 
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="fa fa-book"></i>
-                        <span>Reports</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" th:href="@{/reports}">Reports Home</a></li>
-                        <li><a class="" th:href="@{/reports}">New Report</a></li>
-                        <li><a class="" th:href="@{/reports}">Summary Page</a></li>
-                    </ul>
-                </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-key"></i>
@@ -402,7 +360,8 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/security">Security Home</a></li>
+                        <li><a class="" th:href="@{'/user/newUser'}">Neu User</a></li>
+                        <li><a class="" th:href="@{'/user/users'}">Alle Users</a></li>
                     </ul>
                 </li>
             </ul>
@@ -415,20 +374,10 @@
     <section id="main-content">
     <div layout:fragment="content">
     </div>
-    </section>
 
 
-    <div class="text-right">
-        <div class="credits">
-            <!--
-              All the links in the footer should remain intact.
-              You can delete the links only if you purchased the pro version.
-              Licensing information: https://bootstrapmade.com/license/
-              Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-            -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </div>
+
+
 </section>
 <!--main content end-->
 </section>

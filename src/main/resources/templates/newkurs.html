@@ -1,8 +1,11 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="~{head :: head}"></head>
+<!--head th:insert="~{head :: head}"></head-->
 
 <body>
 
@@ -10,21 +13,22 @@
 <!--Main layout-->
 
 
-<div class="container-fluid">
+<!--div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
 
             <div th:insert="~{navbar :: navbar}"></div>
 
         </div>
-        <div class="col py-3">
+        <div class="col py-3"-->
 
-            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können
-            </noscript>
+
 
             <!-- hier den individuellen Bereich einer Site einfügen -->
 
-
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
             <div align="center">
                 <div class="col-sm-4">
                     <h1>Kurs anlegen/editieren</h1>
@@ -191,9 +195,12 @@
                 </div>
             </div>
         </div>
+    </section>
+</div>
+        <!--/div>
     </div>
 </div>
-</div>
+</div-->
 </body>
 
 
