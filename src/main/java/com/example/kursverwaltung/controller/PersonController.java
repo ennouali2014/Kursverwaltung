@@ -2,6 +2,7 @@ package com.example.kursverwaltung.controller;
 
 import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
+import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,8 @@ import java.util.List;
 public class PersonController {
     @Autowired
     private PersonService service;
-
+    @Autowired
+    private KursService serviceK;
     @GetMapping("/welcome")
     public String welcome() {
         return "welcome";
@@ -61,19 +63,22 @@ public class PersonController {
         service.delete(personId);
         return "redirect:/person/personen";
     }
-    @RequestMapping("/addKursToPerson/{personId}")
+    @RequestMapping("/addPersonToKurs/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
         Kurs kurs = service.getKurs(kursId);
         if (choix.equals("teilnehmer")) {
             person.schonInteressant(kurs);
-            person.inKursteilnehmen.add(kurs);
-            person.setInKursteilnehmen(person.inKursteilnehmen);
+            person.getInKursteilnehmen().add(kurs);
+            person.setInKursteilnehmen(person.getInKursteilnehmen());
+            kurs.getTeilnehmer().add(person);
         } else {
             person.schonTeilnehmer(kurs);
-            person.inKursinteressieren.add(kurs);
-            person.setInKursinteressieren(person.inKursinteressieren);
+            person.getInKursinteressieren().add(kurs);
+            person.setInKursinteressieren(person.getInKursinteressieren());
+            kurs.getInteressant().add(person);
         }
+        //serviceK.save(kurs);
         service.save(person);
         return "redirect:/person/personen";
 

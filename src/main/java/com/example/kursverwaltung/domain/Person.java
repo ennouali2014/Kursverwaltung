@@ -33,12 +33,12 @@ public class Person {
     @JoinTable(name = "person_kurs_interessant",
             joinColumns = {@JoinColumn(name = "personId")},
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
-    public Set<Kurs> inKursinteressieren = new HashSet<>();
+    private Set<Kurs> inKursinteressieren = new HashSet<>();
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "person_kurs_teilnehmer",
             joinColumns = {@JoinColumn(name = "personId")},
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
-    public Set<Kurs> inKursteilnehmen = new HashSet<>();
+    private Set<Kurs> inKursteilnehmen = new HashSet<>();
 
     public Person() {
 

@@ -1,7 +1,9 @@
 package com.example.kursverwaltung.controller;
 
 import com.example.kursverwaltung.domain.Kurs;
+import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.KursService;
+import com.example.kursverwaltung.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,8 @@ public class KursController {
 
     @Autowired
     private KursService service;
+@Autowired
+private PersonService personService;
 
     @GetMapping("/kurs1/kurse")
     // @PreAuthorize("hasAuthority('ADMIN')")
@@ -86,6 +90,39 @@ public class KursController {
     @RequestMapping("/kurs1/deletekurs/{kursId}")
     public String deleteKurs(@PathVariable(name = "kursId") int kursId) {
         service.delete(kursId);
+        return "redirect:/k1/kurs1/kurse";
+    }
+    @RequestMapping("/kurs1/get/{kursId}")
+    public ModelAndView getKursId(@PathVariable Long kursId) {
+        String[] teilnehmer_interessant_arr = {"teilnehmer", "interessant"};
+        ModelAndView mav = new ModelAndView("addKursToPerson");
+        mav.addObject("kurs", service.get(kursId));
+        mav.addObject("personen", service.getAllPerson());
+        mav.addObject("choix", teilnehmer_interessant_arr);
+        return mav;
+    }
+    @RequestMapping ("/kurs1/addKursToPerson/{kursId}")
+    public String assignPersonToKurs(@PathVariable Long kursId,@RequestParam Long personId,@RequestParam String choix){
+        Person person = service.getPerson(personId);
+        Kurs kurs = service.get(kursId);
+        if (choix.equals("teilnehmer")) {
+            System.out.println("---1-----"+person);
+            if(kurs.getInteressant().size()>0){kurs.hadInteressant(person);}
+            System.out.println("---2-----"+kurs.getTeilnehmer());
+            kurs.getTeilnehmer().add(person);
+            System.out.println("---3-----"+kurs.getTeilnehmer());
+            kurs.setTeilnehmer(kurs.getTeilnehmer());
+            System.out.println("---4-----"+kurs.getTeilnehmer());
+            person.getInKursteilnehmen().add(kurs);
+            System.out.println("---5-----"+person.getInKursteilnehmen());
+        } else {
+            if(kurs.getTeilnehmer().size()>0){kurs.hadTeilnehmer(person);}
+            kurs.getInteressant().add(person);
+            kurs.setInteressant(kurs.getInteressant());
+            person.getInKursinteressieren().add(kurs);
+        }
+        service.save(kurs);
+        personService.save(person);
         return "redirect:/k1/kurs1/kurse";
     }
 

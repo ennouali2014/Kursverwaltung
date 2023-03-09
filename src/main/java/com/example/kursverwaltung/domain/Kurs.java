@@ -257,12 +257,32 @@ public class Kurs {
     public void setTeilnehmer(Set<Person> teilnehmer) {
         this.teilnehmer = teilnehmer;
     }
-    public String convertDateToString(LocalDate date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return date.format(formatter);
-        //DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        //return dateFormat.format(date);
+
+    public void hadTeilnehmer(Person person) {
+
+            for (Person person1 : this.teilnehmer) {
+                System.out.println("------hhh5------");
+                if (person1.getPersonId()==person.getPersonId()) {
+                    System.out.println("------hhh55------");
+                    teilnehmer.remove(person1);
+                    person1.getInKursteilnehmen().remove(this);
+                }
+            }
+
     }
+
+    public void hadInteressant(Person person) {
+         for (Person person1 : this.interessant) {
+             System.out.println("------hhh9------");
+                if (person1.getPersonId() == person.getPersonId()) {
+                    System.out.println("------hhh99------");
+                    interessant.remove(person1);
+                    person1.getInKursinteressieren().remove(this);
+                }
+            }
+
+    }
+
     @Override
     public String toString() {
         return "Kurs{" +

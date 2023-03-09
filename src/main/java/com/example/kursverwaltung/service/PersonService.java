@@ -38,12 +38,18 @@ public class PersonService {
     public Person getPersonId(long personId) {
         return repo.findByPersonId(personId);
     }
-    public List<Kurs> getAllkurs(){
+
+    public List<Kurs> getAllkurs() {
         return repoK.findAll();
     }
-    public Kurs getKurs(long kursId){return repoK.findByKursId(kursId);}
-    public List<Person> findByKeyword(String keyword){
-        return repo.findByKeyword(keyword);}
+
+    public Kurs getKurs(long kursId) {
+        return repoK.findByKursId(kursId);
+    }
+
+    public List<Person> findByKeyword(String keyword) {
+        return repo.findByKeyword(keyword);
+    }
 
 
 }
