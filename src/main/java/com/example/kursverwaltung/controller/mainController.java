@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+
 @Controller
 public class mainController {
 
@@ -24,6 +25,11 @@ public class mainController {
         model.addAttribute("kurse", kursService.listAll());
         return "index";
     }
+
+    @GetMapping("/home")
+    public String homePage(Model model){
+        return "home";
+    }
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @GetMapping("/public")
     public String personenlistePublic(Model model) {
@@ -32,7 +38,7 @@ public class mainController {
 
 
 
-   /* @RequestMapping(value = "/logout", method = RequestMethod.POST)
+/*    @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
