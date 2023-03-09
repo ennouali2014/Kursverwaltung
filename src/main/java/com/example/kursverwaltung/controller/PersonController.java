@@ -88,7 +88,7 @@ public class PersonController {
     @RequestMapping("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId) {
         String[] teilnehmer_interessant_arr = {"teilnehmer", "interessant"};
-        ModelAndView mav = new ModelAndView("addPersonToKurs");
+        ModelAndView mav = new ModelAndView("addKursToPerson");
         mav.addObject("person", service.getPersonId(personId));
         mav.addObject("kurse", service.getAllkurs());
         mav.addObject("choix", teilnehmer_interessant_arr);
