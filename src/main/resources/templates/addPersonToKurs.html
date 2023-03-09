@@ -57,11 +57,13 @@
                         </select>
                         <br/>
                         <br/>
-                        <a th:href="@{'/k1/kurs1/kurse'}" class="btn btn-primary">Abbrechen</a>
+<!--                        <a th:href="@{'/k1/kurs1/kurse'}" class="btn btn-primary">Abbrechen</a>-->
+                        <button onclick="history.back()" class="btn btn-primary">Abbrechen</button>
+
                     </div>
                     <div class="col-md-6">
                         die Person
-                        <select class="form-control" name="personId">
+                        <select class="form-control" name="personId" >
                             <!--/*@thymesVar id="personen" type="com.example.kursverwaltung.service.KursService"*/-->
                             <option th:each="person:${personen}"
                                     th:value="${person.personId}"

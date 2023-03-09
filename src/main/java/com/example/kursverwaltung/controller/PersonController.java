@@ -67,7 +67,7 @@ public class PersonController {
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
         Kurs kurs = service.getKurs(kursId);
-        if (choix.equals("teilnehmer")) {
+        if (choix.equals("Teilnehmer")) {
             person.schonInteressant(kurs);
             person.getInKursteilnehmen().add(kurs);
             person.setInKursteilnehmen(person.getInKursteilnehmen());
@@ -87,7 +87,7 @@ public class PersonController {
 
     @RequestMapping("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId) {
-        String[] teilnehmer_interessant_arr = {"teilnehmer", "interessant"};
+        String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessent"};
         ModelAndView mav = new ModelAndView("addKursToPerson");
         mav.addObject("person", service.getPersonId(personId));
         mav.addObject("kurse", service.getAllkurs());

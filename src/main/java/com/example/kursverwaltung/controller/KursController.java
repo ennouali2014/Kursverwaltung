@@ -20,8 +20,8 @@ public class KursController {
 
     @Autowired
     private KursService service;
-@Autowired
-private PersonService personService;
+    @Autowired
+    private PersonService personService;
 
     @GetMapping("/kurs1/kurse")
     // @PreAuthorize("hasAuthority('ADMIN')")
@@ -32,9 +32,9 @@ private PersonService personService;
 //        // System.out.println("Get / ");
 //        return "kurse";
 
-        if(keyword!=null){
-            model.addAttribute("listKurse",service.findByKeyword(keyword));
-        }else{
+        if (keyword != null) {
+            model.addAttribute("listKurse", service.findByKeyword(keyword));
+        } else {
             model.addAttribute("listKurse", listKurse);
         }
         return "kurse";
@@ -56,12 +56,12 @@ private PersonService personService;
 
     @PostMapping("/kurs1/savekurs")
     //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
-    public String saveKurs(@ModelAttribute ("kurs1") Kurs kurs1,
-                            @RequestParam("start_datum") LocalDate start_datum1_L,
-                            @RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
-                            @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
-                            @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
-                            @RequestParam("mwst_prozent") Double mwst_prozent1) {
+    public String saveKurs(@ModelAttribute("kurs1") Kurs kurs1,
+                           @RequestParam("start_datum") LocalDate start_datum1_L,
+                           @RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
+                           @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
+                           @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
+                           @RequestParam("mwst_prozent") Double mwst_prozent1) {
 //        if (kurs1 == null || start_datum1_L == null || aktuelle_tn_anzahl1 == null || max_tn_anzahl1 == null) {
 //
 //            return "error";
@@ -107,31 +107,37 @@ private PersonService personService;
         service.delete(kursId);
         return "redirect:/k1/kurs1/kurse";
     }
+
     @RequestMapping("/kurs1/get/{kursId}")
     public ModelAndView getKursId(@PathVariable Long kursId) {
-        String[] teilnehmer_interessant_arr = {"teilnehmer", "interessant"};
+        String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessent"};
         ModelAndView mav = new ModelAndView("addPersonToKurs");
         mav.addObject("kurs", service.get(kursId));
         mav.addObject("personen", service.getAllPerson());
         mav.addObject("choix", teilnehmer_interessant_arr);
         return mav;
     }
-    @RequestMapping ("/kurs1/addKursToPerson/{kursId}")
-    public String assignPersonToKurs(@PathVariable Long kursId,@RequestParam Long personId,@RequestParam String choix){
+
+    @RequestMapping("/kurs1/addKursToPerson/{kursId}")
+    public String assignPersonToKurs(@PathVariable Long kursId, @RequestParam Long personId, @RequestParam String choix) {
         Person person = service.getPerson(personId);
         Kurs kurs = service.get(kursId);
-        if (choix.equals("teilnehmer")) {
-            System.out.println("---1-----"+person);
-            if(kurs.getInteressant().size()>0){kurs.hadInteressant(person);}
-            System.out.println("---2-----"+kurs.getTeilnehmer());
+        if (choix.equals("Teilnehmer")) {
+            System.out.println("---1-----" + person);
+            if (kurs.getInteressant().size() > 0) {
+                kurs.hadInteressant(person);
+            }
+            System.out.println("---2-----" + kurs.getTeilnehmer());
             kurs.getTeilnehmer().add(person);
-            System.out.println("---3-----"+kurs.getTeilnehmer());
+            System.out.println("---3-----" + kurs.getTeilnehmer());
             kurs.setTeilnehmer(kurs.getTeilnehmer());
-            System.out.println("---4-----"+kurs.getTeilnehmer());
+            System.out.println("---4-----" + kurs.getTeilnehmer());
             person.getInKursteilnehmen().add(kurs);
-            System.out.println("---5-----"+person.getInKursteilnehmen());
+            System.out.println("---5-----" + person.getInKursteilnehmen());
         } else {
-            if(kurs.getTeilnehmer().size()>0){kurs.hadTeilnehmer(person);}
+            if (kurs.getTeilnehmer().size() > 0) {
+                kurs.hadTeilnehmer(person);
+            }
             kurs.getInteressant().add(person);
             kurs.setInteressant(kurs.getInteressant());
             person.getInKursinteressieren().add(kurs);
@@ -141,6 +147,9 @@ private PersonService personService;
         return "redirect:/k1/kurs1/kurse";
     }
 
+
 }
+
+
 
 
