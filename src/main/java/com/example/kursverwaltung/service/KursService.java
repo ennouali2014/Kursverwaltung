@@ -29,4 +29,9 @@ public class KursService {
     }
     public List<Person> getAllPerson(){ return personRepository.findAll();}
     public Person getPerson(long personId){ return personRepository.findByPersonId(personId);}
+
+    public List<Kurs> findByKeyword(String keyword){
+        return kursRepository.findByKeyword(keyword);}
+
+
 }
