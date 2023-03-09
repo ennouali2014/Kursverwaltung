@@ -25,11 +25,26 @@ private PersonService personService;
 
     @GetMapping("/kurs1/kurse")
     // @PreAuthorize("hasAuthority('ADMIN')")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(Model model, String keyword) {
         List<Kurs> listKurse = service.listAll();
-        model.addAttribute("kurse", listKurse);
-        // System.out.println("Get / ");
+//
+//        model.addAttribute("listkurse", listkurse);
+//        // System.out.println("Get / ");
+//        return "kurse";
+
+        if(keyword!=null){
+            model.addAttribute("listKurse",service.findByKeyword(keyword));
+        }else{
+            model.addAttribute("listKurse", listKurse);
+        }
         return "kurse";
+//
+//        model.addAttribute("kurse", listKurse);
+//        // System.out.println("Get / ");
+//        return "kurse";
+
+//        return "kurse";
+
     }
 
     @GetMapping("/kurs1/newkurs")
