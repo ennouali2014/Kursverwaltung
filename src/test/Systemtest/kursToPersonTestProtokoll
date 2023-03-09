@@ -1,0 +1,22 @@
+| Funktion                         x-negativ o-positiv                                                                                  | getestet | Ergebnis <br/>09.03.23 |
+|---------------------------------------------------------------------------------------------------------------------------------------|:--------:|:----------------------:|
+| Infoblock vorhanden                                                                                                                   |    o     |           o            |
+| Infoblock ausgewählter person mit person vorname richtig angezeigt                                                                    |    o     |           o            |
+| Infoblock ausgewählter person mit person nachname richtig angezeigt                                                                   |    o     |           o            |
+| Infoblock ausgewählter person mit person email richtig angezeigt                                                                      |    o     |           o            |
+|                                                                                                                                       |    o     |           o            |
+| Infoblock ausgewählter person mit liste zugehöriger kurse als interessent richtig angezeigt                                                     |    o     |           o            |
+| Infoblock ausgewählter person mit liste zugehöriger kurse als Teilnehmer richtig gezeigt                                                        |    o     |           o            |
+| Infoblock ausgewählter person choicebox Teilnehmer/interessent vorhanden                                                              |    o     |           o            |
+| Infoblock ausgewählter person choicebox mit allen personen vorhanden                                                                  |    o     |           o            |
+| Infoblock ausgewählter person speichern button vorhanden                                                                              |    o     |           o            |
+| Infoblock ausgewählter person abbrechen(zurück) button vorhanden                                                                      |    o     |           o            |
+| Infoblock ausgewählter person abbrechen(reset choicebox) button vorhanden                                                             |    o     |           o            |
+| Infoblock ausgewählter person abbrechen(reset choicebox) button funktioniert                                                          |    o     |           o            |
+| Infoblock ausgewählter person abbrechen(zurück) button funktioniert                                                                   |    o     |           o            |
+| Infoblock ausgewählter person speichern button funktioniert                                                                           |    o     |           o            |
+|                                                                                                                                       |    o     |           o            |
+| -------------------------------------------------------------------                                                                   | -------- | ---------------------- |
+| kursToperson gesamt                                                                                                                   |    o     |           o            |
+| -------------------------------------------------------------------                                                                   | -------- | ---------------------- |
+|
