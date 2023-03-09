@@ -85,28 +85,14 @@
             <section class="wrapper"> <!-- th:if="${kurs1.status1 != Active or ${listKurse1.isEmpty() }"-->
                 <div class="row">
                     <h2>Unser aktuelles Kursangebot</h2>
-                    <!--                    <div align="left">-->
-                    <!--                        <h3><a th:href="@{'/k1/kurs1/newkurs1'}" class="btn btn-light my-2 my-sm-0">Kurs1-->
-                    <!--                            hinzufügen</a></h3>-->
-                    <!--                    </div>-->
-                    <!--                        <form class="form-inline">-->
+<!--                    <form th:action="@{'/k1/kurs1/kurse'}" method="get">-->
+<!--                        <input id="txtsearch" type="text" name="keyword">-->
+<!--                        <button type="submit">Suchen</button>-->
+<!--                    </form>-->
 
-                    <!--                    <div class="input-group">-->
-                    <!--                        <div class="input-group-prepend">-->
-                    <!--                        </div>-->
-                    <!--                        <input type="text" class="form-control" id="inputSucheKurse1" onkeyup="suchFunctionKurs()"-->
-                    <!--                               placeholder="Suchbegriff hier eingeben ..." aria-label="Username"-->
-                    <!--                               aria-describedby="basic-addon1">-->
-                    <!--                    </div>-->
 
-                    <form th:action="@{'/k1/kurs1'}" method="get">
-                        <input id="txtsearch" type="text" name="keyword">
-                        <button type="submit">Suchen</button>
-                    </form>
-
-                    <!--                        </form>-->
                 </div>
-<br><br>
+                <br><br>
                 <tr>
                     <div class="col-sm-5" align="center">
                         <div class="panel-body" align="center">
@@ -127,11 +113,11 @@
 
                                 </tr>
                                 </thead>
-                                <tr th:if="${kurse.isEmpty()}">
+                                <tr th:if="${listKurse.isEmpty()}">
                                     <td colspan="4"> keine Kurse vorhanden</td>
                                 </tr>
 
-                                <tr th:each="kurs1 : ${kurse}" th:if="${kurs1.status}">
+                                <tr th:each="kurs1 : ${listKurse}" th:if="${kurs1.status}">
                                     <td th:text="${kurs1.kursId}">KursID</td>
                                     <td th:text="${kurs1.kursname}">Kursname1</td>
                                     <td th:text="${kurs1.anzahl_tage}">AnzahlTage</td>
