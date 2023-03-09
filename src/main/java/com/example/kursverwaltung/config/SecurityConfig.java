@@ -1,5 +1,6 @@
 package com.example.kursverwaltung.config;
 
+import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.UserInfoRepository;
 import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,7 @@ public class SecurityConfig {
         return new UserInfoUserDetailsService();
     }
 
+
     /*    @Bean
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
             http
@@ -54,9 +56,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/logout","/","/person/welcome","/k1/kurs1","/person/newperson","/person/**","/person/saveperson","/person/personen","/user/newUser","/user/**","/user/saveUser","/user/deleteUser/*").permitAll()
+                .requestMatchers("/home","/static/**","/public/**","/logout", "/", "/person/welcome", "/k1/kurs1", "/person/newperson", "/person/**", "/person/saveperson", "/person/personen", "/index", "/user/**", "/user/saveUser", "/user/deleteUser/*").permitAll()
                 .and()
-                .authorizeHttpRequests().requestMatchers("/public","/person/**,","/k1/kurs1/**").authenticated()
+                .authorizeHttpRequests().requestMatchers( "/person/**", "/k1/kurs1/**").authenticated()
                 .and().formLogin()
                 .and().build();
     }
