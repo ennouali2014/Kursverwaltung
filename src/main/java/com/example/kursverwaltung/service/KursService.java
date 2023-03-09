@@ -25,7 +25,9 @@ public class KursService {
     public List<Kurs> listAll() {
         return kursRepository.findAll();
     }
+
     public List<Kurs> findByKeyword(String keyword){
         return kursRepository.findByKeyword(keyword);}
+
 
 }
