@@ -23,94 +23,105 @@
         <div class="col py-3"-->
 
 
-            <!-- hier den individuellen Bereich einer Site einfügen -->
-
+<!-- hier den individuellen Bereich einer Site einfügen -->
 
 
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
-    <div class="col-sm-5" align="center">
-        <div class="panel-body" align="center">
-            <table class="table">
-                <thead class="thead-dark">
-                <tr>
-                    <th>Kurs ID</th>
-                    <th>Kurs Name</th>
-                    <th>Status</th>
-                    <th>Anzahl Tage</th>
-                    <th>Tage / Woche </th>
-                    <th>Start Datum</th>
-                    <th>End Datum</th>
-                    <th>Min Teilnehmer</th>
-                    <th>Max Teilnehmer</th>
-                    <th>Freie Plaetze</th>
-                    <th>Aktuelle Teilnehmer</th>
-                    <th>Gebuehr Brutto</th>
-                    <th>Gebuehr Netto</th>
-                    <th>Mwst Euro</th>
-                    <th>Mwst Prozent</th>
-                    <th>Kurs Beschreibung</th>
+            <h2>Kursliste</h2>
+            <div align="left">
+                <h3><a th:href="@{'/k1/kurs1/newkurs'}">Add new kurs</a></h3>
+            </div>
 
-                </tr>
-                </thead>
-                   <!--tr th:if="${listKurse1.isEmpty()}">
-                       <td colspan="4"> keine Kurse vorhanden</td>
-                   </tr-->
-                <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+            <form th:action="@{'/k1/kurs1/kurse'}" method="get">
+                <input id="txtsearch" type="text" name="keyword">
+                <button type="submit">Suchen</button>
+            </form>
+            <tr>
+                <div class="col-sm-5" align="center">
+                    <div class="panel-body" align="center">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th>Kurs ID</th>
+                                <th>Kurs Name</th>
+                                <th>Status</th>
+                                <th>Anzahl Tage</th>
+                                <th>Tage / Woche</th>
+                                <th>Start Datum</th>
+                                <th>End Datum</th>
+                                <th>Min Teilnehmer</th>
+                                <th>Max Teilnehmer</th>
+                                <th>Freie Plaetze</th>
+                                <th>Aktuelle Teilnehmer</th>
+                                <th>Gebuehr Brutto</th>
+                                <th>Gebuehr Netto</th>
+                                <th>Mwst Euro</th>
+                                <th>Mwst Prozent</th>
+                                <th>Kurs Beschreibung</th>
 
-                <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
-                <tr th:each="kurs : ${kurse}">
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${kurse.isEmpty()}">
+                                <td colspan="4"> keine Kurse vorhanden</td>
+                            </tr>
+                            <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
 
-                    <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
-                    <td th:text="${kurs.kursId}"></td>
-                    <td th:text="${kurs.kursname}"></td>
-                    <td th:text="${kurs.status}">Status</td>
-                    <td th:text="${kurs.anzahl_tage}">Anzahl Tage</td>
-                    <td th:text="${kurs.zyklus}">Zyklus</td>
+                            <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
+                            <tr th:each="kurs : ${kurse}">
 
-                    <td th:text="${kurs.start_datum}">Start Datum</td>
+                                <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                                <td th:text="${kurs.kursId}"></td>
+                                <td th:text="${kurs.kursname}"></td>
+                                <td th:text="${kurs.status}">Status</td>
+                                <td th:text="${kurs.anzahl_tage}">Anzahl Tage</td>
+                                <td th:text="${kurs.zyklus}">Zyklus</td>
 
-                    <td th:text="${kurs.ende_datum}">End Datum</td>
-                    <td th:text="${kurs.min_tn_anzahl}">Min Teilnehmer</td>
-                    <td th:text="${kurs.max_tn_anzahl}">Max Teilnehmer</td>
-                    <td th:text="${kurs.freie_plaetze}">Freie Plaetze Kurs ID</td>
-                    <td th:text="${kurs.aktuelle_tn_anzahl}">Aktuelle Teilnehmer</td>
-                    <td th:text="${kurs.gebuehr_brutto}">Gebuehr Brutto</td>
-                    <td th:text="${kurs.gebuehr_netto}">Gebuehr Netto</td>
-                    <td th:text="${kurs.mwst_euro}">Mwst Euro</td>
-                    <td th:text="${kurs.mwst_prozent}">Mwst Prozent</td>
+                                <td th:text="${kurs.start_datum}">Start Datum</td>
 
-                    <td th:text="${kurs.kurs_beschreibung}">Kurs Beschreibung</td>
-                    <td>
+                                <td th:text="${kurs.ende_datum}">End Datum</td>
+                                <td th:text="${kurs.min_tn_anzahl}">Min Teilnehmer</td>
+                                <td th:text="${kurs.max_tn_anzahl}">Max Teilnehmer</td>
+                                <td th:text="${kurs.freie_plaetze}">Freie Plaetze Kurs ID</td>
+                                <td th:text="${kurs.aktuelle_tn_anzahl}">Aktuelle Teilnehmer</td>
+                                <td th:text="${kurs.gebuehr_brutto}">Gebuehr Brutto</td>
+                                <td th:text="${kurs.gebuehr_netto}">Gebuehr Netto</td>
+                                <td th:text="${kurs.mwst_euro}">Mwst Euro</td>
+                                <td th:text="${kurs.mwst_prozent}">Mwst Prozent</td>
 
-                        <a th:href="@{'/k1/kurs1/editkurs/' + ${kurs.kursId}}">Edit</a>
-                    </td>
-                    <td>
-                        <a th:href="@{'/k1/kurs1/newkurs'}">Add kurs</a>
-                    </td>
+                                <td th:text="${kurs.kurs_beschreibung}">Kurs Beschreibung</td>
+                                <td>
 
-                    <td>
-                        <a th:href="@{'/k1/kurs1/deletekurs/' + ${kurs.kursId}}">Delete</a>
-                    </td>
-                </tr>
+                                    <a th:href="@{'/k1/kurs1/editkurs/' + ${kurs.kursId}}">Edit</a>
+                                </td>
+                                <td>
+                                    <a th:href="@{'/k1/kurs1/newkurs'}">Add kurs</a>
+                                </td>
+
+                                <td>
+                                    <a th:href="@{'/k1/kurs1/deletekurs/' + ${kurs.kursId}}">Delete</a>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
 
 
-            </table>
-
-
-        </div>
-    </div>
+                    </div>
+                </div>
+            </tr>
         </div>
     </section>
 </div>
 
 
-            <!-- hier endet indiviueller bereich -->
+<!-- hier endet indiviueller bereich -->
 
 
-        <!--/div>
-    </div>
+</div>
+<!--</div>
 </div-->
 
 </body>
