@@ -34,13 +34,13 @@
                             diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
                             <span th:each="person : ${kurs.interessant}">
                             <br/>&nbsp;&nbsp;
-                            <b th:text="${person.vorname}+${person.nachname}"></b>
+                            <b th:text="${person.vorname }+${'&nbsp;'}+${person.nachname}"></b>
                             </span>
                             <br/>
                             <br/>
                             diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
                             <span th:each="person : ${kurs.teilnehmer}">
-                            <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
+                            <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${'&nbsp;'}+${person.nachname}"></b>
                             </span>
                             <br/>
                             <br/>
@@ -67,7 +67,7 @@
                             <!--/*@thymesVar id="personen" type="com.example.kursverwaltung.service.KursService"*/-->
                             <option th:each="person:${personen}"
                                     th:value="${person.personId}"
-                                    th:text="${person.vorname}+${person.nachname}"></option>
+                                    th:text="${person.vorname }+${'&nbsp;'}+${person.nachname}"></option>
                         </select>
                         <br/>
                         <br/>
