@@ -27,7 +27,29 @@ body {
     font-size:14px !important;
 
 }
+.linkButton {
+    background-color: #1c87c9;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-flex;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 8px 12px;
 
+
+    border-radius: 4px;
+
+}
+.linkButton i {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.linkButton span {
+    display: inline-block;
+    vertical-align: middle;
+}
 h1,h2,h3,h4,h5{
 
     font-weight: 300;
@@ -1098,7 +1120,7 @@ a.logo span {
 
 .search-row {
 
-    float: left;
+   
 
     margin-top: 15px;
 
@@ -1248,7 +1270,7 @@ ul.top-menu > li > a:hover, ul.top-menu > li > a:focus {
 
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.176) !important;
 
-    };
+    }
 
 }
 
@@ -2390,7 +2412,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
+
 
 .panel.panel-default.panel-heading {
 
@@ -3004,7 +3026,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-* /Widget-Content */
+
 
 
 
@@ -3360,7 +3382,7 @@ div[data-role="editor-toolbar"] {
 
 /*-----	map-----*/
 
-* Google maps */
+
 
 
 
@@ -3502,65 +3524,58 @@ div[data-role="editor-toolbar"] {
 
 
 
-
+.addButton{
+    float: left;
+    margin-left: 35px;
+}
+.title-page{
+    margin-left: 35px;
+}
 
 /*search*/
 
 
 
-.search {
+.search{
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1);
 
-    margin-top: 6px ;
+}
 
-    width: 20px;
+.search input{
 
-    -webkit-transition: all .3s ease;
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4;
 
-    -moz-transition: all .3s ease;
-
-    -ms-transition: all .3s ease;
-
-    -o-transition: all .3s ease;
-
-    transition: all .3s ease;
-
-    border: 1px solid #fff;
-
-    box-shadow: none;
-
-    background: url("../img/search-icon.jpg") no-repeat 10px 8px;
-
-    padding:0 5px 0 35px;
-
-    color: #fff;
 
 }
 
 
-
-.search:focus {
-
-    margin-top: 5px ;
-
-    width: 180px;
-
-    border: 1px solid #eaeaea;
+.search input:focus{
 
     box-shadow: none;
+    border: 2px solid #0b5ed7;
 
-    -webkit-transition: all .3s ease;
 
-    -moz-transition: all .3s ease;
+}
 
-    -ms-transition: all .3s ease;
+.search .fa-search{
 
-    -o-transition: all .3s ease;
+    position: absolute;
+    top: 20px;
+    left: 16px;
 
-    transition: all .3s ease;
+}
 
-    color: #c8c8c8;
+.search button{
 
-    font-weight: 300;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: #1c87c9;
 
 }
 
@@ -3670,7 +3685,7 @@ div[data-role="editor-toolbar"] {
 
     font-weight: 300;
 
-    font-weight: 30px;
+
 
 }
 
@@ -4152,7 +4167,7 @@ div[data-role="editor-toolbar"] {
 
         margin-bottom: -4px;
 
-    };
+    }
 
     }
 
@@ -4858,13 +4873,7 @@ ul.ft-link li a i {
 
 
 
-/*profile-widget image bg*/
 
-.profile-widget-img{
-
-    background: url('../img/backgrounds/bg-11-small.jpg') no-repeat !important;
-
-}
 
 .profile-nav .profile-widget-img .bg-layer {
 
@@ -5534,21 +5543,7 @@ ul.ft-link li a i {
 
 /*weather widget 2*/
 
-.weather-bg-img {
 
-    background: url(../img/backgrounds/bg-14-small.jpg) no-repeat center center;
-
-    color: #fff;
-
-    text-shadow: 0px 1px 5px #fed189;
-
-    text-align: center;
-
-    font-size: 16px;
-
-    font-weight: 300;
-
-}
 
 
 
@@ -8312,10 +8307,6 @@ table.sliders tr td {
 
     width: 80px;
 
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-
-    mask: url('../img/mask.png') 0 0 no-repeat;
-
     -webkit-user-select: none;
 
     -moz-user-select: none;
@@ -8520,17 +8511,7 @@ table.sliders tr td {
 
 }
 
-.switch-square {
 
-    border-radius: 6px;
-
-    -webkit-border-radius: 6px;
-
-    -webkit-mask: url('../img/mask.png') 0 0 no-repeat;
-
-    mask: url('../img/mask.png') 0 0 no-repeat;
-
-}
 
 .switch-square > div.switch-off label {
 
@@ -8850,35 +8831,9 @@ table.sliders tr td {
 
 
 
-.has-js .label_radio {
-
-    background: url(../img/checkbox/radio-off.png) no-repeat;
-
-}
 
 
 
-.has-js .label_check {
-
-    background: url(../img/checkbox/check-off.png) no-repeat;
-
-}
-
-
-
-.has-js label.c_on {
-
-    background: url(../img/checkbox/check-on.png) no-repeat;
-
-}
-
-
-
-.has-js label.r_on {
-
-    background: url(../img/checkbox/radio-on.png) no-repeat;
-
-}
 
 
 
@@ -9004,21 +8959,7 @@ table.sliders tr td {
 
 
 
-.cke_top, .cke_bottom {
-
-    background: #F5F5F5 !important;
-
-    background: -moz-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    background: -webkit-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    background: -o-linear-gradient(center top , #F5F5F5, #F5F5F5) repeat scroll 0 0 #F5F5F5 !important;
-
-    box-shadow: none;
-
-    padding: 6px 8px 2px;
-
-}
+.
 
 
 

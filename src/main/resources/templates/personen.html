@@ -27,28 +27,55 @@
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
-            <h2>Personenliste</h2>
-            <div align="left">
-                <h3><a th:href="@{'/person/newperson'}">Add new person</a></h3>
+            <div class="title-page">
+                <i class="fa fa-users"></i><h2>Personenliste</h2>
             </div>
-            <form th:action="@{/person/personen}" method="get">
-                <input id="txtsearch" type="text" name="keyword">
-                <button type="submit" class="btn btn-primary">Suchen</button>
-            </form>
+
+            <div class="addButton">
+                <!--h3><a th:href="@{'/person/newperson'}">Add new person</a></h3-->
+                <a class="linkButton" th:href="@{'/person/newperson'}">
+                    <span style="font-size: 20px">Neu Person</span>
+                    <i style="font-size: 20px" class="fa fa-plus"></i></a>
+            </div>
+
+            <div class="container">
+
+                <div class="row d-flex justify-content-center align-items-center">
+
+                    <div class="col-md-8">
+
+                        <form class="search" th:action="@{/person/personen}" method="get">
+                            <i class="fa fa-search"></i>
+                            <input  id="txtsearch"   type="text" class="form-control" placeholder="suchen" name="keyword"/>
+                            <button class="btn btn-primary">Suchen</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+<!--            <form th:action="@{/person/personen}" method="get">-->
+<!--                <input id="txtsearch" type="text" name="keyword">-->
+<!--                <button type="submit" class="btn btn-primary">Suchen</button>-->
+<!--            </form>-->
             <tr>
                 <div class="col-sm-5" align="center">
                     <div class="panel-body" align="center">
                         <table class="table">
                             <thead class="thead-dark">
                             <tr>
-                                <th>Person ID</th>
+                                <!--th>Person ID</th-->
                                 <th>Anrede</th>
-                                <th>Titel</th>
+                                <!--th>Titel</th-->
                                 <th>Vorname</th>
                                 <th>Nachname</th>
-                                <th>Strasse</th>
+                                <!--th>Strasse</th>
                                 <th>PLZ</th>
-                                <th>Ort</th>
+                                <th>Ort</th-->
                                 <th>Email</th>
                             </tr>
                             </thead>
@@ -60,23 +87,38 @@
 
                             <!--/*@thymesVar id="listPerson" type="com.example.kursverwaltung.controller.PersonController"*/-->
                             <tr th:each="person :${listPerson}">
-                                <td th:text="${person.personId}">person ID</td>
-                                <td th:text="${person.anrede}">Anrede</td>
-                                <td th:text="${person.titel}">Titel</td>
-                                <td th:text="${person.vorname}">Vorname</td>
-                                <td th:text="${person.nachname}">Nachname</td>
-                                <td th:text="${person.strasse}">Strasse</td>
-                                <td th:text="${person.plz}">PLZ</td>
-                                <td th:text="${person.ort}">Ort</td>
-                                <td th:text="${person.email}">Email</td>
+                                <!--td th:text="${person.personId}"></td-->
+                                <!--td th:text="${person.anrede}"></td-->
+                                <td th:switch="${person.anrede}">
+                                    <span th:case="1">Frau</span>
+                                    <span th:case="2">Herr</span>
+                                    <span th:case="3">Divers</span>
+                                </td>
+                                <!--td th:text="${person.titel}"></td-->
+                                <td th:text="${person.vorname}"></td>
+                                <td th:text="${person.nachname}"></td>
+                                <!--td th:text="${person.strasse}"></td-->
+                                <!--td th:text="${person.plz}"></td-->
+                                <!--td th:text="${person.ort}"></td-->
+                                <td th:text="${person.email}"></td>
                                 <td>
-                                    <a th:href="@{'/person/editperson/' + ${person.personId}}">Edit</a>
+                                <a class="linkButton" th:href="@{'/person/showperson/' + ${person.personId}}">
+
+                                    <span>Show</span><i style="color: cornsilk;" class="fa fa-eye"></i></a>
+                            </td>
+                                <td>
+                                    <a class="linkButton" th:href="@{'/person/editperson/' + ${person.personId}}">
+
+                                        <span>Edit</span><i style="color: green;" class="fa fa-edit"></i></a>
                                 </td>
                                 <td>
-                                    <a th:href="@{'/person/get/'+${person.personId}}">Add kurs</a>
+                                    <a class="linkButton" th:href="@{'/person/get/'+${person.personId}}">
+                                        <span>Add</span><i style="color: #fed189;" class="fa fa-book"></i></a>
                                 </td>
                                 <td>
-                                    <a th:href="@{'/person/deleteperson/' + ${person.personId}}">Delete</a>
+                                    <a class="linkButton" th:href="@{'/person/deleteperson/' + ${person.personId}}">
+                                        <span>Delete</span><i style="color: red;" class="fa fa-trash"></i>
+                                    </a>
                                 </td>
                             </tr>
 

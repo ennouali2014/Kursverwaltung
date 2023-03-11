@@ -12,7 +12,7 @@
             <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
             <form action="#"
 
-                  th:action="@{'/k1/kurs1/addKursToPerson/'+${kurs.kursId}}"
+                  th:action="@{'/k1/kurs1/addPersonToKurs/'+${kurs.kursId}}"
 
                   enctype="multipart/form-data">
                 <!--div th:with="person=${person}, kurse=${kurse}"-->
@@ -34,13 +34,13 @@
                             diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
                             <span th:each="person : ${kurs.interessant}">
                             <br/>&nbsp;&nbsp;
-                            <b th:text="${person.vorname }+${'&nbsp;'}+${person.nachname}"></b>
+                            <b th:text="${person.vorname }+${person.nachname}"></b>
                             </span>
                             <br/>
                             <br/>
                             diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
                             <span th:each="person : ${kurs.teilnehmer}">
-                            <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${'&nbsp;'}+${person.nachname}"></b>
+                            <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
                             </span>
                             <br/>
                             <br/>
@@ -51,9 +51,13 @@
                     als
                         <select class="form-control" name="choix">
                             <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                            <!--option th:each="ch : ${choix}"
+                                    th:value="${ch}"
+                                    th:text="${ch}"></option-->
                             <option th:each="ch : ${choix}"
                                     th:value="${ch}"
-                                    th:text="${ch}"></option>
+                                    th:text="${ch}"
+                                    th:disabled="${kurs.freie_plaetze == 0 and ch == 'Teilnehmer'}"></option>
                         </select>
                         <br/>
                         <br/>
@@ -67,7 +71,7 @@
                             <!--/*@thymesVar id="personen" type="com.example.kursverwaltung.service.KursService"*/-->
                             <option th:each="person:${personen}"
                                     th:value="${person.personId}"
-                                    th:text="${person.vorname }+${'&nbsp;'}+${person.nachname}"></option>
+                                    th:text="${person.vorname }+${person.nachname}"></option>
                         </select>
                         <br/>
                         <br/>

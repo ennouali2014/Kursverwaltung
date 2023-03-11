@@ -77,13 +77,13 @@
                                                    placeholder="Min Teilnehmer" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">Aktuelle Teilnehmerzahl</label>
                                         <td>
                                             <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
                                                    placeholder="Aktuelle Teilnehmerzahl" required/>
                                         </td>
-                                    </tr>
+                                    </tr-->
                                     <tr>
                                         <label class="form-label">Gebuehr Brutto</label>
                                         <td>
@@ -125,42 +125,43 @@
                                                    placeholder="Tage je Woche" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">End Datum</label>
                                         <td>
                                             <input type="date" th:field="*{ende_datum}" class="form-control"
                                                    placeholder="End Datum" disabled/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr-->
                                         <label class="form-label">Max Teilnehmer</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{max_tn_anzahl}" class="form-control"
+                                                   th:field="*{max_tn_anzahl}"
+                                                   class="form-control"
                                                    placeholder="max Teilnehmer" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">freie Plaetze</label>
                                         <td>
                                             <input type="number" th:field="*{freie_plaetze}" class="form-control"
                                                    placeholder="freie Plaetze" disabled/>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr-->
+                                    <!--tr>
                                         <label class="form-label">Gebuehr Netto</label>
                                         <td>
                                             <input type="number" th:field="*{gebuehr_netto}" class="form-control"
                                                    placeholder="Gebuehr Netto" disabled/>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr-->
+                                    <!--tr>
                                         <label class="form-label">Mwst Euro</label>
                                         <td>
                                             <input type="number" th:field="*{mwst_euro}" class="form-control"
                                                    placeholder="Mwst Euro" disabled/>
                                         </td>
-                                    </tr>
+                                    </tr-->
 
 
                                 </div>

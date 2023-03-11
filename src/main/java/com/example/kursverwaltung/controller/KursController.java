@@ -56,12 +56,12 @@ public class KursController {
 
     @PostMapping("/kurs1/savekurs")
     //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
-    public String saveKurs(@ModelAttribute("kurs1") Kurs kurs1,
-                           @RequestParam("start_datum") LocalDate start_datum1_L,
-                           @RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
-                           @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
-                           @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
-                           @RequestParam("mwst_prozent") Double mwst_prozent1) {
+    public String saveKurs(@ModelAttribute ("kurs1") Kurs kurs1,
+                            @RequestParam("start_datum") LocalDate start_datum1_L,
+                            //@RequestParam("aktuelle_tn_anzahl") int aktuelle_tn_anzahl1,
+                            @RequestParam("max_tn_anzahl") int max_tn_anzahl1,
+                            @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
+                            @RequestParam("mwst_prozent") Double mwst_prozent1) {
 //        if (kurs1 == null || start_datum1_L == null || aktuelle_tn_anzahl1 == null || max_tn_anzahl1 == null) {
 //
 //            return "error";
@@ -73,14 +73,18 @@ public class KursController {
         kurs1.setEnde_datum(kurs1.getStart_datum().plusDays((milliseconds / 86400000L)));
 
         kurs1.setMax_tn_anzahl(max_tn_anzahl1);
-        kurs1.setAktuelle_tn_anzahl(aktuelle_tn_anzahl1);
-        if (kurs1.getMax_tn_anzahl() >= kurs1.getAktuelle_tn_anzahl()) {
+        //kurs1.setAktuelle_tn_anzahl(aktuelle_tn_anzahl1);
+       /* if (kurs1.getMax_tn_anzahl() >= kurs1.getAktuelle_tn_anzahl()) {
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs1.getAktuelle_tn_anzahl());
 
         } else {
 
             kurs1.setFreie_plaetze(0);
-        }
+        }*/
+
+
+        System.out.println("kurs1.getTeilnehmer().size():--"+kurs1.getTeilnehmer().size());
+        kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl()-kurs1.getTeilnehmer().size());
         kurs1.setGebuehr_brutto(gebuehr_brutto1);
         kurs1.setMwst_prozent(mwst_prozent1);
         kurs1.setGebuehr_netto(Math.round((kurs1.getGebuehr_brutto() / (100 + kurs1.getMwst_prozent()) * 100) * 100.0) / 100.0);
@@ -99,6 +103,7 @@ public class KursController {
         ModelAndView modelAndView1 = new ModelAndView("newkurs");
         Kurs kurs1 = service.get(kursId);
         modelAndView1.addObject("kurs1", kurs1);
+        System.out.println("kurs1.getTeilnehmer().size():++"+kurs1.getTeilnehmer().size());
         return modelAndView1;
     }
 
@@ -110,35 +115,28 @@ public class KursController {
 
     @RequestMapping("/kurs1/get/{kursId}")
     public ModelAndView getKursId(@PathVariable Long kursId) {
-        String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessent"};
+        String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessant"};
         ModelAndView mav = new ModelAndView("addPersonToKurs");
         mav.addObject("kurs", service.get(kursId));
         mav.addObject("personen", service.getAllPerson());
         mav.addObject("choix", teilnehmer_interessant_arr);
         return mav;
     }
-
-    @RequestMapping("/kurs1/addKursToPerson/{kursId}")
-    public String assignPersonToKurs(@PathVariable Long kursId, @RequestParam Long personId, @RequestParam String choix) {
+    @RequestMapping ("/kurs1/addPersonToKurs/{kursId}")
+    public String assignPersonToKurs(@PathVariable Long kursId,@RequestParam Long personId,@RequestParam String choix){
         Person person = service.getPerson(personId);
         Kurs kurs = service.get(kursId);
         if (choix.equals("Teilnehmer")) {
-            System.out.println("---1-----" + person);
-            if (kurs.getInteressant().size() > 0) {
+            if(kurs.getFreie_plaetze()>0) {
                 kurs.hadInteressant(person);
+                kurs.setTeilnehmer(kurs.add(person,kurs.getTeilnehmer()));
+                kurs.setFreie_plaetze(kurs.getMax_tn_anzahl()-kurs.getTeilnehmer().size());
+                person.add(kurs,person.getInKursteilnehmen());
+
             }
-            System.out.println("---2-----" + kurs.getTeilnehmer());
-            kurs.getTeilnehmer().add(person);
-            System.out.println("---3-----" + kurs.getTeilnehmer());
-            kurs.setTeilnehmer(kurs.getTeilnehmer());
-            System.out.println("---4-----" + kurs.getTeilnehmer());
-            person.getInKursteilnehmen().add(kurs);
-            System.out.println("---5-----" + person.getInKursteilnehmen());
         } else {
-            if (kurs.getTeilnehmer().size() > 0) {
-                kurs.hadTeilnehmer(person);
-            }
-            kurs.getInteressant().add(person);
+            kurs.hadTeilnehmer(person);
+            kurs.getInteressant().add(person) ;
             kurs.setInteressant(kurs.getInteressant());
             person.getInKursinteressieren().add(kurs);
         }
