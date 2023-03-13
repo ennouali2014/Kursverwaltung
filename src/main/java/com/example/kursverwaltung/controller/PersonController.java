@@ -82,8 +82,8 @@ public class PersonController {
         }
         serviceK.save(kurs);
         service.save(person);
-        return "redirect:/person/personen";
-
+        //return "redirect:/person/personen";
+        return "redirect:/person/get/" + personId + "?success=true";
     }
     @RequestMapping("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId) {
@@ -92,6 +92,12 @@ public class PersonController {
         mav.addObject("person", service.getPersonId(personId));
         mav.addObject("kurse", service.getAllkurs());
         mav.addObject("choix", teilnehmer_interessant_arr);
+        return mav;
+    }
+    @RequestMapping("/showPerson/{personId}")
+    public ModelAndView showPerson(@PathVariable Long personId) {
+        ModelAndView mav = new ModelAndView("showPerson");
+        mav.addObject("person", service.getPersonId(personId));
         return mav;
     }
 

@@ -28,15 +28,21 @@
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
-            <div align="center">
-                <h1>Person anlegen/editieren</h1>
-                <br />
-                <div class="col-sm-4">
+            <div style="margin-left: 20px ">
+                <a class="backButton" th:href="@{'/person/personen'}">
+                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                    <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                </a>
+            </div>
+            <div class="title-page">
+                <i class="fa fa-user"></i><h2>Person anlegen/editieren</h2>
+            </div>
+            <div style="margin: 0px 60px 15px 20px;">
                     <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
                     <form action="#" th:action="@{/person/saveperson}" th:object="${person}" method="post">
 
 
-                        <div alight="left">
+                        <div >
                             <tr>
                                 <label class="form-label" >Anrede</label>
                                 <td>
@@ -102,12 +108,12 @@
                         <br>
 
                         <br>
-                        <tr>
-                            <td colspan="2"><button type="submit" class="btn btn-info">Save</button> </td>
-                        </tr>
+                        <div style="padding-left: 40%">
+                            <button type="submit" class="linkButton">Speichern</button>
+                            <button type="reset" class="linkButton">Abbrechen</button>
+                        </div>
 
                     </form>
-                </div>
             </div>
 
 

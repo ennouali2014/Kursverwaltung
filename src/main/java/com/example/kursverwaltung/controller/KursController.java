@@ -81,10 +81,16 @@ public class KursController {
 
             kurs1.setFreie_plaetze(0);
         }*/
+        if(kurs1.getKursId()!=null){
+            Kurs kurs = service.get(kurs1.getKursId());
+            System.out.println("kurs.getTeilnehmer().size():--"+kurs.getTeilnehmer().size());
+            kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl()-kurs.getTeilnehmer().size());
+        }else{
+            kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl()-kurs1.getTeilnehmer().size());
+        }
 
 
-        System.out.println("kurs1.getTeilnehmer().size():--"+kurs1.getTeilnehmer().size());
-        kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl()-kurs1.getTeilnehmer().size());
+
         kurs1.setGebuehr_brutto(gebuehr_brutto1);
         kurs1.setMwst_prozent(mwst_prozent1);
         kurs1.setGebuehr_netto(Math.round((kurs1.getGebuehr_brutto() / (100 + kurs1.getMwst_prozent()) * 100) * 100.0) / 100.0);
@@ -122,6 +128,12 @@ public class KursController {
         mav.addObject("choix", teilnehmer_interessant_arr);
         return mav;
     }
+    @RequestMapping("/kurs1/showKurs/{kursId}")
+    public ModelAndView showKurs(@PathVariable Long kursId) {
+        ModelAndView mav = new ModelAndView("showKurs");
+        mav.addObject("kurs", service.get(kursId));
+        return mav;
+    }
     @RequestMapping ("/kurs1/addPersonToKurs/{kursId}")
     public String assignPersonToKurs(@PathVariable Long kursId,@RequestParam Long personId,@RequestParam String choix){
         Person person = service.getPerson(personId);
@@ -142,7 +154,8 @@ public class KursController {
         }
         service.save(kurs);
         personService.save(person);
-        return "redirect:/k1/kurs1/kurse";
+        //return "redirect:/k1/kurs1/kurse";
+        return "redirect:/k1/kurs1/get/"+kursId+"?success=true";
     }
 
 

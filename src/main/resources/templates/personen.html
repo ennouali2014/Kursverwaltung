@@ -27,6 +27,12 @@
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
+            <div style="margin-left: 20px ">
+                <a class="backButton" th:href="@{'/home'}">
+                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                    <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                </a>
+            </div>
             <div class="title-page">
                 <i class="fa fa-users"></i><h2>Personenliste</h2>
             </div>
@@ -38,22 +44,16 @@
                     <i style="font-size: 20px" class="fa fa-plus"></i></a>
             </div>
 
-            <div class="container">
-
-                <div class="row d-flex justify-content-center align-items-center">
-
-                    <div class="col-md-8">
-
+                    <div class="col-md-6" style="margin-left: 20px">
                         <form class="search" th:action="@{/person/personen}" method="get">
                             <i class="fa fa-search"></i>
                             <input  id="txtsearch"   type="text" class="form-control" placeholder="suchen" name="keyword"/>
                             <button class="btn btn-primary">Suchen</button>
                         </form>
-
                     </div>
 
-                </div>
-            </div>
+
+
 
 
 
@@ -62,9 +62,9 @@
 <!--                <input id="txtsearch" type="text" name="keyword">-->
 <!--                <button type="submit" class="btn btn-primary">Suchen</button>-->
 <!--            </form>-->
-            <tr>
-                <div class="col-sm-5" align="center">
-                    <div class="panel-body" align="center">
+
+                <div class="col-sm-8">
+                    <div class="panel-body" >
                         <table class="table">
                             <thead class="thead-dark">
                             <tr>
@@ -102,7 +102,7 @@
                                 <!--td th:text="${person.ort}"></td-->
                                 <td th:text="${person.email}"></td>
                                 <td>
-                                <a class="linkButton" th:href="@{'/person/showperson/' + ${person.personId}}">
+                                <a class="linkButton" th:href="@{'/person/showPerson/' + ${person.personId}}">
 
                                     <span>Show</span><i style="color: cornsilk;" class="fa fa-eye"></i></a>
                             </td>
@@ -129,7 +129,7 @@
 
                 </div>
 
-            </tr>
+
 
         </div>
     </section>

@@ -9,89 +9,96 @@
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
-            <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
-            <form action="#"
+            <div class="container">
+                <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                <div>
+                    <a class="backButton" th:href="@{'/k1/kurs/kurse'}">
+                        <i style="margin: inherit"  class="fa fa-backward"></i>
+                        <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                    </a>
+                </div>
+                <h2> Person zu einem Kurs hinfügen </h2>
+                <div class="container-fluid">
+                    <form action="#"
 
-                  th:action="@{'/k1/kurs1/addPersonToKurs/'+${kurs.kursId}}"
+                      th:action="@{'/k1/kurs1/addPersonToKurs/'+${kurs.kursId}}"
 
-                  enctype="multipart/form-data">
-                <!--div th:with="person=${person}, kurse=${kurse}"-->
-                <div class="col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Kurs mit Personen</div>
-                        <div class="panel-body" style="padding-left: 5px;">
-                            Kursname : <b th:text="${kurs.kursname}"></b>
+                      enctype="multipart/form-data">
+                    <!--div th:with="person=${person}, kurse=${kurse}"-->
+                    <div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Kurs mit Personen</div>
+                            <div class="panel-body" style="padding-left: 5px;">
+                                Kursname : <b th:text="${kurs.kursname}"></b>
+                                <br/>
+                                <br/>
+                                Start-Datum : <b th:text="${kurs.start_datum}"></b>
+                                <br/>
+                                End-Datum : <b th:text="${kurs.ende_datum}"></b>
+                                <br/>
+                                <br/>
+                                freie Plaetze : <b th:text="${kurs.freie_plaetze}"></b>
+                                <br/>
+                                <br/>
+                                diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
+                                <span th:each="person : ${kurs.interessant}">
+                                <br/>&nbsp;&nbsp;
+                                <b th:text="${person.vorname }+${person.nachname}"></b>
+                                </span>
+                                <br/>
+                                <br/>
+                                diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
+                                <span th:each="person : ${kurs.teilnehmer}">
+                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
+                                </span>
+                                <br/>
+                                <br/>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        als
+                            <select class="form-control" name="choix">
+                                <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
+                                <!--option th:each="ch : ${choix}"
+                                        th:value="${ch}"
+                                        th:text="${ch}"></option-->
+                                <option th:each="ch : ${choix}"
+                                        th:value="${ch}"
+                                        th:text="${ch}"
+                                        th:disabled="${kurs.freie_plaetze == 0 and ch == 'Teilnehmer'}"></option>
+                            </select>
                             <br/>
                             <br/>
-                            Start-Datum : <b th:text="${kurs.start_datum}"></b>
-                            <br/>
-                            End-Datum : <b th:text="${kurs.ende_datum}"></b>
-                            <br/>
-                            <br/>
-                            freie Plaetze : <b th:text="${kurs.freie_plaetze}"></b>
-                            <br/>
-                            <br/>
-                            diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
-                            <span th:each="person : ${kurs.interessant}">
-                            <br/>&nbsp;&nbsp;
-                            <b th:text="${person.vorname }+${person.nachname}"></b>
-                            </span>
-                            <br/>
-                            <br/>
-                            diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
-                            <span th:each="person : ${kurs.teilnehmer}">
-                            <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
-                            </span>
+    <!--                        <a th:href="@{'/k1/kurs1/kurse'}" class="btn btn-primary">Abbrechen</a>-->
+    <!--                        <button onclick="history.back()" class="btn btn-primary">Abbrechen</button>-->
+
+                        </div>
+                        <div class="col-md-6">
+                            die Person
+                            <select class="form-control" name="personId">
+                                <!--/*@thymesVar id="personen" type="com.example.kursverwaltung.service.KursService"*/-->
+                                <option th:each="person:${personen}"
+                                        th:value="${person.personId}"
+                                        th:text="${person.vorname }+${person.nachname}"></option>
+                            </select>
                             <br/>
                             <br/>
+    <!--                        <button type="submit" class="btn btn-primary">-->
+    <!--                            zum Kurs hinzufuegen-->
+    <!--                        </button>-->
+
+                        </div>
+                        <div style="padding-left: 35%">
+                            <button type="submit" class="linkButton">zum Kurs hinzufuegen</button>
+                            <a class="linkButton" th:href="@{'/k1/kurs/kurse'}">Abbrechen</a>
                         </div>
                     </div>
-                    <div class="col-md-6">
-
-                    als
-                        <select class="form-control" name="choix">
-                            <!--/*@thymesVar id="choix" type="com.example.kursverwaltung.controller.PersonController"*/-->
-                            <!--option th:each="ch : ${choix}"
-                                    th:value="${ch}"
-                                    th:text="${ch}"></option-->
-                            <option th:each="ch : ${choix}"
-                                    th:value="${ch}"
-                                    th:text="${ch}"
-                                    th:disabled="${kurs.freie_plaetze == 0 and ch == 'Teilnehmer'}"></option>
-                        </select>
-                        <br/>
-                        <br/>
-<!--                        <a th:href="@{'/k1/kurs1/kurse'}" class="btn btn-primary">Abbrechen</a>-->
-<!--                        <button onclick="history.back()" class="btn btn-primary">Abbrechen</button>-->
-
-                    </div>
-                    <div class="col-md-6">
-                        die Person
-                        <select class="form-control" name="personId">
-                            <!--/*@thymesVar id="personen" type="com.example.kursverwaltung.service.KursService"*/-->
-                            <option th:each="person:${personen}"
-                                    th:value="${person.personId}"
-                                    th:text="${person.vorname }+${person.nachname}"></option>
-                        </select>
-                        <br/>
-                        <br/>
-<!--                        <button type="submit" class="btn btn-primary">-->
-<!--                            zum Kurs hinzufuegen-->
-<!--                        </button>-->
-
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary">zum Kurs hinzufuegen</button>
-                    </div>
                     <br/>
-                    <br/>
-                    <div class="col-md-6">
-                        <button onclick="history.back()" class="btn btn-primary">Abbrechen</button>
-                    </div>
+
+                </form>
                 </div>
-                <br/>
-
-            </form>
+            </div>
         </div>
     </section>
 </div>

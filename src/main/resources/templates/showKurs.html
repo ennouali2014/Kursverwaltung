@@ -1,0 +1,82 @@
+
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div class="container">
+                <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                <div>
+                    <a class="backButton" th:href="@{'/k1/kurs/kurse'}">
+                        <i style="margin: inherit"  class="fa fa-backward"></i>
+                        <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                    </a>
+                </div>
+                <div class="container-fluid">
+                        <!--div th:with="person=${person}, kurse=${kurse}"-->
+
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Kurs Details</div>
+                                <div class="panel-body" style="padding-left: 5px;">
+                                    Kursname : <b th:text="${kurs.kursname}"></b>
+                                    <br/>
+                                    <br/>
+                                    Start-Datum : <b th:text="${kurs.start_datum}"></b>
+                                    <br/>
+                                    End-Datum : <b th:text="${kurs.ende_datum}"></b>
+                                    <br/>
+                                    <br/>
+                                    freie Plaetze : <b th:text="${kurs.freie_plaetze}"></b>
+                                    <br/>
+                                    <br/>
+                                    Maximum Teilnehmer : <b th:text="${kurs.max_tn_anzahl}"></b>
+                                    <br/>
+                                    <br/>
+                                    Minimum Teilnehmer : <b th:text="${kurs.min_tn_anzahl}"></b>
+                                    <br/>
+                                    <br/>
+                                    Beschreibung : <b th:text="${kurs.kurs_beschreibung}"></b>
+                                    <br/>
+                                    <br/>
+                                    Gebur Brutto : <b th:text="${kurs.gebuehr_brutto}"></b>
+                                    <br/>
+                                    <br/>
+                                    Gebur Netto : <b th:text="${kurs.gebuehr_netto}"></b>
+                                    <br/>
+                                    <br/>
+                                    Mwst in Prozent : <b th:text="${kurs.mwst_prozent}"></b>
+                                    <br/>
+                                    <br/>
+                                    Mwrt in Euro : <b th:text="${kurs.mwst_euro}"></b>
+                                    <br/>
+                                    <br/>
+                                    diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
+                                    <span th:each="person : ${kurs.interessant}">
+                                <br/>&nbsp;&nbsp;
+                                <b th:text="${person.vorname }+${person.nachname}"></b>
+                                </span>
+                                    <br/>
+                                    <br/>
+                                    diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
+                                    <span th:each="person : ${kurs.teilnehmer}">
+                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
+                                </span>
+                                    <br/>
+                                    <br/>
+                                </div>
+                            </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
+
+
