@@ -44,7 +44,6 @@ public class PersonController {
     @GetMapping("/newperson")
     //@PreAuthorize("hasAuthority('ADMIN')")
     public String add(Person person, Model model) {
-        System.out.println("Form");
         model.addAttribute("person", new Person());
         return "newperson";
     }
@@ -91,7 +90,7 @@ public class PersonController {
         return "redirect:/person/personen";
     }
 
-    @RequestMapping("/addPersonToKurs/{personId}")
+
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
         Kurs kurs = service.getKurs(kursId);

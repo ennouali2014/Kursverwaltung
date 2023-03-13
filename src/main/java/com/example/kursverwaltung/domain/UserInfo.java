@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.Objects;
 
 
 @Entity
@@ -20,14 +23,27 @@ public class UserInfo {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "username", unique = true)
+    @NotBlank
+    @Size(min=5)
     private String username;
 
-    @Column(name = "password",length =200, nullable = true)
+    @NotBlank
+    @Size(min=5)
     private String password;
 
-    @Column(name = "roles",length = 150, nullable = true)
+    @NotBlank
     private String roles;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserInfo)) return false;
+        UserInfo userInfo = (UserInfo) o;
+        return Objects.equals(username, userInfo.username);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, password);
+    }
 }

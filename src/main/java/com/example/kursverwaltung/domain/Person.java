@@ -35,6 +35,7 @@ public class Person {
 
     private String vorname;
     @NotBlank
+    @Size(min=2)
     private String nachname;
     @NotBlank
     @Email
