@@ -92,34 +92,41 @@ public class PersonController {
     }
 
     @RequestMapping("/addPersonToKurs/{personId}")
+    @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
         Kurs kurs = service.getKurs(kursId);
-        if (choix.equals("teilnehmer")) {
-            person.schonInteressant(kurs);
-            person.getInKursteilnehmen().add(kurs);
-            person.setInKursteilnehmen(person.getInKursteilnehmen());
-            kurs.getTeilnehmer().add(person);
+        if (choix.equals("Teilnehmer")) {
+            if(kurs.getFreie_plaetze()>0){
+                person.schonInteressant(kurs);
+                person.setInKursteilnehmen(person.add(kurs,person.getInKursteilnehmen()));
+                kurs.add(person,kurs.getTeilnehmer());
+                kurs.setFreie_plaetze(kurs.getMax_tn_anzahl()-kurs.getTeilnehmer().size());
+            }
         } else {
             person.schonTeilnehmer(kurs);
-            person.getInKursinteressieren().add(kurs);
+            person.getInKursinteressieren().add(kurs) ;
             person.setInKursinteressieren(person.getInKursinteressieren());
             kurs.getInteressant().add(person);
         }
-        //serviceK.save(kurs);
+        serviceK.save(kurs);
         service.save(person);
-        return "redirect:/person/personen";
-
+        //return "redirect:/person/personen";
+        return "redirect:/person/get/" + personId + "?success=true";
     }
-
-
     @RequestMapping("/get/{personId}")
     public ModelAndView getPersonId(@PathVariable Long personId) {
-        String[] teilnehmer_interessant_arr = {"teilnehmer", "interessant"};
-        ModelAndView mav = new ModelAndView("addPersonToKurs");
+        String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessent"};
+        ModelAndView mav = new ModelAndView("addKursToPerson");
         mav.addObject("person", service.getPersonId(personId));
         mav.addObject("kurse", service.getAllkurs());
         mav.addObject("choix", teilnehmer_interessant_arr);
+        return mav;
+    }
+    @RequestMapping("/showPerson/{personId}")
+    public ModelAndView showPerson(@PathVariable Long personId) {
+        ModelAndView mav = new ModelAndView("showPerson");
+        mav.addObject("person", service.getPersonId(personId));
         return mav;
     }
 

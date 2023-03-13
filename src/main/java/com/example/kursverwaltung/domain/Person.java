@@ -45,6 +45,8 @@ public class Person {
     private String plz;
     @NotBlank
     private String ort;
+    @Column(name = "email", length = 150, nullable = false)
+    private String email;
 
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "person_kurs_interessant",
@@ -217,24 +219,37 @@ public class Person {
     }
 
     public void schonTeilnehmer(Kurs kurs) {
-        for (Kurs kursp : this.inKursteilnehmen) {
+        Iterator<Kurs> iterator = this.inKursteilnehmen.iterator();
+        while (iterator.hasNext()) {
+            Kurs kursp = iterator.next();
             if (kursp.getKursId().equals(kurs.getKursId())) {
-                inKursteilnehmen.remove(kursp);
-                kursp.getTeilnehmer().remove(this);
-
+                iterator.remove();
+                kurs.getTeilnehmer().remove(this);
+                if(kurs.getFreie_plaetze()<kurs.getMax_tn_anzahl()) {
+                    kurs.setFreie_plaetze(kurs.getFreie_plaetze() + 1);
+                }
             }
         }
     }
 
     public void schonInteressant(Kurs kurs) {
-        for (Kurs kursp : this.inKursinteressieren) {
+        Iterator<Kurs> iterator = this.inKursinteressieren.iterator();
+        while (iterator.hasNext()) {
+            Kurs kursp = iterator.next();
             if (kursp.getKursId().equals(kurs.getKursId())) {
-                inKursinteressieren.remove(kursp);
-                kursp.getInteressant().remove(this);
+                iterator.remove();
+                kurs.getInteressant().remove(this);
             }
         }
     }
 
-    public void setKurse(Set<Kurs> kurslist) {
+    public Set<Kurs> add(Kurs kurs,Set<Kurs> kursSet){
+        for (Kurs k: kursSet){
+            if(kurs.getKursId().equals(k.getKursId())){
+                return kursSet;
+            }
+        }
+        kursSet.add(kurs);
+        return kursSet;
     }
 }

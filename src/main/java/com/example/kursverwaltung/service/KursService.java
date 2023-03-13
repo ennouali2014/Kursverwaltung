@@ -32,6 +32,6 @@ public class KursService {
 
     public List<Kurs> findByKeyword(String keyword){
         return kursRepository.findByKeyword(keyword);}
-
+    public List<String> getAllkursname(){return kursRepository.getAllnameKurs();}
 
 }

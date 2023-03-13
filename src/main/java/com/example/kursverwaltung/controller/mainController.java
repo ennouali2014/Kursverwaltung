@@ -1,5 +1,6 @@
 package com.example.kursverwaltung.controller;
 
+import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import com.example.kursverwaltung.service.PersonService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+import java.util.Set;
 
 @Controller
 public class mainController {
@@ -22,12 +25,12 @@ public class mainController {
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
-        model.addAttribute("kurse", kursService.listAll());
+        model.addAttribute("listKurse", kursService.listAll());
         return "index";
     }
-
     @GetMapping("/home")
-    public String homePage(Model model){
+    public String home(Model model) {
+        model.addAttribute("kursnamen", kursService.getAllkursname());
         return "home";
     }
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
@@ -38,7 +41,7 @@ public class mainController {
 
 
 
-/*    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+   /* @RequestMapping(value = "/logout", method = RequestMethod.POST)
     public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){

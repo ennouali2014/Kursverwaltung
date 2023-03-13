@@ -29,16 +29,23 @@
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
-            <div align="center">
-                <div class="col-sm-4">
-                    <h1>Kurs anlegen/editieren</h1>
-                    <br/>
+            <div style="margin-left: 20px ">
+                <a class="backButton" th:href="@{'/k1/kurs1/kurse'}">
+                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                    <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                </a>
+            </div>
+            <div class="title-page">
+                <i class="fa fa-pencil-square-o"></i><h2>Kurs anlegen/editieren</h2>
+            </div>
+                <div style="margin: 0px 60px 15px 20px;">
+
                     <!--/*@thymesVar id="kurs1" type="com.example.kursverwaltung.domain.Kurs"*/-->
                     <form action="#" th:action="@{/k1/kurs1/savekurs}" th:object="${kurs1}" method="post">
                         <div id="hbox">
                             <div class="vbox">
 
-                                <div align="center">
+                                <div >
 
                                     <tr>
                                         <label class="form-label">Kursname</label>
@@ -77,13 +84,13 @@
                                                    placeholder="Min Teilnehmer" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">Aktuelle Teilnehmerzahl</label>
                                         <td>
                                             <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
                                                    placeholder="Aktuelle Teilnehmerzahl" required/>
                                         </td>
-                                    </tr>
+                                    </tr-->
                                     <tr>
                                         <label class="form-label">Gebuehr Brutto</label>
                                         <td>
@@ -104,7 +111,7 @@
 
                             </div>
                             <div class="vbox">
-                                <div align="center">
+                                <div>
                                     <tr>
                                         <label class="form-label">Status</label>
                                         <td>
@@ -125,42 +132,43 @@
                                                    placeholder="Tage je Woche" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">End Datum</label>
                                         <td>
                                             <input type="date" th:field="*{ende_datum}" class="form-control"
                                                    placeholder="End Datum" disabled/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <tr-->
                                         <label class="form-label">Max Teilnehmer</label>
                                         <td>
                                             <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{max_tn_anzahl}" class="form-control"
+                                                   th:field="*{max_tn_anzahl}"
+                                                   class="form-control"
                                                    placeholder="max Teilnehmer" required/>
                                         </td>
                                     </tr>
-                                    <tr>
+                                    <!--tr>
                                         <label class="form-label">freie Plaetze</label>
                                         <td>
                                             <input type="number" th:field="*{freie_plaetze}" class="form-control"
                                                    placeholder="freie Plaetze" disabled/>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr-->
+                                    <!--tr>
                                         <label class="form-label">Gebuehr Netto</label>
                                         <td>
                                             <input type="number" th:field="*{gebuehr_netto}" class="form-control"
                                                    placeholder="Gebuehr Netto" disabled/>
                                         </td>
-                                    </tr>
-                                    <tr>
+                                    </tr-->
+                                    <!--tr>
                                         <label class="form-label">Mwst Euro</label>
                                         <td>
                                             <input type="number" th:field="*{mwst_euro}" class="form-control"
                                                    placeholder="Mwst Euro" disabled/>
                                         </td>
-                                    </tr>
+                                    </tr-->
 
 
                                 </div>
@@ -168,7 +176,7 @@
                             </div>
                         </div>
                         <div class="vbox">
-                            <div align="center">
+                            <div>
 
                                 <tr>
                                     <label class="form-label">Kursbeschreibung</label>
@@ -181,19 +189,16 @@
 
                             </div>
 
-                            <div>
-                                <br>
-                                <tr>
-                                    <td colspan="2">
-                                        <button type="submit" class="btn btn-info">Save</button>
-                                    </td>
-                                </tr>
+                            <div style="padding-left: 40%">
+                                <button type="submit" class="linkButton">Speichern</button>
+                                <button type="reset" class="linkButton">Abbrechen</button>
+
                             </div>
                         </div>
 
                     </form>
                 </div>
-            </div>
+
         </div>
     </section>
 </div>

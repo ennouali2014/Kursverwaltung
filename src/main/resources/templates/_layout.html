@@ -25,7 +25,7 @@
 
     <!-- Load font awesome icons -->
     <!--
-    x<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">-->
 
     <!-- full calendar css-->
     <link href="/static/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet"/>
@@ -64,17 +64,17 @@
         <a href="/index" class="logo">Kurs <span class="lite">verwaltung</span></a>
         <!--logo end-->
 
-        <div class="nav search-row" id="top_menu">
-            <!--  search form start -->
-            <ul class="nav top-menu">
-                <li>
-                    <form class="navbar-form">
-                        <input class="form-control" placeholder="Search" type="text">
-                    </form>
-                </li>
-            </ul>
-            <!--  search form end -->
-        </div>
+<!--        <div class="nav search-row" id="top_menu">-->
+<!--            &lt;!&ndash;  search form start &ndash;&gt;-->
+<!--            <ul class="nav top-menu">-->
+<!--                <li>-->
+<!--                    <form class="navbar-form">-->
+<!--                        <input class="form-control" placeholder="Search" type="text">-->
+<!--                    </form>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            &lt;!&ndash;  search form end &ndash;&gt;-->
+<!--        </div>-->
 
         <div class="top-nav notification-row">
             <!-- notificatoin dropdown start-->
@@ -322,11 +322,11 @@
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
                         <i class="fa fa-users"></i>
-                        <span>HR</span>
+                        <span>Personen</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{'/person/newperson'}">Neu Person</a></li>
+                        <li><a class="" th:href="@{'/person/newperson'}">Neue Person</a></li>
                         <li><a class="" th:href="@{'/person/personen'}">Alle Personen</a></li>
                         <!--li><a class="" href="/hr">HR Home</a></li-->
                     </ul>
@@ -338,7 +338,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{'/k1/kurs1/newkurs'}">Neu Kurs</a></li>
+                        <li><a class="" th:href="@{'/k1/kurs1/newkurs'}">Neuer Kurs</a></li>
                         <li><a class="" th:href="@{'/k1/kurs1/kurse'}">Alle Kurse</a></li>
                     </ul>
                 </li>
@@ -361,7 +361,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" th:href="@{'/user/newUser'}">Neu User</a></li>
+                        <li><a class="" th:href="@{'/user/newUser'}">Neuer User</a></li>
                         <li><a class="" th:href="@{'/user/users'}">Alle Users</a></li>
                     </ul>
                 </li>
