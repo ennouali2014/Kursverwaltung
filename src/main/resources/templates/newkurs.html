@@ -72,11 +72,11 @@
                                         <input type="date" th:field="*{start_datum}"
                                                class="form-control" id="start_datum" name="start_datum"
                                                placeholder="Start Datum" required/>
-                                        <p th:if="${#fields.hasErrors('start_datum')}" class="error-message">
+                                        <p style="color: red" th:if="${#fields.hasErrors('start_datum') && kurs1.kursId == null} " class="error-message">
                                                     <span th:if="${#fields.hasErrors('start_datum')}"
                                                           th:errors="*{start_datum}">
                                                     </span>
-                                        <p><span th:if="${#fields.hasErrors('start_datum')}">
+                                        <p><span th:if="${#fields.hasErrors('start_datum') && kurs1.kursId == null}" class="error-message">
                                                 Invalid start date. Please select a date on or after today's date.
                                                 </span>
                                         </p>

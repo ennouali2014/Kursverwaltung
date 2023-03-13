@@ -75,15 +75,16 @@ public class KursController {
 
         // Validation of the startdatum
         LocalDate today = LocalDate.now();
-        if (start_datum1_L.isBefore(today)) {
-            result.rejectValue("start_datum", "invalid.date", "Startdatum darf nicht vor dem heutigen Datum liegen.");
-            return "newkurs";
+        if (kurs1.getKursId() == null) {
+            if (start_datum1_L.isBefore(today)) {
+                result.rejectValue("start_datum", "invalid.date", "Startdatum darf nicht vor dem heutigen Datum liegen.");
+                return "newkurs";
+            }
+        } else {
+            kurs1.setStart_datum(start_datum1_L);
+
         }
-
-        kurs1.setStart_datum(start_datum1_L);
-
-
-        //calculating the Endedatum
+        //Calculating the Endedatum
         long milliseconds = 0L;
         if (kurs1.getAnzahl_tage() > kurs1.getZyklus()) {
             milliseconds = (Math.round((float) (kurs1.getAnzahl_tage() / kurs1.getZyklus()) - 1) * 7L + kurs1.getZyklus()) * 86400000L;
@@ -178,7 +179,8 @@ public class KursController {
     }
 
     @RequestMapping("/kurs1/addPersonToKurs/{kursId}")
-    public String assignPersonToKurs(@PathVariable Long kursId, @RequestParam Long personId, @RequestParam String choix) {
+    public String assignPersonToKurs(@PathVariable Long kursId, @RequestParam Long personId, @RequestParam String
+            choix) {
         Person person = service.getPerson(personId);
         Kurs kurs = service.get(kursId);
         if (choix.equals("Teilnehmer")) {
