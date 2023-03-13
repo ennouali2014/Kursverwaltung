@@ -43,13 +43,13 @@
                                 diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
                                 <span th:each="person : ${kurs.interessant}">
                                 <br/>&nbsp;&nbsp;
-                                    <b th:text="${person.vorname }"></b>&nbsp;<b th:text="${person.nachname}"></b>
+                                <b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b>
                                 </span>
                                 <br/>
                                 <br/>
                                 diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
                                 <span th:each="person : ${kurs.teilnehmer}">
-                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname }"></b>&nbsp;<b th:text="${person.nachname}"></b>
+                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b>
                                 </span>
                                 <br/>
                                 <br/>
