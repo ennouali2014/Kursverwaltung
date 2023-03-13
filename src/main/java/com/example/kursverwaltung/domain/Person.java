@@ -1,33 +1,50 @@
 package com.example.kursverwaltung.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.springframework.validation.annotation.Validated;
 
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "person")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Validated
 public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="personId")
+    @Column(name = "personId")
     private Long personId;
     @Column(name = "anrede", length = 150, nullable = false)
     private int anrede;
     @Column(name = "titel", length = 150, nullable = true)
     private String titel;
-    @Column(name = "vorname", length = 150, nullable = false)
+
     private String vorname;
-    @Column(name = "nachname", length = 150, nullable = false)
+    @NotBlank
     private String nachname;
-    @Column(name = "strasse", length = 150, nullable = false)
-    private String strasse;
-    @Column(name = "plz", length = 150, nullable = false)
-    private String plz;
-    @Column(name = "ort", length = 150, nullable = false)
-    private String ort;
-    @Column(name = "email", length = 150, nullable = false)
+    @NotBlank
+    @Email
+    @Column(name = "email", unique = true)
     private String email;
+    @NotBlank
+    private String strasse;
+    @NotBlank
+    private String plz;
+    @NotBlank
+    private String ort;
 
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "person_kurs_interessant",
@@ -40,9 +57,7 @@ public class Person {
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
     private Set<Kurs> inKursteilnehmen = new HashSet<>();
 
-    public Person() {
-
-
+/*    public Person() {
     }
 
     public Person(int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
@@ -55,19 +70,21 @@ public class Person {
         this.plz = plz;
         this.ort = ort;
         this.email = email;
-    }
+    }*/
 
-    public Long getPersonId() {
-        return personId;
-    }
-
-    public Set<Kurs> getInKursteilnehmen() {
+/*    public Set<Kurs> getInKursteilnehmen() {
         return inKursteilnehmen;
     }
 
     public void setInKursteilnehmen(Set<Kurs> inKursteilnehmen) {
         this.inKursteilnehmen = inKursteilnehmen;
+    }*/
+
+/*
+    public Long getPersonId() {
+        return personId;
     }
+
 
     public int getAnrede() {
         return anrede;
@@ -90,7 +107,11 @@ public class Person {
     }
 
     public void setVorname(String vorname) {
-        this.vorname = vorname;
+        if (checkIsEmpty(vorname)) {
+            this.vorname = vorname;
+        } else {
+            System.out.println("Vorname ist leer oder zu kurz!");
+        }
     }
 
     public String getNachname() {
@@ -98,7 +119,11 @@ public class Person {
     }
 
     public void setNachname(String nachname) {
-        this.nachname = nachname;
+        if (checkIsEmpty(nachname)) {
+            this.nachname = nachname;
+        } else {
+            System.out.println("Nachname ist leer oder zu kurz!");
+        }
     }
 
     public String getStrasse() {
@@ -130,8 +155,12 @@ public class Person {
     }
 
     public void setEmail(String email) {
-        this.email = email;
-    }
+        if (checkValidEmail(email)) {
+            this.email = email;
+        } else {
+            System.out.println("Email ist falsch!");
+        }
+    }*/
 
     public Set<Kurs> getInKursinteressieren() {
         return inKursinteressieren;
@@ -140,24 +169,38 @@ public class Person {
     public void setInKursinteressieren(Set<Kurs> inKursinteressieren) {
         this.inKursinteressieren = inKursinteressieren;
     }
-
+/*
     public void setPersonId(Long personId) {
         this.personId = personId;
     }
 
-    /*@Override
+    public static boolean checkIsEmpty(String wert) {
+        return wert != null && wert.length() >= 2;
+    }
+
+    public static boolean checkValidEmail(String email) {
+        String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
+        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
+        java.util.regex.Matcher m = p.matcher(email);
+        return m.matches();
+    }*/
+
+    public boolean isIdentitySame() {
+        return vorname.equals(nachname) && nachname.equals(email);
+    }
+    @Override
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
             Person person = (Person) o;
-            return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(strasse, person.strasse) && Objects.equals(plz, person.plz) && Objects.equals(ort, person.ort) && Objects.equals(email, person.email);
+            return Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(email, person.email);
         }
 
         @Override
         public int hashCode() {
             return Objects.hash(vorname, nachname, strasse, plz, ort, email);
         }
-    */
+
     @Override
     public String toString() {
         return "Person{" +

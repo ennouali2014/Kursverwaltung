@@ -8,7 +8,9 @@ import com.example.kursverwaltung.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -47,6 +49,11 @@ public class PersonService {
         return repoK.findByKursId(kursId);
     }
 
+// TODO 11.03. Mohammed Validierung Von Person
+    public Person getPerson(){
+        Optional<Person> personOptinal = Optional.ofNullable(repo.findByPersonId(1L));
+        return personOptinal.orElse(null);
+    }
     public List<Person> findByKeyword(String keyword) {
         return repo.findByKeyword(keyword);
     }

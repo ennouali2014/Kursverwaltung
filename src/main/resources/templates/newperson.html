@@ -35,7 +35,9 @@
                     <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
                     <form action="#" th:action="@{/person/saveperson}" th:object="${person}" method="post">
 
-
+                        <div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+                            <p th:text="${error}"></p>
+                        </div>
                         <div alight="left">
                             <tr>
                                 <label class="form-label" >Anrede</label>
@@ -60,43 +62,43 @@
                         </div>
                         <div alight="left">
 
-                            <tr>
-                                <label class="form-label" >Vorname</label>
-                                <td><input type="text" minlength="1" th:field="*{vorname}" class="form-control" placeholder="vorname" /></td>
-                            </tr>
+                            <div class="form-group">
+                                <label class="form-label">Vorname</label>
+                                <tr>
+                                    <td><input  class="form-control" minlength="2" type="text" th:field="*{vorname}" id="vorname" placeholder="Vorname      Pflichtfeld * " required="true"/></td>
+                                </tr>
                         </div>
                         <div alight="left">
-
                             <tr>
                                 <label class="form-label" >Nachname</label>
-                                <td><input type="text" minlength="1" th:field="*{nachname}" class="form-control" placeholder="Nachname" /></td>
+                                <td><input type="text" minlength="2" th:field="*{nachname}" class="form-control" placeholder="Nachname      Pflichtfeld * " required="true"/></td>
                             </tr>
                         </div>
                         <div alight="left">
 
                             <tr>
                                 <label class="form-label" >strasse</label>
-                                <td><input type="text" minlength="2" th:field="*{strasse}" class="form-control" placeholder="strasse" /></td>
+                                <td><input type="text" minlength="2" th:field="*{strasse}" class="form-control" placeholder="strasse       Pflichtfeld * " required="true"/></td>
                             </tr>
                         </div>
                         <div alight="left">
 
                             <tr>
                                 <label class="form-label" >PLZ</label>
-                                <td><input type="text" minlength="5" maxlength="5" th:field="*{plz}" class="form-control" placeholder="plz" /></td>
+                                <td><input type="text" minlength="5" maxlength="5" th:field="*{plz}" class="form-control" placeholder="plz       Pflichtfeld * " required="true"/></td>
                             </tr>
                         </div>
                         <div alight="left">
 
                             <tr>
                                 <label class="form-label" >Ort</label>
-                                <td><input type="text" minlength="2" th:field="*{ort}" class="form-control" placeholder="ort" /></td>
+                                <td><input type="text" minlength="2" th:field="*{ort}" class="form-control" placeholder="ort      Pflichtfeld * " required="true"/></td>
                             </tr>
                         </div>
                         <div alight="left">
                             <tr>
                                 <label class="form-label" >Email</label>
-                                <td><input type="email" th:field="*{email}" class="form-control" placeholder="email" /></td>
+                                <td><input type="email" th:field="*{email}" class="form-control" required="true" placeholder="email      Pflichtfeld * " /></td>
                             </tr>
                         </div>
                         <br>

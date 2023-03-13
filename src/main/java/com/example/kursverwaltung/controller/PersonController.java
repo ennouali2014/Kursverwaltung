@@ -4,12 +4,17 @@ import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
+//import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/person")
@@ -18,18 +23,19 @@ public class PersonController {
     private PersonService service;
     @Autowired
     private KursService serviceK;
+
     @GetMapping("/welcome")
     public String welcome() {
         return "welcome";
     }
 
     @GetMapping("/personen")
-   // @PreAuthorize("hasAuthority('ADMIN')")
+    // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model, String keyword) {
         List<Person> listPerson = service.listAll();
-        if(keyword!=null){
-            model.addAttribute("listPerson",service.findByKeyword(keyword));
-        }else{
+        if (keyword != null) {
+            model.addAttribute("listPerson", service.findByKeyword(keyword));
+        } else {
             model.addAttribute("listPerson", listPerson);
         }
         return "personen";
@@ -37,17 +43,37 @@ public class PersonController {
 
     @GetMapping("/newperson")
     //@PreAuthorize("hasAuthority('ADMIN')")
-    public String add(Model model) {
+    public String add(Person person, Model model) {
+        System.out.println("Form");
         model.addAttribute("person", new Person());
         return "newperson";
     }
 
     @PostMapping("/saveperson")
-    //@PreAuthorize("hasAuthority('ADMIN')")
-    public String savePerson(@ModelAttribute("person") Person person) {
+    public String savePerson(@Valid Person person,
+                             BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            bindingResult.getAllErrors().stream().forEach(System.out::println);
+            model.addAttribute("person", person);
+            return "newperson";
+        }
+
+        List<Person> listPerson = service.listAll();
+        if(!listPerson.isEmpty()) {
+            for (Person p : listPerson) {
+                boolean isSame = p.equals(person);
+
+                if (isSame) {
+                    model.addAttribute("isSame", isSame);
+                    model.addAttribute("error", "Eine Person mit denselben Details(Vorname, Nachname, Email) existiert bereits.");
+                    return "newperson";
+                }
+            }
+        }
         service.save(person);
         return "redirect:/person/personen";
     }
+
 
     @RequestMapping("/editperson/{person_id}")
     public ModelAndView showEditPersonpage(@PathVariable(name = "person_id") int id) {
@@ -58,11 +84,13 @@ public class PersonController {
         //mav.addObject("person", person);
         return mav;
     }
+
     @RequestMapping("/deleteperson/{personId}")
     public String deletePerson(@PathVariable(name = "personId") int personId) {
         service.delete(personId);
         return "redirect:/person/personen";
     }
+
     @RequestMapping("/addPersonToKurs/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
