@@ -13,6 +13,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -45,8 +46,7 @@ public class Person {
     private String plz;
     @NotBlank
     private String ort;
-    @Column(name = "email", length = 150, nullable = false)
-    private String email;
+
 
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "person_kurs_interessant",

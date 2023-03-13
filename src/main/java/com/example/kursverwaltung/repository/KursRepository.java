@@ -14,7 +14,7 @@ public interface KursRepository extends JpaRepository<Kurs,Long> {
     Kurs findByKursId(Long kursId);
     @Query(value="select kursname from kurs", nativeQuery = true)
     List<String> getAllnameKurs();
-    @Query(value = "select * from kurs k where k.kursname like %:keyword%",nativeQuery = true)
+    @Query(value = "select * from kurs k where k.kursname like %:keyword% or k.start_datum like %:keyword% or k.ende_datum like %:keyword%",nativeQuery = true)
     List<Kurs> findByKeyword(@Param("keyword") String keyword);
 
 }
