@@ -49,14 +49,14 @@
                                     Email : <b th:text="${person.email}"></b>
                                     <br/>
                                     <br/>
-                                    <b th:text="${person.vorname}"></b>&nbsp<b th:text="${person.nachname}"></b> interessiert sich für diese Kurse :
+                                    <b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b> interessiert sich für diese Kurse :
                                     <span th:each="kurs : ${person.inKursinteressieren}">
                                     <br/>&nbsp;
                                     <b th:text="${kurs.kursname}"></b>
                                     </span>
                                     <br/>
                                     <br/>
-                                    <b th:text="${person.vorname}"></b>&nbsp<b th:text="${person.nachname}"></b> nimmt an diesen Kursen teil :
+                                    <b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b> nimmt an diesen Kursen teil :
                                     <span th:each="kurs : ${person.inKursteilnehmen}">
                                     <br/>&nbsp;&nbsp;
                                     <b th:text="${kurs.kursname}"></b>
