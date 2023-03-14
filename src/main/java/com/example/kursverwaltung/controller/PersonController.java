@@ -4,14 +4,12 @@ import com.example.kursverwaltung.domain.Kurs;
 import com.example.kursverwaltung.domain.Person;
 import com.example.kursverwaltung.service.KursService;
 import com.example.kursverwaltung.service.PersonService;
-//import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +29,6 @@ public class PersonController {
     }
 
     @GetMapping("/personen")
-    // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model, String keyword) {
         List<Person> listPerson = service.listAll();
         if (keyword != null) {
@@ -43,7 +40,6 @@ public class PersonController {
     }
 
     @GetMapping("/newperson")
-    //@PreAuthorize("hasAuthority('ADMIN')")
     public String add(Person person, Model model) {
         model.addAttribute("person", new Person());
         return "newperson";
@@ -80,8 +76,6 @@ public class PersonController {
         ModelAndView mav = new ModelAndView("newperson");
         Person person = service.getPersonId(id);
         mav.addObject("person", person);
-        //person = service.get(id);
-        //mav.addObject("person", person);
         return mav;
     }
 
@@ -116,7 +110,6 @@ public class PersonController {
         }
         serviceK.save(kurs);
         service.save(person);
-        //return "redirect:/person/personen";
         return "redirect:/person/get/" + personId + "?success=true";
     }
     @RequestMapping("/get/{personId}")
