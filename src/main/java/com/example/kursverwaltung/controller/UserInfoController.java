@@ -33,6 +33,7 @@ public class UserInfoController {
     public String saveUser(@ModelAttribute("user") @Valid UserInfo userInfo, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             // Behandeln Sie hier die Validierungsfehler.
+            //bindingResult.rejectValue("username","invalide","User muss großer als 6 Zeichen sein");
             return "newUser";
         }
         List<UserInfo> listUser = serviceInfoUser.listAll();
@@ -53,15 +54,14 @@ public class UserInfoController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/users")
-    public String viewHomePageUser(Model model/*, String keyword*/) {
-
+    public String viewHomePageUser(Model model, String keyword) {
         List<UserInfo> listUsers = serviceInfoUser.listAll();
-        /*if (keyword != null) {
+        if (keyword != null) {
             model.addAttribute("listUsers", serviceInfoUser.findByKeyword(keyword));
-        } else {*/
+        } else {
             model.addAttribute("listUsers", listUsers);
 
-        //}
+        }
         return "users";
     }
     @PreAuthorize("hasAuthority('ADMIN')")
