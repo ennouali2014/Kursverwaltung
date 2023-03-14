@@ -28,13 +28,9 @@ public class KursController {
     private PersonService personService;
 
     @GetMapping("/kurs1/kurse")
-    // @PreAuthorize("hasAuthority('ADMIN')")
     public String viewHomePage(Model model, String keyword) {
         List<Kurs> listKurse = service.listAll();
-//
-//        model.addAttribute("listkurse", listkurse);
-//        // System.out.println("Get / ");
-//        return "kurse";
+
 
         if (keyword != null) {
             model.addAttribute("listKurse", service.findByKeyword(keyword));
@@ -42,12 +38,7 @@ public class KursController {
             model.addAttribute("listKurse", listKurse);
         }
         return "kurse";
-//
-//        model.addAttribute("kurse", listKurse);
-//        // System.out.println("Get / ");
-//        return "kurse";
 
-//        return "kurse";
 
     }
 
@@ -59,7 +50,6 @@ public class KursController {
 
 
     @PostMapping("/kurs1/savekurs")
-    //public String save(@ModelAttribute("yourModelObject") YourModelClass model)
     public String saveKurs(@ModelAttribute("kurs1") @Valid Kurs kurs1,
                            BindingResult result,
                            @RequestParam("start_datum") @DateTimeFormat(pattern = "dd.MM.yyyy") LocalDate start_datum1_L,
@@ -68,10 +58,7 @@ public class KursController {
                            @RequestParam("gebuehr_brutto") Double gebuehr_brutto1,
                            @RequestParam("mwst_prozent") Double mwst_prozent1,
                            Model model) {
-//        if (kurs1 == null || start_datum1_L == null || aktuelle_tn_anzahl1 == null || max_tn_anzahl1 == null) {
-//
-//            return "error";
-//        }
+
 
         // Validation of the startdatum
         LocalDate today = LocalDate.now();
@@ -102,9 +89,6 @@ public class KursController {
             return "newkurs";
         }
 
-//        if (kurs1.getMax_tn_anzahl() < 0) {
-//            result.rejectValue("max_tn_anzahl", "negative.value", "Der Wert darf nicht negative sein.");
-//        }
 
         // Validation of Max Teilnehmer Anzahl
         if (kurs1.getMax_tn_anzahl() < kurs1.getMin_tn_anzahl()) {
@@ -115,14 +99,11 @@ public class KursController {
 
             kurs1.setMax_tn_anzahl(max_tn_anzahl1);
         }
-
-
         if (result.hasErrors()) {
             System.out.println("Fehler");
             model.addAttribute("max_tn_anzahl1_error", "has-error");
             return "newkurs";
         }
-
         if (kurs1.getKursId() != null) {
             Kurs kurs = service.get(kurs1.getKursId());
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs.getTeilnehmer().size());
@@ -131,8 +112,6 @@ public class KursController {
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs1.getTeilnehmer().size());
             kurs1.setAktuelle_tn_anzahl(kurs1.getTeilnehmer().size());
         }
-
-
         // Calculating Gebuer_brutto & Mehrwertsteuer_Euro
 
         kurs1.setGebuehr_brutto(gebuehr_brutto1);
@@ -145,7 +124,7 @@ public class KursController {
 
         //(pattern = "dd.MM.yyyy") (iso = DateTimeFormat.ISO.DATE)
 
-    }  //@ModelAttribute annotation is used to bind the model object from the form submission.
+    }
 
 
     @RequestMapping("/kurs1/editkurs/{kursId}")
