@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @Controller
 public class mainController {
@@ -68,14 +68,5 @@ public class mainController {
     }
 
 
-
-   /* @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
-            new SecurityContextLogoutHandler().logout(request, response, auth);
-        }
-        return "redirect:/index";
-    }*/
 
 }
