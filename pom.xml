@@ -107,6 +107,15 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>chart.js</artifactId>
+            <version>3.6.1</version>
+        </dependency>
 
        <!-- Die Abhängigkeit in der pom.xml-Datei gibt an, dass Ihre Anwendung die Jakarta Bean Validation API verwenden soll.
         Diese Abhängigkeit wird benötigt,um Annotationen

@@ -18,6 +18,7 @@ public class KursverwaltungApplication {
 
 	}
 
+
 	@Configuration
 	public class WebConfig implements WebMvcConfigurer {
 		@Override

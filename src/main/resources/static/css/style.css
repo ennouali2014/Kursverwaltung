@@ -3548,6 +3548,11 @@ div[data-role="editor-toolbar"] {
     font-size: xx-large;!important;
     margin-right: 15px;
 }
+.containerReklam{
+    width: 50%;
+    padding-left: 35px;
+}
+
 
 /*search*/
 

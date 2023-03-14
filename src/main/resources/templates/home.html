@@ -6,43 +6,83 @@
 
 <!--head th:insert="~{head :: head}"></head-->
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
 </head>
 
 <body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
 
-            <div style="width: 20%;height: 20%">
-                <canvas id="myChart"></canvas>
+
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin: inherit"  class="fa fa-money"></i>Deine Umsatzt des Monats :</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                            <h5>Hier finden Sie den Umsatzt für das Monat : <b th:text="${#temporals.monthName(#temporals.createNow())}"></b> </h5>
+                            <h4><b th:text="${umsatztdesMonat} +' Euro'"> </b> </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin: inherit"  class="fa fa-money"></i>Dein Einkommen des Monats :</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                            <h5>Hier finden Sie den Einkommen für das Monat : <b th:text="${#temporals.monthName(#temporals.createNow())}"></b> </h5>
+                            <h4><b th:text="${EinkommendesMonat}+' Euro'"> </b> </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin: inherit"  class="fa fa-money"></i>Deine Umsatzt Steuer für dieses Jahr bis jetzt:</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                            <h5>Hier finden Sie den Umsatzt Steuer für das Jahr : <b th:text="${#temporals.year(#temporals.createNow())}"></b> </h5>
+                           <h4> <b th:text="${UmsatzsteuerdesJahr}+' Euro'"> </b></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin: inherit"  class="fa fa-money"></i>Deine Umsatzt Steuer für dieses Jahr bis jetzt:</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                            <h5>Hier finden Sie den Einkommen für das Jahr : <b th:text="${#temporals.year(#temporals.createNow())}"></b> </h5>
+                            <h4><b th:text="${EinkommendesJahr}+' Euro'"> </b></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin: inherit"  class="fa fa-book"></i>die beliebege Kurse: :</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                            <h5>Hier sind die Kurse die immer Voll gestartet</h5>
+                            <span th:each="kursname : ${kursnamen}">
+                                    <br/>&nbsp;
+                                    <b th:text="${kursname}"></b>
+                                </span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+        </div>
+    </section>
+</div>
 
-
-
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["aaa","bbb","ccc"],
-            datasets: [{
-                label: 'Teilnehmerzahl',
-                data: [1,2,3],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
 </body>
 
 </html>

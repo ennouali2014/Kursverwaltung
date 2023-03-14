@@ -91,7 +91,7 @@ public class PersonController {
         return "redirect:/person/personen";
     }
 
-    @RequestMapping("/addPersonToKurs/{personId}")
+
     @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);

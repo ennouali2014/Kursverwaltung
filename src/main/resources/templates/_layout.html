@@ -10,6 +10,7 @@
     <meta name="author" content="GeeksLabs">
     <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
     <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
 
     <title>Kursverwaltung</title>
 
@@ -61,7 +62,7 @@
         </div>
 
         <!--logo start-->
-        <a href="/index" class="logo">Kurs <span class="lite">verwaltung</span></a>
+        <a th:href="@{'/home'}" class="logo">Kurs <span class="lite">verwaltung</span></a>
         <!--logo end-->
 
 <!--        <div class="nav search-row" id="top_menu">-->
@@ -350,7 +351,7 @@
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/helpdesk">HelpDesk</a></li>
+                        <li><a class="" th:href="@{'/person/helpdesk'}">HelpDesk</a></li>
                     </ul>
                 </li>
 
