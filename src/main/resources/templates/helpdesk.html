@@ -1,0 +1,65 @@
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+<div layout:fragment="content">
+    <section class="wrapper">
+        <div class="row">
+            <div th:if="${not #strings.isEmpty(success)}" class="alert alert-success">
+                <p th:text="${success}"></p>
+            </div>
+            <div style="margin-left: 20px ">
+                <a class="backButton" th:href="@{'/home'}">
+                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                    <span style="margin: 2px 2px 1px 5px;">Zurück</span>
+                </a>
+            </div>
+            <div class="title-page">
+                <i class="fa fa-handshake-o"></i><h2>Support :</h2>
+                <h4>Benötigen Sie weitere Hilfe? oder Fehler gefunden?</h4>
+                <h5> Teilen Sie uns möglichst viele Einzelheiten mit, damit wir das Problem in einem Update beheben können.</h5>
+            </div>
+            <div class="containerReklam">
+
+
+                <div class="container-fluid">
+
+
+                    <!--/*@thymesVar id="person" type="com.example.kursverwaltung.domain.Person"*/-->
+
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Erstellen Sie ein Supportticket:</div>
+                        <div class="panel-body" style="padding-left: 5px;">
+                    <form action="#" th:action="@{/person/sendmail}" method="post">
+
+                        <table>
+                            <tr>
+                                <td><label class="form-label">Betreff:</label></td>
+                                <td>
+                                    <input type="text"  name="subject" class="form-control" required/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label class="form-label">Ihre Reklamation:</label></td>
+                                <td>
+                                    <textarea  type="text"  name="body" class="form-control" required></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <div style="padding-left: 20%; padding-top: 20px">
+                            <button type="submit" class="linkButton">Send</button>
+                            <button type="reset" class="linkButton">Abbrechen</button>
+                        </div>
+                    </form>
+                        </div></div>
+                        </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+
+</html>
