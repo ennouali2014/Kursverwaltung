@@ -17,6 +17,12 @@ import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+* Die Klasse Person definiert die Objekte 'Person', mit deren Attributen und Datentypen. (Einige Attribute sind Pflichtangaben)
+* aus der Klasse wird eine Tabelle in der Datenbank erzeugt, sowie aus den Attributen entsprechende Spalten
+* Mittels Annotationen werden Verbindungen von Spring und der Datenbank hergestellt und auch spezifiziert,
+ * wie zb Beziehungen zwischen den Enteties oder ob der Dateninhalt 'unique' sein soll
+*/
 @Entity
 @Table(name = "person")
 @Data
@@ -24,6 +30,9 @@ import java.util.Set;
 @NoArgsConstructor
 @Validated
 public class Person {
+    /**
+     * Id wird automatisch in Datenbank vergeben und nicht vom user
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "personId")
@@ -34,6 +43,10 @@ public class Person {
     private String titel;
 
     private String vorname;
+
+    /**
+     * Gibt den Nachnamen einer Person an, ist Pflichtfeld mit mind. 2 Zeichen
+     */
     @NotBlank
     @Size(min=2)
     private String nachname;
@@ -48,7 +61,9 @@ public class Person {
     @NotBlank
     private String ort;
 
-
+    /**
+     * durch Cascade Refresh werden auch nachfolgende Enteties refreshed
+     */
     @ManyToMany(cascade = {CascadeType.REFRESH, CascadeType.PERSIST}, fetch = FetchType.EAGER)
     @JoinTable(name = "person_kurs_interessant",
             joinColumns = {@JoinColumn(name = "personId")},

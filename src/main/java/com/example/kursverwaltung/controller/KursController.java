@@ -14,9 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Die Klasse KursController erhält die Requests vom Client und verarbeitett diese
@@ -54,11 +52,13 @@ public class KursController {
 
     /**
      * Diese Methode speichert einen neuen Kurs in der Liste, im Templ newkurs
+     *
+     * @param kurs
      * @param model
      * @return
      */
     @GetMapping("/kurs1/newkurs")
-    public String add(Model model) {
+    public String add(Kurs kurs, Model model) {
         model.addAttribute("kurs1", new Kurs());
         return "newkurs";
     }
