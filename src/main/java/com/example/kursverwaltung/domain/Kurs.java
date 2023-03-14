@@ -3,16 +3,9 @@ package com.example.kursverwaltung.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
-import javax.validation.constraints.Min;
 @Entity
 @Table(name = "kurs")
 public class Kurs {
@@ -85,7 +78,6 @@ public class Kurs {
         this.status = status1;
         this.kurs_beschreibung=kurs_beschreibung;
     }
-
     public Kurs() {
     }
 
@@ -105,23 +97,6 @@ public class Kurs {
     public LocalDate getStart_datum() {
         return start_datum;
     }
-
-//        public void setStart_datum1 (String start_datum1){
-//
-//            String pattern = "dd-MM-yyyy";
-//            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-//
-//            try {
-//                if (start_datum1 == null || start_datum1.isEmpty()) {
-//                    this.convertedStartDate1 = new Date();
-//                } else {
-//
-//                    this.convertedStartDate1 = simpleDateFormat.parse(start_datum1);
-//                }
-//            } catch (ParseException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
 
 
     public void setStart_datum(LocalDate start_datum1) {
@@ -231,13 +206,7 @@ public class Kurs {
     public void setKurs_beschreibung(String kurs_beschreibung) {
         this.kurs_beschreibung = kurs_beschreibung;
     }
-    //    public void setFreie_plaetze1(Integer freie_plaetze1) {
-//        if (freie_plaetze1 != null) {
-//            this.freie_plaetze1 = freie_plaetze1;
-//        } else {
-//            this.freie_plaetze1 = 0; // or any other default value you want to use
-//        }
-//    }
+
 
     public void setKursId(Long kursId) {
         this.kursId = kursId;
