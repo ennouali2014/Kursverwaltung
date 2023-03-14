@@ -1,156 +1,509 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout  "
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="~{head :: head}"></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" type="image/png" sizes="16x16" href="/static/img/favicon-16x16.png">
+
+    <title>Kursverwaltung</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="/static/css/elegant-icons-style.css" rel="stylesheet"/>
+    <!--  <link th:href="@{css/font-awesome.min.css}" rel="stylesheet" />-->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
+
+    <!-- Load font awesome icons -->
+    <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">-->
+
+    <!-- full calendar css-->
+    <link href="/static/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet"/>
+    <link href="/static/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet"/>
+    <!-- easy pie chart-->
+    <link href="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="/static/css/owl.carousel.css" type="text/css">
+    <link href="/static/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="/static/css/fullcalendar.css">
+    <link href="/static/css/widgets.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+    <link href="/static/css/style-responsive.css" rel="stylesheet"/>
+    <link href="/static/css/xcharts.min.css" rel=" stylesheet">
+    <link href="/static/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!-- =======================================================
+      Theme Name: NiceAdmin
+      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+      Author: BootstrapMade
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
+</head>
 
 <body>
+<!-- container section start -->
+<section id="container" class="">
+    <header class="header dark-bg">
+        <div class="toggle-nav">
+            <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i
+                    class="icon_menu"></i></div>
+        </div>
+
+        <!--logo start-->
+        <a th:href="@{'/home'}" class="logo">Kurs <span class="lite">verwaltung</span></a>
+        <!--logo end-->
 
 
-<!--Main layout-->
+        <div class="top-nav notification-row">
+            <!-- notificatoin dropdown start-->
+            <ul class="nav pull-right top-menu">
 
-
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-
-            <div th:fragment="navbar"
-                 class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-
-
-                </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"
-                             class="rounded-circle">
-                        <span class="d-none d-sm-inline mx-1">User</span>
+                <!-- task notificatoin start -->
+                <li id="task_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-task-l"></i>
+                        <span class="badge bg-important">6</span>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <!--            <li><a class="dropdown-item" href="#">New project...</a></li>-->
-                        <!--            <li><a class="dropdown-item" href="#">Settings</a></li>-->
-                        <!--            <li><a class="dropdown-item" href="#">Profile</a></li>-->
+                    <ul class="dropdown-menu extended tasks-bar">
+                        <div class="notify-arrow notify-arrow-blue"></div>
                         <li>
-                            <hr class="dropdown-divider">
+                            <p class="blue">Deine Kurs Stand</p>
                         </li>
-                        <li class="dropdown-item">
-                            <a class="nav-link" th:href="@{'/public'}">Login</a>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Java</div>
+                                    <div class="percent">90%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                                        <span class="sr-only">90% Python</span>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
-                        <li class="dropdown-item">
-                            <a class="nav-link" th:href="@{'/logout'}">Logout</a>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">
+                                        Project 1
+                                    </div>
+                                    <div class="percent">30%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                                        <span class="sr-only">30% Php</span>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Angular</div>
+                                    <div class="percent">80%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Logo Designing</div>
+                                    <div class="percent">78%</div>
+                                </div>
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="78"
+                                         aria-valuemin="0" aria-valuemax="100" style="width: 78%">
+                                        <span class="sr-only">78% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="task-info">
+                                    <div class="desc">Mobile App</div>
+                                    <div class="percent">50%</div>
+                                </div>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0"
+                                         aria-valuemax="100" style="width: 50%">
+                                        <span class="sr-only">50% Complete</span>
+                                    </div>
+                                </div>
 
+                            </a>
+                        </li>
+                        <li class="external">
+                            <a href="#">See All Tasks</a>
+                        </li>
                     </ul>
-                </div>
-            </div>
+                </li>
+                <!-- task notificatoin end -->
+                <!-- inbox notificatoin start-->
+                <li id="mail_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <i class="icon-envelope-l"></i>
+                        <span class="badge bg-important">5</span>
+                    </a>
+                    <ul class="dropdown-menu extended inbox">
+                        <div class="notify-arrow notify-arrow-blue"></div>
+                        <li>
+                            <p class="blue">You have 5 new messages</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../img/avatar-mini.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Greg  Martin</span>
+                                    <span class="time">1 min</span>
+                                    </span>
+                                <span class="message">
+                                        I really like this admin panel.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../img/avatar-mini2.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Bob   Mckenzie</span>
+                                    <span class="time">5 mins</span>
+                                    </span>
+                                <span class="message">
+                                     Hi, What is next project plan?
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../img/avatar-mini3.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Phillip   Park</span>
+                                    <span class="time">2 hrs</span>
+                                    </span>
+                                <span class="message">
+                                        I am like to buy this Admin Template.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="photo"><img alt="avatar" src="../img/avatar-mini4.jpg"></span>
+                                <span class="subject">
+                                    <span class="from">Ray   Munoz</span>
+                                    <span class="time">1 day</span>
+                                    </span>
+                                <span class="message">
+                                        Icon fonts are great.
+                                    </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">See all messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- inbox notificatoin end -->
+                <!-- alert notification start-->
+                <li id="alert_notificatoin_bar" class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                        <i class="icon-bell-l"></i>
+                        <span class="badge bg-important">7</span>
+                    </a>
+                    <ul class="dropdown-menu extended notification">
+                        <div class="notify-arrow notify-arrow-blue"></div>
+                        <li>
+                            <p class="blue">You have 4 new notifications</p>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary"><i class="icon_profile"></i></span>
+                                Friend Request
+                                <span class="small italic pull-right">5 mins</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-warning"><i class="icon_pin"></i></span>
+                                John location.
+                                <span class="small italic pull-right">50 mins</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-danger"><i class="icon_book_alt"></i></span>
+                                Project 3 Completed.
+                                <span class="small italic pull-right">1 hr</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-success"><i class="icon_like"></i></span>
+                                Mick appreciated your work.
+                                <span class="small italic pull-right"> Today</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">See all notifications</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- alert notification end-->
+                <!-- user login dropdown start-->
+                <li class="dropdown">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" width="25px" src="/static/img/avatar.png">
+                            </span>
+                        <span class="username">User</span>
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu extended logout">
+                        <div class="log-arrow-up"></div>
+                        <li class="eborder-top">
+                            <a th:href="@{/employee/profile}"><i class="icon_profile"></i> Mein Profil</a>
+                        </li>
+                        <li >
+                            <a class="nav-link" th:href="@{'/public'}"><i class="icon_key_alt"></i>Login</a>
+                        </li>
+                        <li>
+                            <a href="/logout"><i class="icon_key_alt"></i>Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- user login dropdown end -->
+            </ul>
+            <!-- notificatoin dropdown end-->
+        </div>
+    </header>
+    <!--header end-->
+
+    <!--sidebar start-->
+    <aside>
+        <div id="sidebar" class="nav-collapse">
+            <!-- sidebar menu start-->
+            <ul class="sidebar-menu">
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-question"></i>
+                        <span>HelpDesk</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{'/person/helpdesk'}">HelpDesk</a></li>
+                    </ul>
+                </li>
+
+
+            </ul>
+
+
+            <!-- sidebar menu end-->
 
 
         </div>
-        <div class="col py-3">
+    </aside>
+    <!--sidebar end-->
 
-            <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können
-            </noscript>
+    <!--main content start-->
+    <section id="main-content">
+        <!--        <div layout:fragment="content">        </div>-->
 
-            <!-- hier den individuellen Bereich einer Site einfügen -->
-
-
-            <!--    <ul class="navbar-nav">-->
-            <!--        <li class="nav-item">-->
-            <!--            <a class="nav-link" th:href="@{'/public'}">Login</a>-->
-            <!--        </li>-->
-            <!--    </ul>-->
-
-        </div>
-
-        <br><br>
-        <div align="left">
-
-            <img src="../assets/kurs.jpg" alt="teacher classes" width="612" height="344">
-            <br><br>
-            <p>Die besten Informatik-Kurse der Welt. Jetzt ausprobieren!</p>
-            <br><br>
-            <p style="width:612px">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-                tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-                accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
-                est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-                At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-                sanctus est Lorem ipsum dolor sit amet.</p>
-            <br><br>
-            <section class="wrapper"> <!-- th:if="${kurs1.status1 != Active or ${listKurse1.isEmpty() }"-->
-                <div class="row">
-                    <h2>Unser aktuelles Kursangebot</h2>
-<!--                    <form th:action="@{'/k1/kurs1/kurse'}" method="get">-->
-<!--                        <input id="txtsearch" type="text" name="keyword">-->
-<!--                        <button type="submit">Suchen</button>-->
-<!--                    </form>-->
+        <noscript>Bitte schalten Sie Javascript in Ihrem Browser ein, um diese App vollumfänglich nutzen zu können
+        </noscript>
 
 
-                </div>
-                <br><br>
-                <tr>
-                    <div class="col-sm-5" align="center">
-                        <div class="panel-body" align="center">
+        <div layout:fragment="content">
+            <section class="wrapper">
 
-                            <table class="table">
+                <h1>Die besten Informatik-Kurse der Welt. Jetzt ausprobieren!</h1>
 
-                                <thead class="thead-dark">
-                                <tr>
-                                    <th>Kurs ID</th>
-                                    <th>Kursname</th>
-                                    <th>Anzahl Tage</th>
-                                    <th>Tage / Woche</th>
-                                    <th>Start Datum</th>
-                                    <th>End Datum</th>
-                                    <th>Freie Plaetze</th>
-                                    <th>Gebuehr inkl. Mwst</th>
-                                    <th>Kurs Beschreibung</th>
-
-                                </tr>
-                                </thead>
-                                <tr th:if="${listKurse.isEmpty()}">
-                                    <td colspan="4"> keine Kurse vorhanden</td>
-                                </tr>
-
-                                <tr th:each="kurs1 : ${listKurse}" th:if="${kurs1.status}">
-                                    <td th:text="${kurs1.kursId}">KursID</td>
-                                    <td th:text="${kurs1.kursname}">Kursname1</td>
-                                    <td th:text="${kurs1.anzahl_tage}">AnzahlTage</td>
-                                    <td th:text="${kurs1.zyklus}">Zyklus</td>
-                                    <td th:text="${kurs1.start_datum}">StartDatum</td>
-                                    <td th:text="${kurs1.ende_datum}">Endedatum</td>
-                                    <td th:text="${kurs1.freie_plaetze}">FreiPlaezeKurs ID</td>
-                                    <td th:text="${kurs1.gebuehr_brutto}">gebuehrBrutto</td>
-                                    <td th:text="${kurs1.kurs_beschreibung}">kursBeschreibung</td>
+                <h2>Unser aktuelles Kursangebot</h2>
 
 
-                                </tr>
+                <div class="col-sm-8">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th></th>
+                                <th>Kurs Name</th>
+                                <th>Status</th>
+                                <!--th>Anzahl Tage</th-->
+                                <th>Tage / Woche</th>
+                                <th>Start Datum</th>
+                                <th>End Datum</th>
+                                <th>Min Teilnehmer</th>
+                                <th>Max Teilnehmer</th>
+                                <th>Freie Plaetze</th>
 
-                            </table>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:if="${listKurse.isEmpty()}">
+                                <td colspan="4"> keine Kurse vorhanden</td>
+                            </tr>
+                            <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
+
+                            <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
+                            <tr th:each="kurs : ${listKurse}">
+
+                                <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                                <!--td th:text="${kurs.kursId}"></td-->
+                                <td th:if="${kurs.freie_plaetze == 0}">
+                                    <i class="fa fa-circle" style="color: red"></i>
+                                </td>
+                                <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze <= kurs.min_tn_anzahl}">
+                                    <i class="fa fa-circle" style="color: orange"></i>
+                                </td>
+                                <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze > kurs.min_tn_anzahl && kurs.freie_plaetze != 0}">
+                                    <i class="fa fa-circle" style="color: green"></i>
+                                </td>
+                                <td th:text="${kurs.kursname}"></td>
+                                <td th:text="${kurs.status}"></td>
+                                <!--td th:text="${kurs.anzahl_tage}">Anzahl Tage</td-->
+                                <td th:text="${kurs.zyklus}"></td>
+
+                                <td th:text="${kurs.start_datum}"></td>
+
+                                <td th:text="${kurs.ende_datum}"></td>
+                                <td th:text="${kurs.min_tn_anzahl}"></td>
+                                <td th:text="${kurs.max_tn_anzahl}"></td>
+                                <td th:text="${kurs.freie_plaetze}">Freie Plaetze Kurs ID</td>
+
+                            </tr>
 
 
-                        </div>
+                        </table>
+
+
                     </div>
-                </tr>
-
-        </section>
-
-    </div>
-</div>
-
-<!-- hier endet indiviueller bereich -->
+                </div>
 
 
-</div>
-</div>
-</div>
+            </section>
+        </div>
+
+
+    </section>
+    <!--main content end-->
+</section>
+<!-- container section start -->
+
+<!-- javascripts -->
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/jquery-ui-1.10.4.min.js"></script>
+<script src="/static/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui-1.9.2.custom.min.js"></script>
+<!-- bootstrap -->
+<script src="/static/js/bootstrap.min.js"></script>
+<!-- nice scroll -->
+<script src="/static/js/jquery.scrollTo.min.js"></script>
+<script src="/static/js/jquery.nicescroll.js" type="text/javascript"></script>
+<!-- charts scripts -->
+<script src="/static/assets/jquery-knob/js/jquery.knob.js"></script>
+<script src="/static/js/jquery.sparkline.js}" type="text/javascript"></script>
+<script src="/static/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+<script src="/static/js/owl.carousel.js"></script>
+<!-- jQuery full calendar -->
+<script src="/static/js/fullcalendar.min.js"></script>
+<!-- Full Google Calendar - Calendar -->
+<script src="/static/assets/fullcalendar/fullcalendar/fullcalendar.js"></script>
+<!--script for this page only-->
+<script src="/static/js/calendar-custom.js"></script>
+<script src="/static/js/jquery.rateit.min.js"></script>
+<!-- custom select -->
+<script src="/static/js/jquery.customSelect.min.js"></script>
+<script src="/static/assets/chart-master/Chart.js"></script>
+
+<!--custome script for all page-->
+<script src="/static/js/scripts.js"></script>
+<!-- custom script for this page-->
+<script src="/static/js/sparkline-chart.js"></script>
+<script src="/static/js/easy-pie-chart.js"></script>
+<script src="/static/js/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="/static/js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="/static/js/xcharts.min.js"></script>
+<script src="/static/js/jquery.autosize.min.js"></script>
+<script src="/static/js/jquery.placeholder.min.js"></script>
+<script src="/static/js/gdp-data.js"></script>
+<script src="/static/js/morris.min.js"></script>
+<script src="/static/js/sparklines.js"></script>
+<script src="/static/js/charts.js"></script>
+<script src="/static/js/jquery.slimscroll.min.js"></script>
+
+<script>
+    //knob
+    $(function () {
+        $(".knob").knob({
+            'draw': function () {
+                $(this.i).val(this.cv + '%')
+            }
+        })
+    });
+
+    //carousel
+    $(document).ready(function () {
+        $("#owl-slider").owlCarousel({
+            navigation: true,
+            slideSpeed: 300,
+            paginationSpeed: 400,
+            singleItem: true
+
+        });
+    });
+
+    //custom select box
+
+    $(function () {
+        $('select.styled').customSelect();
+    });
+
+    /* ---------- Map ---------- */
+    $(function () {
+        $('#map').vectorMap({
+            map: 'world_mill_en',
+            series: {
+                regions: [{
+                    values: gdpData,
+                    scale: ['#000', '#000000'],
+                    normalizeFunction: 'polynomial'
+                }]
+            },
+            backgroundColor: '#eef3f7',
+            onLabelShow: function (e, el, code) {
+                el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+            }
+        });
+    });
+
+
+</script>
+
+<th:block layout:fragment="script"></th:block>
 
 </body>
-
 
 </html>
