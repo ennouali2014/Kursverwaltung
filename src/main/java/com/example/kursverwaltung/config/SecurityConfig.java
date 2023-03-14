@@ -1,6 +1,5 @@
 package com.example.kursverwaltung.config;
 
-import com.example.kursverwaltung.domain.UserInfo;
 import com.example.kursverwaltung.repository.UserInfoRepository;
 import com.example.kursverwaltung.service.UserInfoUserDetailsService;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.logout.LogoutFilter;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 
 @Configuration
