@@ -3,16 +3,11 @@
       layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
       xmlns:th="http://www.thymeleaf.org">
-
 <!--head th:insert="~{head :: head}"></head-->
-
 <body>
-
 <!--<nav th:insert="navbar :: navbar" class="navbar sticky-top navbar-expand-lg navbar-light bg-dark">  </nav>-->
 
-
 <!--Main layout-->
-
 
 <!--div class="container-fluid">
     <div class="row flex-nowrap">
@@ -57,6 +52,9 @@
                     <label class="form-label" >Username</label>
                     <td><input  minlength="4" th:field="*{username}" class="form-control" placeholder="username" required="true"/></td>
                 </tr>
+               <!-- <div th:if="${not #strings.isEmpty(error)}" class="alert alert-danger">
+                    <p th:text="${error}"></p>
+                </div>-->
             </div>
             <div alight="left">
 
@@ -73,7 +71,6 @@
         </form>
     </div>
 </div>
-
             <!-- hier endet indiviueller bereich -->
 
         <!--/div>
@@ -82,7 +79,6 @@
         </div>
     </section>
 </div>
-
 
 </body>
 </html>
