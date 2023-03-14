@@ -18,6 +18,10 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Die Klasse KursController erhält die Requests vom Client und verarbeitett diese
+ * Mittels Annotationen werden Verbindungen von Sringboot und der Datenbank hergestellt und auch spezifiziert, wie zb Beziehungen zwischen den Enteties
+ */
 @Controller
 @RequestMapping("/k1")
 public class KursController {
@@ -27,6 +31,12 @@ public class KursController {
     @Autowired
     private PersonService personService;
 
+    /**
+     * Diese Methode erzeugt die Liste aller Kurse, ggf auch soritert nach einem Suchbegriff
+     * @param model
+     * @param keyword
+     * @return
+     */
     @GetMapping("/kurs1/kurse")
     public String viewHomePage(Model model, String keyword) {
         List<Kurs> listKurse = service.listAll();
@@ -42,13 +52,30 @@ public class KursController {
 
     }
 
+    /**
+     * Diese Methode speichert einen neuen Kurs in der Liste
+     * @param model
+     * @return
+     */
     @GetMapping("/kurs1/newkurs")
     public String add(Model model) {
         model.addAttribute("kurs1", new Kurs());
         return "newkurs";
     }
 
-
+    /**
+     * Diese Methode speichert einen neuen Kurs, ob er das erste mal angelegt wird oder schon vorhonden ist,
+     * prüft auch den userinput auf gewünschte Validität
+     * kalkuliert automatisch aus dem Userinput über den Request Parameter einige Datenfelder z.B. Enddatum, GebuehrNetto, MwstEuro, freie Plätze
+     * @param kurs1
+     * @param result
+     * @param start_datum1_L
+     * @param max_tn_anzahl1
+     * @param gebuehr_brutto1
+     * @param mwst_prozent1
+     * @param model
+     * @return
+     */
     @PostMapping("/kurs1/savekurs")
     public String saveKurs(@ModelAttribute("kurs1") @Valid Kurs kurs1,
                            BindingResult result,
@@ -126,7 +153,12 @@ public class KursController {
 
     }
 
-
+    /**
+     * Diese Methode prüft den Pfad und liest die Id des Kurses aus, der editiert werden soll.
+     * Wenn einzelne Attribute geändert wurden, werden diese hier für das Kursobjekt neu gespeichert
+     * @param kursId
+     * @return
+     */
     @RequestMapping("/kurs1/editkurs/{kursId}")
     public ModelAndView showEditKursPage(@PathVariable(name = "kursId") int kursId) {
         ModelAndView modelAndView1 = new ModelAndView("newkurs");
@@ -136,12 +168,23 @@ public class KursController {
         return modelAndView1;
     }
 
+    /**
+     * Diese Methode prüft den Pfad und liest die Id des Kurses aus, der gelöscht werden soll und löscht diesen.
+     * @param kursId
+     * @return
+     */
     @RequestMapping("/kurs1/deletekurs/{kursId}")
     public String deleteKurs(@PathVariable(name = "kursId") int kursId) {
         service.delete(kursId);
         return "redirect:/k1/kurs1/kurse";
     }
 
+    /**
+     * Diese Methode erzeugt ein Array mit zwei Werten für die Einordnung von Personen als TN oder Int
+     * wird im Templ genutzt um einem Kurs eine Person als TN oder Interessent hinzuzufügen
+     * @param kursId
+     * @return
+     */
     @RequestMapping("/kurs1/get/{kursId}")
     public ModelAndView getKursId(@PathVariable Long kursId) {
         String[] teilnehmer_interessant_arr = {"Teilnehmer", "Interessent"};
@@ -152,6 +195,11 @@ public class KursController {
         return mav;
     }
 
+    /**
+     * Diese Methode zeigt einen Kurs, dessen Id anhand Pfades ausgelesen wurde
+     * @param kursId
+     * @return
+     */
     @RequestMapping("/kurs1/showKurs/{kursId}")
     public ModelAndView showKurs(@PathVariable Long kursId) {
         ModelAndView mav = new ModelAndView("showKurs");
@@ -159,6 +207,14 @@ public class KursController {
         return mav;
     }
 
+    /**
+     * Diese Methode liest die Id eines Kurses anhand des Pfades aus , übernmt die Parameter,
+     * und validiert zb ob ein Kurs noch freie Plätze hat und speichert ggf als TN oder Interessent
+     * @param kursId
+     * @param personId
+     * @param choix
+     * @return
+     */
     @RequestMapping("/kurs1/addPersonToKurs/{kursId}")
     public String assignPersonToKurs(@PathVariable Long kursId, @RequestParam Long personId, @RequestParam String
             choix) {
