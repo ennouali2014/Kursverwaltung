@@ -53,12 +53,16 @@ public class PersonController {
             model.addAttribute("person", person);
             return "newperson";
         }
+            List<Person> listPerson = service.listAll();
 
-        List<Person> listPerson = service.listAll();
         if(!listPerson.isEmpty()) {
             for (Person p : listPerson) {
                 boolean isSame = p.equals(person);
 
+                if(p.getPersonId() != null){
+                    service.save(person);
+                    return "redirect:/person/personen";
+                }
                 if (isSame) {
                     model.addAttribute("isSame", isSame);
                     model.addAttribute("error", "Eine Person mit denselben Details(Vorname, Nachname, Email) existiert bereits.");
