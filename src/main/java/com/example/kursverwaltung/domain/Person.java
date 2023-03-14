@@ -50,6 +50,10 @@ public class Person {
     @NotBlank
     @Size(min=2)
     private String nachname;
+
+    /**
+     * Gibt die Mail einer Person an, ist Pflichtfeld und darf zugleich nur einmal vorkommen
+     */
     @NotBlank
     @Email
     @Column(name = "email", unique = true)
