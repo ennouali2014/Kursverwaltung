@@ -127,12 +127,15 @@ public class KursController {
             Kurs kurs = service.get(kurs1.getKursId());
             System.out.println("kurs.getTeilnehmer().size():--" + kurs.getTeilnehmer().size());
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs.getTeilnehmer().size());
+            kurs1.setAktuelle_tn_anzahl(kurs.getTeilnehmer().size());
         } else {
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs1.getTeilnehmer().size());
+            kurs1.setAktuelle_tn_anzahl(kurs1.getTeilnehmer().size());
         }
 
 
         // Calculating Gebuer_brutto & Mehrwertsteuer_Euro
+
         kurs1.setGebuehr_brutto(gebuehr_brutto1);
         kurs1.setMwst_prozent(mwst_prozent1);
         kurs1.setGebuehr_netto(Math.round((kurs1.getGebuehr_brutto() / (100 + kurs1.getMwst_prozent()) * 100) * 100.0) / 100.0);
@@ -191,13 +194,13 @@ public class KursController {
                 person.add(kurs, person.getInKursteilnehmen());
 
             }
-            System.out.println("---2-----" + kurs.getTeilnehmer());
+
             kurs.getTeilnehmer().add(person);
-            System.out.println("---3-----" + kurs.getTeilnehmer());
+
             kurs.setTeilnehmer(kurs.getTeilnehmer());
-            System.out.println("---4-----" + kurs.getTeilnehmer());
+
             person.getInKursteilnehmen().add(kurs);
-            System.out.println("---5-----" + person.getInKursteilnehmen());
+
             //Calculating actual participant count
             kurs.setAktuelle_tn_anzahl(kurs.getTeilnehmer().size());
         } else {

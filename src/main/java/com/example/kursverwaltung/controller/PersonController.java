@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -86,11 +87,17 @@ public class PersonController {
 
     @RequestMapping("/deleteperson/{personId}")
     public String deletePerson(@PathVariable(name = "personId") int personId) {
+        Person person=service.getPersonId(personId);
+        Set<Kurs> kurse = person.getInKursteilnehmen();
+        for (Kurs kurs:person.getInKursteilnehmen()){
+            kurs.setFreie_plaetze(kurs.getFreie_plaetze()-1);
+            serviceK.save(kurs);
+        }
         service.delete(personId);
         return "redirect:/person/personen";
     }
 
-
+    @RequestMapping("/addKursToPerson/{personId}")
     public String assignKursToPerson(@PathVariable Long personId, @RequestParam Long kursId, @RequestParam String choix) {
         Person person = service.getPersonId(personId);
         Kurs kurs = service.getKurs(kursId);
