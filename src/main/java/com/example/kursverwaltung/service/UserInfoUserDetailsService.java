@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,7 +29,6 @@ public class UserInfoUserDetailsService implements UserDetailsService {
         LoadUsers();
     }
 
-    // TODO
     // Hier wird ein User automatisch erzeugt, wenn die Datenbank gelöscht ist!
     private void LoadUsers() {
         UserInfo userInfo = repository.findByUsername("root");
