@@ -69,9 +69,6 @@ public class Person {
         this.inKursinteressieren = inKursinteressieren;
     }
 
-    public boolean isIdentitySame() {
-        return vorname.equals(nachname) && nachname.equals(email);
-    }
     @Override
         public boolean equals(Object o) {
             if (this == o) return true;
