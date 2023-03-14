@@ -4,39 +4,24 @@
       xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout "
       xmlns:th="http://www.thymeleaf.org">
 
-<!--head th:insert="~{head :: head}"></head-->
-
 
 <body>
 
 
-<!--Main layout-->
-
-
-<!--div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-
-            <div th:insert="~{navbar :: navbar}"></div>
-
-        </div>
-        <div class="col py-3"-->
-
-
 <!-- hier den individuellen Bereich einer Site einfügen -->
-
 
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
             <div style="margin-left: 20px ">
-                <a class="backButton" th:href="@{'/home'}">
-                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                <a class="backButton" href="javascript:history.back()">
+                    <i style="margin: inherit" class="fa fa-backward"></i>
                     <span style="margin: 2px 2px 1px 5px;">Zurück</span>
                 </a>
             </div>
             <div class="title-page">
-                <i class="fa fa-book"></i><h2>Kursliste</h2>
+                <i class="fa fa-book"></i>
+                <h2>Kursliste</h2>
             </div>
             <div class="addButton">
                 <a class="linkButton" th:href="@{'/k1/kurs1/newkurs'}">
@@ -46,106 +31,91 @@
             </div>
 
 
-
-                    <div class="col-md-6" style="margin-left: 20px">
-                        <form class="search" th:action="@{'/k1/kurs1/kurse'}" method="get">
-                            <i class="fa fa-search"></i>
-                            <input  id="txtsearch"   type="text" class="form-control" placeholder="suchen" name="keyword"/>
-                            <button class="btn btn-primary">Suchen</button>
-                        </form>
-                    </div>
-
-
-<!--                        <form  th:action="@{'/k1/kurs1/kurse'}" method="get">-->
-<!--                            <input class="form-control" placeholder="Search" id="txtsearch" type="text" name="keyword">-->
-<!--                            <button type="submit" class="btn btn-primary">Suchen</button>-->
-
-<!--                        </form>-->
-
-                <div class="col-sm-8">
-                    <div class="panel-body" >
-                        <table class="table">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th></th>
-                                <th>Kurs Name</th>
-                                <th>Status</th>
-                                <!--th>Anzahl Tage</th-->
-                                <th>Tage / Woche</th>
-                                <th>Start Datum</th>
-                                <th>End Datum</th>
-                                <th>Min Teilnehmer</th>
-                                <th>Max Teilnehmer</th>
-                                <th>Freie Plaetze</th>
+            <div class="col-md-6" style="margin-left: 20px">
+                <form class="search" th:action="@{'/k1/kurs1/kurse'}" method="get">
+                    <i class="fa fa-search"></i>
+                    <input id="txtsearch" type="text" class="form-control" placeholder="suchen" name="keyword"/>
+                    <button class="btn btn-primary">Suchen</button>
+                </form>
+            </div>
 
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:if="${listKurse.isEmpty()}">
-                                <td colspan="4"> keine Kurse vorhanden</td>
-                            </tr>
-                            <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
 
-                            <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
-                            <tr th:each="kurs : ${listKurse}">
+            <div class="col-sm-8">
+                <div class="panel-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th></th>
+                            <th>Kurs Name</th>
+                            <th>Status</th>
+                            <th>Tage / Woche</th>
+                            <th>Start Datum</th>
+                            <th>End Datum</th>
+                            <th>Min Teilnehmer</th>
+                            <th>Max Teilnehmer</th>
+                            <th>Freie Plaetze</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:if="${listKurse.isEmpty()}">
+                            <td colspan="4"> keine Kurse vorhanden</td>
+                        </tr>
+                        <!--/*@thymesVar id="kurs" type="com.example.kursverwaltung.domain.Kurs"*/-->
 
-                                <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
-                                <!--td th:text="${kurs.kursId}"></td-->
-                                <td th:if="${kurs.freie_plaetze == 0}">
-                                    <i class="fa fa-circle" style="color: red"></i>
-                                </td>
-                                <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze <= kurs.min_tn_anzahl}">
-                                    <i class="fa fa-circle" style="color: orange"></i>
-                                </td>
-                                <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze > kurs.min_tn_anzahl && kurs.freie_plaetze != 0}">
-                                    <i class="fa fa-circle" style="color: green"></i>
-                                </td>
-                                <td th:text="${kurs.kursname}"></td>
-                                <td th:text="${kurs.status}"></td>
-                                <!--td th:text="${kurs.anzahl_tage}">Anzahl Tage</td-->
-                                <td th:text="${kurs.zyklus}"></td>
+                        <!--/*@thymesVar id="kurse" type="com.example.kursverwaltung.controller.KursController"*/-->
+                        <tr th:each="kurs : ${listKurse}">
 
-                                <td th:text="${kurs.start_datum}"></td>
+                            <!--/*@thymesVar id="kursId" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                            <!--td th:text="${kurs.kursId}"></td-->
+                            <td th:if="${kurs.freie_plaetze == 0}">
+                                <i class="fa fa-circle" style="color: red"></i>
+                            </td>
+                            <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze <= kurs.min_tn_anzahl}">
+                                <i class="fa fa-circle" style="color: orange"></i>
+                            </td>
+                            <td th:if="${kurs.max_tn_anzahl - kurs.freie_plaetze > kurs.min_tn_anzahl && kurs.freie_plaetze != 0}">
+                                <i class="fa fa-circle" style="color: green"></i>
+                            </td>
+                            <td th:text="${kurs.kursname}"></td>
+                            <td th:text="${kurs.status}"></td>
+                            <td th:text="${kurs.zyklus}"></td>
 
-                                <td th:text="${kurs.ende_datum}"></td>
-                                <td th:text="${kurs.min_tn_anzahl}"></td>
-                                <td th:text="${kurs.max_tn_anzahl}"></td>
-                                <td th:text="${kurs.freie_plaetze}">Freie Plaetze Kurs ID</td>
-                                <!--td th:text="${kurs.aktuelle_tn_anzahl}">Aktuelle Teilnehmer</td-->
-                                <!--td th:text="${kurs.gebuehr_brutto}">Gebuehr Brutto</td>
-                                <td th:text="${kurs.gebuehr_netto}">Gebuehr Netto</td>
-                                <td th:text="${kurs.mwst_euro}">Mwst Euro</td>
-                                <td th:text="${kurs.mwst_prozent}">Mwst Prozent</td>
+                            <td th:text="${kurs.start_datum}"></td>
 
-                                <td th:text="${kurs.kurs_beschreibung}">Kurs Beschreibung</td-->
-                                <td>
-                                    <a class="linkButton" th:href="@{'/k1/kurs1/showKurs/' + ${kurs.kursId}}">
+                            <td th:text="${kurs.ende_datum}"></td>
+                            <td th:text="${kurs.min_tn_anzahl}"></td>
+                            <td th:text="${kurs.max_tn_anzahl}"></td>
+                            <td th:text="${kurs.freie_plaetze}">Freie Plaetze Kurs ID</td>
+                            <td>
+                                <a class="linkButton" th:href="@{'/k1/kurs1/showKurs/' + ${kurs.kursId}}">
 
-                                        <span>Show</span><i style="color: cornsilk;" class="fa fa-eye"></i></a>
-                                </td>
-                                <td>
-                                    <a class="linkButton" th:href="@{'/k1/kurs1/editkurs/' + ${kurs.kursId}}">
+                                    <span>Show</span><i style="color: cornsilk;" class="fa fa-eye"></i></a>
+                            </td>
+                            <td>
+                                <a class="linkButton" th:href="@{'/k1/kurs1/editkurs/' + ${kurs.kursId}}">
 
-                                        <span>Edit</span><i style="color: green;" class="fa fa-edit"></i></a>
-                                </td>
-                                <td>
-                                    <a class="linkButton" th:href="@{'/k1/kurs1/get/'+${kurs.kursId}}">
-                                        <span>Add</span><i style="color: #fed189;" class="fa fa-user-plus"></i></a>
-                                </td>
-                                <td>
-                                    <a class="linkButton" th:href="@{'/k1/kurs1/deletekurs/' + ${kurs.kursId}}">
-                                        <span>Delete</span><i style="color: red;" class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                </tr>
+                                    <span>Edit</span><i style="color: green;" class="fa fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <a class="linkButton" th:href="@{'/k1/kurs1/get/'+${kurs.kursId}}">
+                                    <span>Add</span><i style="color: #fed189;" class="fa fa-user-plus"></i></a>
+                            </td>
+                            <td>
+                                <a class="linkButton" th:href="@{'/k1/kurs1/deletekurs/' + ${kurs.kursId}}">
+                                    <span>Delete</span><i style="color: red;" class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
 
 
-            </table>
+                    </table>
 
 
-        </div>
-    </div>
+                </div>
+            </div>
+
+
         </div>
     </section>
 </div>
@@ -155,8 +125,6 @@
 
 
 </div>
-<!--</div>
-</div-->
 
 </body>
 </html>
