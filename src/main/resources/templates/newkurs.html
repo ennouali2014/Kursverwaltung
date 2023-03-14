@@ -154,9 +154,11 @@
                                 <td>
                                     <input type="number" id="max_tn_anzahl" name="max_tn_anzahl"
                                            th:attr="min=${kurs1.min_tn_anzahl}"
-                                           oninput="if(parseInt(value)<parseInt(min)) value=min;"
-                                           th:field="*{max_tn_anzahl}" class="form-control" placeholder="max Teilnehmer"
+                                           oninput="if(parseInt(value)<=parseInt(min)) value=parseInt(min)+1;"
+                                           th:field="*{max_tn_anzahl}"
+                                           class="form-control" placeholder="max Teilnehmer"
                                            required>
+
 
                                     <p style="color: red" th:if="${#fields.hasErrors('max_tn_anzahl')}" class="error-message">
                                                 <span th:if="${#fields.hasErrors('max_tn_anzahl') }">

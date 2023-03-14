@@ -125,7 +125,6 @@ public class KursController {
 
         if (kurs1.getKursId() != null) {
             Kurs kurs = service.get(kurs1.getKursId());
-            System.out.println("kurs.getTeilnehmer().size():--" + kurs.getTeilnehmer().size());
             kurs1.setFreie_plaetze(kurs1.getMax_tn_anzahl() - kurs.getTeilnehmer().size());
             kurs1.setAktuelle_tn_anzahl(kurs.getTeilnehmer().size());
         } else {
