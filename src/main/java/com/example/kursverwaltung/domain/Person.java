@@ -60,110 +60,6 @@ public class Person {
             inverseJoinColumns = {@JoinColumn(name = "kursId")})
     private Set<Kurs> inKursteilnehmen = new HashSet<>();
 
-/*    public Person() {
-    }
-
-    public Person(int anrede, String title, String vorname, String nachname, String strasse, String plz, String ort, String email) {
-
-        this.anrede = anrede;
-        this.titel = title;
-        this.vorname = vorname;
-        this.nachname = nachname;
-        this.strasse = strasse;
-        this.plz = plz;
-        this.ort = ort;
-        this.email = email;
-    }*/
-
-/*    public Set<Kurs> getInKursteilnehmen() {
-        return inKursteilnehmen;
-    }
-
-    public void setInKursteilnehmen(Set<Kurs> inKursteilnehmen) {
-        this.inKursteilnehmen = inKursteilnehmen;
-    }*/
-
-/*
-    public Long getPersonId() {
-        return personId;
-    }
-
-
-    public int getAnrede() {
-        return anrede;
-    }
-
-    public void setAnrede(int anrede) {
-        this.anrede = anrede;
-    }
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public String getVorname() {
-        return vorname;
-    }
-
-    public void setVorname(String vorname) {
-        if (checkIsEmpty(vorname)) {
-            this.vorname = vorname;
-        } else {
-            System.out.println("Vorname ist leer oder zu kurz!");
-        }
-    }
-
-    public String getNachname() {
-        return nachname;
-    }
-
-    public void setNachname(String nachname) {
-        if (checkIsEmpty(nachname)) {
-            this.nachname = nachname;
-        } else {
-            System.out.println("Nachname ist leer oder zu kurz!");
-        }
-    }
-
-    public String getStrasse() {
-        return strasse;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public String getPlz() {
-        return plz;
-    }
-
-    public void setPlz(String plz) {
-        this.plz = plz;
-    }
-
-    public String getOrt() {
-        return ort;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        if (checkValidEmail(email)) {
-            this.email = email;
-        } else {
-            System.out.println("Email ist falsch!");
-        }
-    }*/
 
     public Set<Kurs> getInKursinteressieren() {
         return inKursinteressieren;
@@ -172,21 +68,6 @@ public class Person {
     public void setInKursinteressieren(Set<Kurs> inKursinteressieren) {
         this.inKursinteressieren = inKursinteressieren;
     }
-/*
-    public void setPersonId(Long personId) {
-        this.personId = personId;
-    }
-
-    public static boolean checkIsEmpty(String wert) {
-        return wert != null && wert.length() >= 2;
-    }
-
-    public static boolean checkValidEmail(String email) {
-        String pattern = ("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$");
-        java.util.regex.Pattern p = java.util.regex.Pattern.compile(pattern);
-        java.util.regex.Matcher m = p.matcher(email);
-        return m.matches();
-    }*/
 
     public boolean isIdentitySame() {
         return vorname.equals(nachname) && nachname.equals(email);
