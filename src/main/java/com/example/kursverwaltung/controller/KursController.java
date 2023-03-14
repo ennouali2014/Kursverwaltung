@@ -20,7 +20,7 @@ import java.util.Set;
 
 /**
  * Die Klasse KursController erhält die Requests vom Client und verarbeitett diese
- * Mittels Annotationen werden Verbindungen von Sringboot und der Datenbank hergestellt und auch spezifiziert, wie zb Beziehungen zwischen den Enteties
+ * Mittels Annotationen werden Verbindungen von Spring und der Datenbank hergestellt und auch spezifiziert, wie zb Beziehungen zwischen den Enteties
  */
 @Controller
 @RequestMapping("/k1")
@@ -32,7 +32,7 @@ public class KursController {
     private PersonService personService;
 
     /**
-     * Diese Methode erzeugt die Liste aller Kurse, ggf auch soritert nach einem Suchbegriff
+     * Diese Methode erzeugt die Liste aller Kurse im Templ Kurse, ggf auch sortiert nach einem Suchbegriff
      * @param model
      * @param keyword
      * @return
@@ -53,7 +53,7 @@ public class KursController {
     }
 
     /**
-     * Diese Methode speichert einen neuen Kurs in der Liste
+     * Diese Methode speichert einen neuen Kurs in der Liste, im Templ newkurs
      * @param model
      * @return
      */
@@ -64,7 +64,7 @@ public class KursController {
     }
 
     /**
-     * Diese Methode speichert einen neuen Kurs, ob er das erste mal angelegt wird oder schon vorhonden ist,
+     * Diese Methode speichert einen neuen Kurs, prüft ob er das erste mal angelegt wird oder schon vorhonden ist,
      * prüft auch den userinput auf gewünschte Validität
      * kalkuliert automatisch aus dem Userinput über den Request Parameter einige Datenfelder z.B. Enddatum, GebuehrNetto, MwstEuro, freie Plätze
      * @param kurs1
@@ -181,7 +181,7 @@ public class KursController {
 
     /**
      * Diese Methode erzeugt ein Array mit zwei Werten für die Einordnung von Personen als TN oder Int
-     * wird im Templ genutzt um einem Kurs eine Person als TN oder Interessent hinzuzufügen
+     * wird im Templ genutzt um eine Person als TN oder Interessent hinzuzufügen
      * @param kursId
      * @return
      */
@@ -196,7 +196,7 @@ public class KursController {
     }
 
     /**
-     * Diese Methode zeigt einen Kurs, dessen Id anhand Pfades ausgelesen wurde
+     * Diese Methode zeigt einen Kurs mit allen Attributen(ohne Edit_möglichkeit), dessen Id anhand des Pfades ausgelesen wurde
      * @param kursId
      * @return
      */
@@ -208,8 +208,9 @@ public class KursController {
     }
 
     /**
-     * Diese Methode liest die Id eines Kurses anhand des Pfades aus , übernmt die Parameter,
-     * und validiert zb ob ein Kurs noch freie Plätze hat und speichert ggf als TN oder Interessent
+     * Diese Methode liest die Id eines Kurses anhand des Pfades aus , übernimmmt die Parameter,
+     * und validiert zb ob ein Kurs noch freie Plätze hat und fügt de kurs und Person in der entsprechenden Liste hinzu,ggf als TN oder Interessent
+     * bei Speicherung wird Anzahl an freien Plätzen neu gesetzt
      * @param kursId
      * @param personId
      * @param choix
