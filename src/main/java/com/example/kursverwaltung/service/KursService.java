@@ -15,7 +15,6 @@ public class KursService {
     @Autowired
     private PersonRepository personRepository;
     public void save(Kurs kurs1){
-        //
         kursRepository.save(kurs1);
     }
     public Kurs get(long id){
@@ -32,6 +31,5 @@ public class KursService {
 
     public List<Kurs> findByKeyword(String keyword){
         return kursRepository.findByKeyword(keyword);}
-    //public String[] getAllkursname(){return kursRepository.getAllnameKurs();}
 
 }
