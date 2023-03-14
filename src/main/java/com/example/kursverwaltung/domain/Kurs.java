@@ -17,7 +17,7 @@ import javax.validation.constraints.Min;
 /**
  * Die Klasse Kurs definiert die Objekte 'Kurs', mit deren Attributen und Datentypen. (Einige Attribute sind Pflichtangaben, andere werden automatisch berechnet)
  * Mit Hiberante wird aus der Klasse eine Tabelle in der Datenbank erzeugt, sowie aus den Attributen entsprechende Spalten
- * Mittels Annotationen werden Verbindungen zur Datenbank hergestellt und auch spezifiziert, wie zb Beziehungen zwischen den Enteties
+ * Mittels Annotationen werden Verbindungen Springboot und der Datenbank hergestellt und auch spezifiziert, wie zb Beziehungen zwischen den Enteties
  */
 @Entity
 @Table(name = "kurs")
