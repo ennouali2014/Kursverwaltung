@@ -149,6 +149,22 @@ public class Kurs {
     @JsonIgnore
     private Set<Person> teilnehmer = new HashSet<>();
 
+
+
+    /**
+     * Der Konstruktor zum Kurs hat neun Parameter und alle sind Pflichtfelder
+     * Die Attribute werden über die Validation gecheckt, andere Attribute werden anhand dieser Atribute berechnet
+     *
+     * @param start_datum1
+     * @param anzahl_tage1
+     * @param zyklus1
+     * @param gebuehr_brutto1
+     * @param mwst_prozent1
+     * @param min_tn_anzahl1
+     * @param max_tn_anzahl1
+     * @param status1
+     * @param kurs_beschreibung
+     */
     public Kurs( LocalDate start_datum1, int anzahl_tage1, int zyklus1, Double gebuehr_brutto1, Double mwst_prozent1, int min_tn_anzahl1, int max_tn_anzahl1,  String status1, String kurs_beschreibung) {
 
         this.start_datum = start_datum1;
