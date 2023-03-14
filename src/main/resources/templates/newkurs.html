@@ -1,4 +1,3 @@
-
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="_layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,188 +22,245 @@
         <div class="col py-3"-->
 
 
-
-            <!-- hier den individuellen Bereich einer Site einfügen -->
+<!-- hier den individuellen Bereich einer Site einfügen -->
 
 <div layout:fragment="content">
     <section class="wrapper">
         <div class="row">
             <div style="margin-left: 20px ">
                 <a class="backButton" th:href="@{'/k1/kurs1/kurse'}">
-                    <i style="margin: inherit"  class="fa fa-backward"></i>
+                    <i style="margin: inherit" class="fa fa-backward"></i>
                     <span style="margin: 2px 2px 1px 5px;">Zurück</span>
                 </a>
             </div>
             <div class="title-page">
-                <i class="fa fa-pencil-square-o"></i><h2>Kurs anlegen/editieren</h2>
+                <i class="fa fa-pencil-square-o"></i>
+                <h2>Kurs anlegen/editieren</h2>
             </div>
-                <div style="margin: 0px 60px 15px 20px;">
+            <div style="margin: 0px 60px 15px 20px;">
 
-                    <!--/*@thymesVar id="kurs1" type="com.example.kursverwaltung.domain.Kurs"*/-->
-                    <form action="#" th:action="@{/k1/kurs1/savekurs}" th:object="${kurs1}" method="post">
-                        <div id="hbox">
-                            <div class="vbox">
-
-                                <div >
-
-                                    <tr>
-                                        <label class="form-label">Kursname</label>
-                                        <td>
-                                            <input type="text" th:field="*{kursname}" class="form-control"
-                                                   placeholder="Kursname" required/>
-                                            <input type="hidden" th:field="*{kursId}"/>
-
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <label class="form-label">Anzahl Tage</label>
-                                        <td>
-
-                                            <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{anzahl_tage}" class="form-control"
-                                                   placeholder="Anzahl Tage" required/>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <label class="form-label">startDatum</label>
-                                        <td>
-                                            <input type="date" th:field="*{start_datum}"
-                                                   class="form-control" name="start_datum"
-                                                   placeholder="startDatum" required
-                                            />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <label class="form-label">minTnZahl</label>
-                                        <td>
-                                            <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{min_tn_anzahl}" class="form-control"
-                                                   placeholder="Min Teilnehmer" required/>
-                                        </td>
-                                    </tr>
-                                    <!--tr>
-                                        <label class="form-label">Aktuelle Teilnehmerzahl</label>
-                                        <td>
-                                            <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
-                                                   placeholder="Aktuelle Teilnehmerzahl" required/>
-                                        </td>
-                                    </tr-->
-                                    <tr>
-                                        <label class="form-label">Gebuehr Brutto</label>
-                                        <td>
-                                            <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{gebuehr_brutto}" class="form-control"
-                                                   placeholder="Gebuehr Brutto" required/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <label class="form-label">Mwst Prozent</label>
-                                        <td>
-                                            <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{mwst_prozent}" class="form-control"
-                                                   placeholder="Mwst Prozent" required/>
-                                        </td>
-                                    </tr>
-                                </div>
-
-                            </div>
-                            <div class="vbox">
-                                <div>
-                                    <tr>
-                                        <label class="form-label">Status</label>
-                                        <td>
-                                            <select th:field="*{status}" class="form-control" name="status" required>
-                                                <option th:value="Active" th:text="Active">Active</option>
-                                                <option th:value="Geplant" th:text="Geplant">Geplant</option>
-
-                                            </select>
-
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <label class="form-label">Tage je Woche</label>
-                                        <td>
-                                            <input type="number" min="0" max="7" oninput="validity.valid||(value='');"
-                                                   th:field="*{zyklus}" class="form-control"
-                                                   placeholder="Tage je Woche" required/>
-                                        </td>
-                                    </tr>
-                                    <!--tr>
-                                        <label class="form-label">End Datum</label>
-                                        <td>
-                                            <input type="date" th:field="*{ende_datum}" class="form-control"
-                                                   placeholder="End Datum" disabled/>
-                                        </td>
-                                    </tr>
-                                    <tr-->
-                                        <label class="form-label">Max Teilnehmer</label>
-                                        <td>
-                                            <input type="number" min="0" oninput="validity.valid||(value='');"
-                                                   th:field="*{max_tn_anzahl}"
-                                                   class="form-control"
-                                                   placeholder="max Teilnehmer" required/>
-                                        </td>
-                                    </tr>
-                                    <!--tr>
-                                        <label class="form-label">freie Plaetze</label>
-                                        <td>
-                                            <input type="number" th:field="*{freie_plaetze}" class="form-control"
-                                                   placeholder="freie Plaetze" disabled/>
-                                        </td>
-                                    </tr-->
-                                    <!--tr>
-                                        <label class="form-label">Gebuehr Netto</label>
-                                        <td>
-                                            <input type="number" th:field="*{gebuehr_netto}" class="form-control"
-                                                   placeholder="Gebuehr Netto" disabled/>
-                                        </td>
-                                    </tr-->
-                                    <!--tr>
-                                        <label class="form-label">Mwst Euro</label>
-                                        <td>
-                                            <input type="number" th:field="*{mwst_euro}" class="form-control"
-                                                   placeholder="Mwst Euro" disabled/>
-                                        </td>
-                                    </tr-->
-
-
-                                </div>
-
-                            </div>
-                        </div>
+                <!--/*@thymesVar id="kurs1" type="com.example.kursverwaltung.domain.Kurs"*/-->
+                <form action="#" th:action="@{/k1/kurs1/savekurs}" th:object="${kurs1}" method="post">
+                    <div id="hbox">
                         <div class="vbox">
+
                             <div>
 
                                 <tr>
-                                    <label class="form-label">Kursbeschreibung</label>
+                                    <label class="form-label">Kursname</label>
                                     <td>
-                                        <input type="text" name="kurs_beschreibung" th:field="*{kurs_beschreibung}"
-                                               class="form-control"
-                                               placeholder="Kursbeschreibung"/>
+                                        <input type="text" th:field="*{kursname}" class="form-control"
+                                               placeholder="Kursname" required/>
+                                        <input type="hidden" th:field="*{kursId}"/>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <label class="form-label">Anzahl Tage</label>
+                                    <td>
+
+                                        <input type="number" min="0" oninput="validity.valid||(value='');"
+                                               th:field="*{anzahl_tage}" class="form-control"
+                                               placeholder="Anzahl Tage" required/>
+
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    <label class="form-label">Start Datum</label>
+                                    <td>
+                                        <input type="date" th:field="*{start_datum}"
+                                               class="form-control" id="start_datum" name="start_datum"
+                                               placeholder="Start Datum" required/>
+                                        <p style="color: red" th:if="${#fields.hasErrors('start_datum') && kurs1.kursId == null} " class="error-message">
+                                                    <span th:if="${#fields.hasErrors('start_datum')}"
+                                                          th:errors="*{start_datum}">
+                                                    </span>
+                                        <p><span th:if="${#fields.hasErrors('start_datum') && kurs1.kursId == null}" class="error-message">
+                                                Invalid start date. Please select a date on or after today's date.
+                                                </span>
+                                        </p>
+                                        </p>
+                                        <!--   th:value="${#dates.format(kurs1.start_datum,'dd.MM.yyyy')}"-->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <label class="form-label">Min Teilnehmer</label>
+                                    <td>
+                                        <input type="number" min="0" oninput="validity.valid||(value='');"
+                                               th:field="*{min_tn_anzahl}" class="form-control"
+                                               placeholder="Min Teilnehmer" required/>
+                                    </td>
+                                </tr>
+                                <!--tr>
+                                    <label class="form-label">Aktuelle Teilnehmerzahl</label>
+                                    <td>
+                                        <input type="number" th:field="*{aktuelle_tn_anzahl}" class="form-control"
+                                               placeholder="Aktuelle Teilnehmerzahl" disabled/>
+                                    </td>
+                                </tr-->
+                                <tr>
+                                    <label class="form-label">Gebuehr Brutto</label>
+                                    <td>
+                                        <input type="number" min="0" oninput="validity.valid||(value='');"
+                                               step="0.01"
+                                               th:field="*{gebuehr_brutto}" class="form-control"
+                                               placeholder="Gebuehr Brutto" required/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <label class="form-label">Mwst Prozent</label>
+                                    <td>
+                                        <input type="number" min="0" oninput="validity.valid||(value='');"
+                                               step="0.01"
+                                               th:field="*{mwst_prozent}" class="form-control"
+                                               placeholder="Mwst Prozent" required/>
+                                    </td>
+                                </tr>
                             </div>
 
-                            <div style="padding-left: 40%">
-                                <button type="submit" class="linkButton">Speichern</button>
-                                <button type="reset" class="linkButton">Abbrechen</button>
+                        </div>
+                        <div class="vbox">
+                            <div>
+                                <tr>
+                                    <label class="form-label">Status</label>
+                                    <td>
+                                        <select th:field="*{status}" class="form-control" name="status" required>
+                                            <option th:value="Active" th:text="Active">Active</option>
+                                            <option th:value="Geplant" th:text="Geplant">Geplant</option>
+
+                                        </select>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <label class="form-label">Tage je Woche</label>
+                                    <td>
+                                        <input type="number" min="0" max="7" oninput="validity.valid||(value='');"
+                                               th:field="*{zyklus}" class="form-control"
+                                               placeholder="Tage je Woche" required/>
+                                    </td>
+                                </tr>
+                                <!--tr>
+                                    <label class="form-label">End Datum</label>
+                                    <td>
+                                        <input type="date" th:field="*{ende_datum}" class="form-control"
+                                               placeholder="End Datum" disabled/>
+                                    </td>
+                                </tr>
+                                <tr-->
+                                <label class="form-label">Max Teilnehmer</label>
+                                <td>
+                                    <input type="number" id="max_tn_anzahl" name="max_tn_anzahl"
+                                           th:attr="min=${kurs1.min_tn_anzahl}"
+                                           oninput="if(parseInt(value)<parseInt(min)) value=min;"
+                                           th:field="*{max_tn_anzahl}" class="form-control" placeholder="max Teilnehmer"
+                                           required>
+
+                                    <p style="color: red" th:if="${#fields.hasErrors('max_tn_anzahl')}" class="error-message">
+                                                <span th:if="${#fields.hasErrors('max_tn_anzahl') }">
+        Invalid input. Please enter a number greater than or equal to [[${kurs1.min_tn_anzahl}]].
+      </span>
+                                    </p>
+
+                                    <p th:if="${#fields.hasErrors('max_tn_anzahl')}" class="error-message">
+                                                   <span th:if="${#fields.hasErrors('max_tn_anzahl')}"
+                                                         th:errors="*{max_tn_anzahl}">
+                                                </span>
+                                    </p>
+                                    <p th:if="${#fields.hasErrors('max_tn_anzahl')}" class="error-message">
+                                        [[${max_tn_anzahl1_error}]] </p>
+
+
+                                    <!--  <span id="error-text" style="color:red;"></span> -->
+                                </td>
+                                </tr>
+                                <!--tr>
+                                    <label class="form-label">freie Plaetze</label>
+                                    <td>
+                                        <input type="number" th:field="*{freie_plaetze}" class="form-control"
+                                               placeholder="freie Plaetze" disabled/>
+                                    </td>
+                                </tr-->
+                                <!--tr>
+                                    <label class="form-label">Gebuehr Netto</label>
+                                    <td>
+                                        <input type="number" th:field="*{gebuehr_netto}" class="form-control"
+                                               placeholder="Gebuehr Netto" disabled/>
+                                    </td>
+                                </tr-->
+                                <!--tr>
+                                    <label class="form-label">Mwst Euro</label>
+                                    <td>
+                                        <input type="number" th:field="*{mwst_euro}" class="form-control"
+                                               placeholder="Mwst Euro" disabled/>
+                                    </td>
+                                </tr-->
+
 
                             </div>
+
+                        </div>
+                    </div>
+                    <div class="vbox">
+                        <div>
+
+                            <tr>
+                                <label class="form-label">Kursbeschreibung</label>
+                                <td>
+                                    <input type="text" name="kurs_beschreibung" th:field="*{kurs_beschreibung}"
+                                           class="form-control"
+                                           placeholder="Kursbeschreibung"/>
+                                </td>
+                            </tr>
+
                         </div>
 
-                    </form>
-                </div>
+                        <div style="padding-left: 40%">
+                            <button type="submit" class="linkButton">Speichern</button>
+                            <button type="reset" class="linkButton">Abbrechen</button>
+
+                        </div>
+                    </div>
+
+                </form>
+            </div>
 
         </div>
     </section>
 </div>
-        <!--/div>
-    </div>
+<!--/div>
 </div>
+</div> -->
+
+<!--
+<script>
+    var maxTnInput = document.getElementById('max_tn_anzahl');
+    var minTnInput = document.getElementById('min_tn_anzahl');
+    var errorText = document.getElementById('error-text');
+
+    maxTnInput.addEventListener('input', function () {
+        if (parseInt(maxTnInput.value) < parseInt(minTnInput.value)) {
+            errorText.innerText = 'Max Teilnehmer muss größer oder gleich Min Teilnehmer sein';
+            maxTnInput.setCustomValidity('invalid');
+        } else {
+            errorText.innerText = '';
+            maxTnInput.setCustomValidity('');
+        }
+    });
+
+    minTnInput.addEventListener('input', function () {
+        if (parseInt(maxTnInput.value) < parseInt(minTnInput.value)) {
+            errorText.innerText = 'Max Teilnehmer muss größer oder gleich Min Teilnehmer sein';
+            maxTnInput.setCustomValidity('invalid');
+        } else {
+            errorText.innerText = '';
+            maxTnInput.setCustomValidity('');
+        }
+    });
+</script>
+-->
 </div-->
 </body>
 

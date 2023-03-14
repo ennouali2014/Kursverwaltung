@@ -17,7 +17,7 @@
                         <span style="margin: 2px 2px 1px 5px;">Zurück</span>
                     </a>
                 </div>
-                <h2> Person zu einem Kurs hinfügen </h2>
+                <h2>Kurs eine Person hinzufügen </h2>
                 <div class="container-fluid">
                     <form action="#"
 
@@ -43,13 +43,13 @@
                                 diese Personen interessieren sich für den Kurs <b th:text="${kurs.kursname}"></b>:
                                 <span th:each="person : ${kurs.interessant}">
                                 <br/>&nbsp;&nbsp;
-                                <b th:text="${person.vorname }+${person.nachname}"></b>
+                                <b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b>
                                 </span>
                                 <br/>
                                 <br/>
                                 diese Personen nehmen am Kurs <b th:text="${kurs.kursname}"></b> teil:
                                 <span th:each="person : ${kurs.teilnehmer}">
-                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname}+${person.nachname}"></b>
+                                <br/>&nbsp;&nbsp;<b th:text="${person.vorname}"></b>&nbsp;<b th:text="${person.nachname}"></b>
                                 </span>
                                 <br/>
                                 <br/>

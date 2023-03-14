@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
+import javax.validation.constraints.Min;
 @Entity
 @Table(name = "kurs")
 public class Kurs {
@@ -45,9 +45,9 @@ public class Kurs {
     private int max_tn_anzahl;
     @Column(name = "freie_plaetze")
     private int freie_plaetze = 0;
-    //@Column(name = "aktuelle_tn_anzahl", nullable = false)
-    // spaeter wird nicht nullable sondern in add person in kurs Kalkuliert
-    //private int aktuelle_tn_anzahl;
+
+   @Column(name = "aktuelle_tn_anzahl")
+    private int aktuelle_tn_anzahl;
 
     @Column(name = "gebuehr_brutto", nullable = false)
     private Double gebuehr_brutto;
@@ -72,7 +72,7 @@ public class Kurs {
     @JsonIgnore
     private Set<Person> teilnehmer = new HashSet<>();
 
-    public Kurs( LocalDate start_datum1, int anzahl_tage1, int zyklus1, Double gebuehr_brutto1, Double mwst_prozent1, int min_tn_anzahl1, int max_tn_anzahl1, String status1, String kurs_beschreibung) {
+    public Kurs( LocalDate start_datum1, int anzahl_tage1, int zyklus1, Double gebuehr_brutto1, Double mwst_prozent1, int min_tn_anzahl1, int max_tn_anzahl1,  String status1, String kurs_beschreibung) {
 
         this.start_datum = start_datum1;
         this.anzahl_tage = anzahl_tage1;
@@ -81,7 +81,7 @@ public class Kurs {
         this.mwst_prozent = mwst_prozent1;
         this.min_tn_anzahl = min_tn_anzahl1;
         this.max_tn_anzahl = max_tn_anzahl1;
-        //this.aktuelle_tn_anzahl = aktuelle_tn_anzahl1;
+        //this.aktuelle_tn_anzahl = aktuelle_tn_anzahl1; //int aktuelle_tn_anzahl1,
         this.status = status1;
         this.kurs_beschreibung=kurs_beschreibung;
     }
@@ -184,13 +184,13 @@ public class Kurs {
         this.max_tn_anzahl = max_tn_anzahl1;
     }
 
-   /* public int getAktuelle_tn_anzahl() {
+    public int getAktuelle_tn_anzahl() {
         return aktuelle_tn_anzahl;
-    }*/
+    }
 
-   /* public void setAktuelle_tn_anzahl(int aktuelle_tn_anzahl1) {
+    public void setAktuelle_tn_anzahl(int aktuelle_tn_anzahl1) {
         this.aktuelle_tn_anzahl = aktuelle_tn_anzahl1;
-    }*/
+    }
 
     public int getFreie_plaetze() {
         return freie_plaetze;
@@ -289,7 +289,7 @@ public class Kurs {
                 ", min_tn_anzahl=" + min_tn_anzahl +
                 ", max_tn_anzahl=" + max_tn_anzahl +
                 ", freie_plaetze=" + freie_plaetze +
-              //  ", aktuelle_tn_anzahl=" + aktuelle_tn_anzahl +
+                ", aktuelle_tn_anzahl=" + aktuelle_tn_anzahl +
                 ", gebuehr_brutto=" + gebuehr_brutto +
                 ", gebuehr_netto=" + gebuehr_netto +
                 ", mwst_prozent=" + mwst_prozent +
