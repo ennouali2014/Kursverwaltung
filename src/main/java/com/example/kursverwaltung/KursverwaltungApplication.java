@@ -13,9 +13,6 @@ public class KursverwaltungApplication {
 
 	public static void main(String[] args) {
 			SpringApplication.run(KursverwaltungApplication.class, args);
-			//BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			//System.out.println(encoder.encode("root"));
-
 	}
 
 
@@ -24,9 +21,7 @@ public class KursverwaltungApplication {
 		@Override
 		public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
-
 		}
-
 	}
 
 }
